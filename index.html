@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Siavash Safi — AI Engineer</title>
+<style>
+  :root{
+    --bg:#0b0d12;
+    --panel:#12151c;
+    --accent:#7dd3fc;
+    --accent2:#a78bfa;
+    --text:#e6e8ee;
+    --muted:#8b93a7;
+    --border:#232838;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(125,211,252,0.08), transparent 40%),
+      radial-gradient(circle at 85% 90%, rgba(167,139,250,0.08), transparent 40%),
+      var(--bg);
+    color:var(--text);
+    font-family:'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height:1.6;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:48px 24px 80px;}
+
+  header{
+    display:flex;flex-wrap:wrap;gap:24px;align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid var(--border);
+    padding-bottom:32px;margin-bottom:40px;
+  }
+  .id h1{
+    margin:0 0 6px;font-size:2.4rem;letter-spacing:-0.02em;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .id p.role{margin:0;color:var(--muted);font-size:1.05rem;}
+  .contact{display:flex;flex-direction:column;gap:6px;font-size:0.92rem;color:var(--muted);text-align:right;}
+  .contact a{color:var(--accent);text-decoration:none;}
+  .contact a:hover{text-decoration:underline;}
+
+  section{margin-bottom:44px;}
+  h2{
+    font-size:0.8rem;text-transform:uppercase;letter-spacing:0.15em;
+    color:var(--accent);margin:0 0 18px;
+    display:flex;align-items:center;gap:12px;
+  }
+  h2::after{content:"";flex:1;height:1px;background:var(--border);}
+
+  .summary{color:var(--text);font-size:1rem;}
+  .summary p{margin:0 0 14px;}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;}
+  .card{
+    background:var(--panel);border:1px solid var(--border);border-radius:10px;
+    padding:16px 18px;
+  }
+  .card h3{margin:0 0 6px;font-size:0.95rem;color:var(--text);}
+  .card p{margin:0;color:var(--muted);font-size:0.88rem;}
+
+  .skills{display:flex;flex-wrap:wrap;gap:10px;}
+  .pill{
+    background:var(--panel);border:1px solid var(--border);
+    padding:7px 14px;border-radius:999px;font-size:0.85rem;color:var(--text);
+  }
+  .pill.core{border-color:var(--accent);color:var(--accent);}
+
+  .timeline{border-left:2px solid var(--border);padding-left:24px;position:relative;}
+  .timeline::before{
+    content:"";position:absolute;left:-6px;top:2px;width:10px;height:10px;
+    border-radius:50%;background:var(--accent);
+  }
+
+  footer{
+    text-align:center;color:var(--muted);font-size:0.85rem;
+    border-top:1px solid var(--border);padding-top:24px;margin-top:20px;
+  }
+
+  @media (max-width:600px){
+    header{flex-direction:column;align-items:flex-start;}
+    .contact{text-align:left;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="id">
+      <h1>Siavash Safi</h1>
+      <p class="role">AI Engineer · Agentic Systems · DevOps &amp; Distributed Systems</p>
+    </div>
+    <div class="contact">
+      <span>siavashgame76@gmail.com</span>
+      <a href="https://github.com/siavash-debug" target="_blank">github.com/siavash-debug</a>
+    </div>
+  </header>
+
+  <section class="summary">
+    <h2>Profile</h2>
+    <p>IT and automation engineer with 8+ years of hands-on experience across Windows and Linux environments, DevOps, infrastructure, backend systems, and automation. I focus on building reliable systems, automating complex operational processes, and solving real-world engineering problems across technologies.</p>
+    <p>Today my focus is expanding from traditional automation and DevOps into <strong>AI Engineering and Agentic Systems</strong> — building production-oriented systems around LLMs, AI agents, workflow orchestration, tool use, planning, and evaluation, with an emphasis on reliability, scalability, and observability.</p>
+    <p>My goal is to combine strong infrastructure and automation foundations with modern AI capabilities to build systems that don't just execute predefined workflows, but reason, plan, use tools, adapt to context, and operate reliably in production.</p>
+  </section>
+
+  <section>
+    <h2>Focus Areas</h2>
+    <div class="grid">
+      <div class="card"><h3>AI Engineering &amp; Agentic Systems</h3><p>LLM-powered apps, agent design, tool use</p></div>
+      <div class="card"><h3>AI Automation &amp; Workflow Engineering</h3><p>Orchestration, planning, real-world automation</p></div>
+      <div class="card"><h3>Evaluation &amp; Benchmarking</h3><p>Measuring and improving agent reliability</p></div>
+      <div class="card"><h3>DevOps &amp; Infrastructure Automation</h3><p>Windows &amp; Linux engineering</p></div>
+      <div class="card"><h3>Backend &amp; Distributed Systems</h3><p>APIs, databases, scalable services</p></div>
+      <div class="card"><h3>CI/CD, Containers &amp; Cloud</h3><p>System reliability &amp; observability</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <div class="skills">
+      <span class="pill core">AI Engineering</span>
+      <span class="pill core">AI Agents</span>
+      <span class="pill core">LLMs</span>
+      <span class="pill core">Artificial Intelligence</span>
+      <span class="pill">Machine Learning</span>
+      <span class="pill">Python</span>
+      <span class="pill">Go</span>
+      <span class="pill">.NET Framework</span>
+      <span class="pill">Node.js</span>
+      <span class="pill">REST APIs</span>
+      <span class="pill">API Development</span>
+      <span class="pill">SQL</span>
+      <span class="pill">Database Optimization</span>
+      <span class="pill">Containerization</span>
+      <span class="pill">Git</span>
+      <span class="pill">Code Review</span>
+      <span class="pill">Software Engineering</span>
+      <span class="pill">Mentoring</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>Trajectory</h2>
+    <div class="timeline">
+      <p><strong>8+ years</strong> — Windows &amp; Linux systems, DevOps, infrastructure, backend engineering, and operational automation.</p>
+      <p><strong>Now</strong> — Expanding into AI Engineering: LLM applications, agentic systems, and AI-driven automation, built on that infrastructure foundation.</p>
+    </div>
+  </section>
+
+  <footer>
+    Siavash Safi · AI Engineer &amp; Software Engineer · Built with a bias toward reliable, production-grade systems
+  </footer>
+
+</div>
+</body>
+</html>
