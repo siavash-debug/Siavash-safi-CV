@@ -104,6 +104,39 @@
   .nav-links a:hover{color:var(--ink);background:rgba(255,255,255,.05);}
   .nav-links a.active{color:var(--accent);background:rgba(94,234,212,.09);}
 
+  .brand-group{display:flex;align-items:center;gap:11px;}
+  .mark.avatar{
+    width:34px;height:34px;flex:none;padding:0;border-radius:50%;overflow:hidden;cursor:pointer;
+    display:grid;place-items:center;
+    background:linear-gradient(135deg,rgba(94,234,212,.2),rgba(122,162,255,.14));
+    border:1px solid var(--line-strong);
+    transition:border-color .2s ease,box-shadow .2s ease;
+  }
+  .mark.avatar:hover{border-color:var(--accent);box-shadow:0 0 0 3px rgba(94,234,212,.12);}
+  .mark.avatar img{display:block;width:100%;height:100%;object-fit:cover;object-position:center;}
+
+  /* ---------- profile photo modal ---------- */
+  .photo-modal{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:24px;}
+  .photo-modal[hidden]{display:none;}
+  .photo-modal-backdrop{position:absolute;inset:0;background:rgba(7,8,11,.8);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);}
+  .photo-modal-card{position:relative;margin:0;}
+  .photo-modal-card::before{content:"";position:absolute;inset:0;border-radius:50%;animation:photoIn .28s cubic-bezier(.2,.7,.3,1);pointer-events:none;}
+  .photo-modal-card img{
+    display:block;width:min(280px,68vw);height:min(280px,68vw);border-radius:50%;
+    object-fit:cover;object-position:center;
+    border:1px solid var(--line-strong);
+    box-shadow:0 24px 70px -20px rgba(0,0,0,.85),0 0 0 6px rgba(94,234,212,.07);
+    animation:photoIn .28s cubic-bezier(.2,.7,.3,1);
+  }
+  .photo-modal-close{
+    position:absolute;top:6px;right:6px;display:grid;place-items:center;cursor:pointer;
+    width:34px;height:34px;border-radius:50%;border:1px solid var(--line-strong);
+    background:var(--surface);color:var(--muted);
+    transition:color .2s ease,border-color .2s ease,transform .2s ease;
+  }
+  .photo-modal-close:hover{color:var(--accent);border-color:rgba(94,234,212,.4);transform:translateY(-1px);}
+  .photo-modal-close svg{width:15px;height:15px;}
+
   .btn{
     display:inline-flex;align-items:center;gap:8px;cursor:pointer;
     font-family:var(--sans);font-size:.86rem;font-weight:600;
@@ -133,6 +166,7 @@
   .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);position:relative;}
   .dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:1px solid var(--accent);opacity:.6;animation:ping 2.2s ease-out infinite;}
   @keyframes ping{0%{transform:scale(.6);opacity:.7}100%{transform:scale(1.9);opacity:0}}
+  @keyframes photoIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:none}}
 
   .hero h1{
     margin:0 0 18px;font-size:clamp(2.5rem,6vw,4rem);line-height:1.02;
@@ -295,6 +329,14 @@
   .proj-link svg{width:13px;height:13px;flex:none;}
   .proj-link.pending{color:var(--faint);border-style:dashed;cursor:default;}
   .proj-link.pending:hover{color:var(--faint);border-color:var(--line);transform:none;}
+  .proj-group{
+    grid-column:1/-1;margin:14px 0 0;display:flex;align-items:center;gap:12px;
+    font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);
+  }
+  .proj-group::after{content:"";flex:1;height:1px;background:var(--line);}
+  #projects .project.soon{border-style:dashed;}
+  #projects .project.soon:hover{transform:none;border-color:var(--line);}
+  #projects .project.soon .desc{color:var(--muted);}
 
   .gh-panel{
     margin-top:16px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;
@@ -374,6 +416,7 @@
   .lota-tech{margin:18px 0 0;font-family:var(--mono);font-size:.73rem;color:var(--muted);line-height:1.9;}
   @media (max-width:720px){
     #projects .projects,.lota-content{grid-template-columns:minmax(0,1fr);}
+    .proj-group{margin-top:6px;}
   }
 
   /* ---------- skills ---------- */
@@ -443,7 +486,17 @@
   .cert h3{margin:0 0 8px;font-size:.95rem;font-weight:600;line-height:1.4;letter-spacing:-.005em;}
   .cert .issuer{margin:0;font-size:.84rem;color:var(--accent-3);}
   .cert .meta{margin:6px 0 0;font-family:var(--mono);font-size:.7rem;color:var(--faint);}
-  .cert .tags{margin:12px 0 0;display:flex;flex-wrap:wrap;gap:6px;}
+  .cert .tags{
+    margin:12px 0 0;display:flex;flex-wrap:wrap;gap:6px;
+  }
+  .cert .cert-link{
+    display:inline-flex;align-items:center;gap:4px;margin:12px 0 0;
+    font-family:var(--mono);font-size:.7rem;color:var(--muted);
+    text-decoration:none;border-bottom:1px dashed var(--line-strong);padding-bottom:2px;
+    transition:color .2s ease,border-color .2s ease;
+  }
+  .cert .cert-link:hover{color:var(--accent);border-color:rgba(94,234,212,.5);}
+  .cert .cert-link:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
   .cert .tags span{
     font-size:.7rem;color:var(--muted);padding:3px 9px;border-radius:6px;
     background:rgba(255,255,255,.04);border:1px solid var(--line);
@@ -552,23 +605,37 @@
 
 <div class="progress" id="progress" aria-hidden="true"></div>
 
+<div class="photo-modal" id="photoModal" role="dialog" aria-modal="true" aria-label="Profile photo preview" hidden>
+  <div class="photo-modal-backdrop" data-close-photo></div>
+  <figure class="photo-modal-card">
+    <img src="assets/images/profile.jpg" alt="Enlarged profile photo of Siavash Safi" decoding="async">
+    <button class="photo-modal-close" type="button" data-close-photo aria-label="Close profile photo preview">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+    </button>
+  </figure>
+</div>
+
 <header class="site-header" id="siteHeader">
   <div class="wrap nav">
-    <a class="brand" href="#top">
-      <span class="mark">SS</span>
-      <span class="who">
-        <b>Siavash Safi</b>
-        <span>AI Engineer</span>
-      </span>
-    </a>
-    <nav class="nav-links" id="navLinks" aria-label="Sections">
-      <a href="#profile">Profile</a>
-      <a href="#focus">Focus</a>
-      <a href="#projects">Projects</a>
-      <a href="#skills">Skills</a>
-      <a href="#trajectory">Trajectory</a>
-      <a href="#certs">Certifications</a>
-    </nav>
+    <div class="brand-group">
+      <button class="mark avatar" type="button" id="avatarBtn" aria-haspopup="dialog" aria-controls="photoModal" aria-label="View profile photo">
+        <img src="assets/images/profile.jpg" alt="Siavash Safi profile photo" width="1280" height="1280" decoding="async">
+      </button>
+      <a class="brand" href="#top">
+        <span class="who">
+          <b>Siavash Safi</b>
+          <span>AI Engineer</span>
+        </span>
+      </a>
+    </div>
+      <nav class="nav-links" id="navLinks" aria-label="Sections">
+        <a href="#profile">Profile</a>
+        <a href="#evolution">Evolution</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Expertise</a>
+        <a href="#trajectory">Philosophy</a>
+        <a href="#certs">Certifications</a>
+      </nav>
     <button class="btn primary" type="button" onclick="window.print()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
       Save CV
@@ -583,15 +650,15 @@
     <div class="hero-grid">
       <div>
         <span class="status"><span class="dot"></span> Open to AI engineering &amp; platform roles</span>
-        <h1>Siavash Safi<br><span class="grad">builds systems that reason.</span></h1>
+        <h1>Siavash Safi<br><span class="grad">builds AI systems that hold up.</span></h1>
         <p class="rotator" aria-live="polite">
           <span class="prefix">&gt;</span> <span class="word" id="rotator">AI Engineering</span>
         </p>
         <p class="lede">
-          IT &amp; automation engineer with <strong>8+ years</strong> across Windows and Linux environments,
-          DevOps, infrastructure, backend systems and automation. Today I build
-          <strong>production-oriented AI and agentic systems</strong> — LLM applications, tool use,
-          planning, orchestration and evaluation — on top of a hard-won infrastructure foundation.
+          Engineer with <strong>8+ years</strong> across real-world software applications, data-driven and
+          statistical systems, blockchain and financial infrastructure — now building
+          <strong>reliable, executable AI systems</strong>: agents that plan, execute, evaluate,
+          verify and recover, on top of a hard-won production foundation.
         </p>
         <div class="cta-row">
           <a class="btn primary" href="mailto:siavashsafi76@gmail.com">
@@ -631,7 +698,7 @@
       <div class="stat"><b>8<span class="u">+</span></b><span>Years engineering</span></div>
       <div class="stat"><b id="statCerts">23</b><span>Certifications</span></div>
       <div class="stat"><b>6</b><span>Focus areas</span></div>
-      <div class="stat"><b>18<span class="u">+</span></b><span>Core skills</span></div>
+      <div class="stat"><b>28</b><span>Core skills</span></div>
     </div>
   </div>
 
@@ -639,12 +706,12 @@
   <section class="block wrap" id="profile">
     <div class="sec-head reveal">
       <span class="kicker">Profile</span>
-      <h2>From infrastructure to intelligent systems</h2>
+      <h2>Not a prompt layer around a model</h2>
     </div>
     <div class="panel prose reveal">
-      <p>IT and automation engineer with <strong>8+ years of hands-on experience</strong> across Windows and Linux environments, DevOps, infrastructure, backend systems and automation. I focus on building reliable systems, automating complex operational processes, and solving real-world engineering problems across technologies.</p>
-      <p>Today my focus is expanding from traditional automation and DevOps into <span class="hl">AI Engineering and Agentic Systems</span> — building production-oriented systems around LLMs, AI agents, workflow orchestration, tool use, planning and evaluation, with an emphasis on reliability, scalability and observability.</p>
-      <p>My goal is to combine strong infrastructure and automation foundations with modern AI capabilities to build systems that don't just execute predefined workflows, but <strong>reason, plan, use tools, adapt to context, and operate reliably in production</strong>.</p>
+      <p>My engineering path started with <strong>software systems and real-world applications</strong> — reservation-style systems where transactional workflows, integrations and business logic had to actually work. It moved through <strong>data-driven and statistical systems</strong>, where I built Python trading systems that turned quantitative rules into executable strategies with backtesting and automated execution, and into <strong>blockchain and financial infrastructure</strong>, where state, transactions and numerical correctness carry real consequences.</p>
+      <p>That progression shaped how I approach AI today: not as a prompt layer around a model, but as an <span class="hl">engineering system that needs execution, state, evaluation, observability, verification and recovery</span>. Machine learning, deep learning, NLP, RAG and generative AI added the model layer; the systems background underneath it is what makes the difference.</p>
+      <p>My current focus is <strong>agentic systems and AI infrastructure</strong> — models as components inside larger, testable workflows that can plan, use tools, evaluate their own results, and recover when execution goes wrong.</p>
     </div>
   </section>
 
@@ -652,16 +719,59 @@
   <section class="block wrap" id="focus">
     <div class="sec-head reveal">
       <span class="kicker">Focus areas</span>
-      <h2>Where I do my best work</h2>
-      <p class="sub">Six disciplines that overlap deliberately — infrastructure depth is what makes the AI layer dependable.</p>
+      <h2>What I build, and what I care about</h2>
+      <p class="sub">Systems that reason, plan, execute, evaluate and recover — with correctness, observability and provenance treated as engineering requirements.</p>
     </div>
     <div class="cards">
-      <article class="card reveal"><span class="num">01</span><h3>AI Engineering &amp; Agentic Systems</h3><p>LLM-powered applications, agent design, and tool use that holds up outside the demo.</p></article>
-      <article class="card reveal"><span class="num">02</span><h3>AI Automation &amp; Workflow Engineering</h3><p>Orchestration, planning and real-world automation across messy operational processes.</p></article>
-      <article class="card reveal"><span class="num">03</span><h3>Evaluation &amp; Benchmarking</h3><p>Measuring agent behavior and turning those measurements into reliability gains.</p></article>
-      <article class="card reveal"><span class="num">04</span><h3>DevOps &amp; Infrastructure Automation</h3><p>Windows and Linux engineering, provisioning, and repeatable operational tooling.</p></article>
-      <article class="card reveal"><span class="num">05</span><h3>Backend &amp; Distributed Systems</h3><p>APIs, databases and scalable services with an eye on performance and clarity.</p></article>
-      <article class="card reveal"><span class="num">06</span><h3>CI/CD, Containers &amp; Cloud</h3><p>Delivery pipelines, containerization, and the observability that keeps systems trustworthy.</p></article>
+      <article class="card reveal"><span class="num">01</span><h3>Agentic Systems</h3><p>Planning, tool use, orchestration, bounded replanning and workflow execution — agents with explicit state and boundaries.</p></article>
+      <article class="card reveal"><span class="num">02</span><h3>AI Reliability</h3><p>Evaluation, benchmarking, verification, grounding and regression detection — correctness as an engineered property.</p></article>
+      <article class="card reveal"><span class="num">03</span><h3>AI Applications</h3><p>RAG, OCR, NLP and generative AI built around grounding, citations and knowing when the system does not know.</p></article>
+      <article class="card reveal"><span class="num">04</span><h3>AI Infrastructure</h3><p>Workflow runtimes, execution state, event tracing, provenance and reproducible artifacts.</p></article>
+      <article class="card reveal"><span class="num">05</span><h3>Systems Engineering</h3><p>Backend and distributed systems, APIs, state management, messaging and recovery — the layer AI stands on.</p></article>
+      <article class="card reveal"><span class="num">06</span><h3>Infrastructure &amp; Delivery</h3><p>Containers, CI/CD, Linux and Windows engineering, and the observability that keeps systems trustworthy.</p></article>
+    </div>
+  </section>
+
+  <!-- ============ EVOLUTION ============ -->
+  <section class="block wrap" id="evolution">
+    <div class="sec-head reveal">
+      <span class="kicker">Engineering Evolution</span>
+      <h2>From software systems to reliable AI infrastructure</h2>
+      <p class="sub">A progression from software systems and quantitative computing to reliable AI infrastructure.</p>
+    </div>
+    <div class="panel">
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <span class="when">Start</span>
+          <h3>Software Systems</h3>
+          <p>Real-world applications and backend systems — including hotel and flight reservation-style work with transactional workflows, integrations and business logic that had to hold up in production.</p>
+        </div>
+        <div class="tl-item reveal">
+          <span class="when">Data</span>
+          <h3>Data &amp; Statistical Systems</h3>
+          <p>Python for numerical data, visualization and statistical logic — building trading systems where quantitative rules became executable strategies with backtesting, automated position execution and analysis of system behavior.</p>
+        </div>
+        <div class="tl-item reveal">
+          <span class="when">Finance</span>
+          <h3>Blockchain &amp; Financial Infrastructure</h3>
+          <p>Blockchain engineering connected to cryptocurrency exchange infrastructure — systems where transactions, state and numerical correctness matter, and reliability is not optional.</p>
+        </div>
+        <div class="tl-item reveal">
+          <span class="when">ML</span>
+          <h3>Machine Learning &amp; Generative AI</h3>
+          <p>Data science, deep learning, NLP, RAG and OCR — the model layer, built on the same foundation of correctness and evaluation.</p>
+        </div>
+        <div class="tl-item reveal">
+          <span class="when">Agents</span>
+          <h3>Agentic Systems</h3>
+          <p>Planning, tool use, orchestration and workflow execution — models moved from answers into executable systems.</p>
+        </div>
+        <div class="tl-item reveal">
+          <span class="when">Now</span>
+          <h3>AI Reliability &amp; Infrastructure</h3>
+          <p>Evaluation, benchmarking, verification, observability and provenance — the current direction, expressed in LOTA.design.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -717,9 +827,9 @@
                 <p>AI Production · Workflow Infrastructure</p>
               </div>
             </div>
-            <p class="lota-statement">Build AI workflows.<br><span class="hl">Create traceable artifacts.</span></p>
-            <p class="desc">An AI production platform for building workflows that turn models, tools, and executions into traceable, verifiable artifacts.</p>
-            <p class="lota-tech">TypeScript · Workflow Engine · Graph Execution</p>
+            <p class="lota-statement">AI can generate an artifact.<br><span class="hl">LOTA explores how to trust it.</span></p>
+            <p class="desc">An AI production and workflow-infrastructure concept focused on making generated artifacts traceable, identifiable, and verifiable — where a produced output carries its origin: the workflow, execution, inputs, models and version behind it, connected to evaluation and verification.</p>
+            <p class="lota-tech">Architecture direction · Not yet a shipped platform</p>
           </div>
           <div class="lota-pipeline">
             <span class="lota-pipeline-label" id="lota-lifecycle">Artifact lifecycle</span>
@@ -752,13 +862,13 @@
         <div class="proj-head">
           <span class="proj-icon">01</span>
           <div class="proj-title">
-            <h3>Agent Evaluation Harness</h3>
-            <p>Evaluation &amp; benchmarking · 2026</p>
+            <h3>Agentic Workflow Engine</h3>
+            <p>Agents · Planning · Tool Use · Orchestration</p>
           </div>
           <span class="status-pill wip">In progress</span>
         </div>
-        <p class="desc">A reproducible way to measure agent behaviour instead of guessing at it: versioned task suites, deterministic scoring, cost and latency capture per run, and regression tracking so a prompt or model change can be accepted or rejected on evidence.</p>
-        <div class="proj-stack"><span>Python</span><span>LLM APIs</span><span>Postgres</span><span>Evaluation</span></div>
+        <p class="desc">An execution runtime for agents that turns plans into observable, recoverable workflows. A Planner Agent and AgentLoop drive plan → execute → evaluate with bounded replanning, while workflow state, execution events and recovery stay explicit: Task Execution Service, Tool Registry, provider-agnostic LLM boundary, PostgreSQL persistence, a workflow state machine, crash-recovery primitives and EventStore tracing.</p>
+        <div class="proj-stack"><span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>SQLAlchemy</span><span>Pydantic</span><span>Pytest</span><span>Docker</span><span>CI/CD</span></div>
         <div class="proj-links">
           <span class="proj-link pending">Repo coming soon</span>
         </div>
@@ -768,13 +878,13 @@
         <div class="proj-head">
           <span class="proj-icon">02</span>
           <div class="proj-title">
-            <h3>Tool-Use Orchestrator</h3>
-            <p>Agent runtime · 2026</p>
+            <h3>ProofDesk</h3>
+            <p>RAG · OCR · Grounding · Evaluation</p>
           </div>
           <span class="status-pill wip">In progress</span>
         </div>
-        <p class="desc">A runtime for long-running agent workflows — planning, tool execution, retries and guardrails, with tracing on every step so failures can be replayed rather than reproduced by hand.</p>
-        <div class="proj-stack"><span>Python</span><span>Go</span><span>REST APIs</span><span>Observability</span></div>
+        <p class="desc">A document QA system designed to know when it does not know. PDFs move through extraction, OCR fallback, cleaning, chunking, retrieval and grounding before an answer is presented — every answer cited to source documents, and validated by an automated golden evaluation dataset (direct, borderline, irrelevant and multi-document cases) scored for correctness, faithfulness and contextual relevancy. The point is not generating an answer; it is knowing whether the answer is right.</p>
+        <div class="proj-stack"><span>RAG</span><span>OCR</span><span>Chroma</span><span>Embeddings</span><span>DeepEval</span><span>Evaluation</span></div>
         <div class="proj-links">
           <span class="proj-link pending">Repo coming soon</span>
         </div>
@@ -784,13 +894,13 @@
         <div class="proj-head">
           <span class="proj-icon">03</span>
           <div class="proj-title">
-            <h3>Workflow Automation Engine</h3>
-            <p>AI automation · 2026</p>
+            <h3>Text-to-Image Generation &amp; Benchmarking</h3>
+            <p>Generative AI · Image Generation · Evaluation · Benchmarking</p>
           </div>
-          <span class="status-pill planned">Planned</span>
+          <span class="status-pill wip">In progress</span>
         </div>
-        <p class="desc">Bridging traditional operational automation with LLM-driven decisioning, so messy real-world processes can be orchestrated end to end with humans in the loop where it matters.</p>
-        <div class="proj-stack"><span>Python</span><span>Node.js</span><span>SQL</span><span>CI/CD</span></div>
+        <p class="desc">Built and evaluated a text-to-image generation system for generative graphics — not just producing images, but measuring them: systematic benchmarking of generated output quality, with iterative improvement of the generation workflow driven by benchmark results. Generation → benchmark → evaluate → improve.</p>
+        <div class="proj-stack"><span>Generative AI</span><span>Image Generation</span><span>Benchmarking</span><span>Evaluation</span></div>
         <div class="proj-links">
           <span class="proj-link pending">Repo coming soon</span>
         </div>
@@ -800,16 +910,60 @@
         <div class="proj-head">
           <span class="proj-icon">04</span>
           <div class="proj-title">
-            <h3>Infrastructure &amp; Delivery Toolkit</h3>
-            <p>DevOps &amp; platform · 2026</p>
+            <h3>AI Coding Base</h3>
+            <p>AI Engineering · Agent Contracts · Verification</p>
           </div>
-          <span class="status-pill planned">Planned</span>
+          <span class="status-pill wip">In progress</span>
         </div>
-        <p class="desc">Provisioning, containerization and pipeline automation for Windows and Linux fleets — the reusable operational tooling behind the rest of the work.</p>
-        <div class="proj-stack"><span>Docker</span><span>Linux</span><span>Windows</span><span>AWS</span></div>
+        <p class="desc">An engineering contract for AI-assisted software development. Instead of trusting generated code, the workflow forces every AI-assisted change through explicit contracts — AGENTS.md as the engineering source of truth — then a verification loop of formatting, linting, type checking, tests, build verification and minimal smoke proofs, with CI keeping the loop reproducible.</p>
+        <div class="proj-stack"><span>Agent Contracts</span><span>Verification Loop</span><span>CI</span><span>Quality Gates</span></div>
         <div class="proj-links">
           <span class="proj-link pending">Repo coming soon</span>
         </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="proj-head">
+          <span class="proj-icon">05</span>
+          <div class="proj-title">
+            <h3>Smart Finder</h3>
+            <p>Search · Matching · Data Pipelines · Automation</p>
+          </div>
+          <span class="status-pill wip">In progress</span>
+        </div>
+        <p class="desc">A property discovery engine that matches human intent against noisy real-world listings: user-described apartment requirements are matched against Persian listings, with normalization, duplicate detection for the same physical property, change tracking and alerts — running on data pipelines and a worker architecture with structured verification gates and careful handling of untrusted listing text.</p>
+        <div class="proj-stack"><span>Next.js</span><span>PostgreSQL</span><span>Docker</span><span>Data Pipelines</span><span>Automation</span></div>
+        <div class="proj-links">
+          <span class="proj-link pending">Repo coming soon</span>
+        </div>
+      </article>
+
+      <div class="proj-group" id="coming-soon">Coming soon</div>
+
+      <article class="project soon reveal" aria-label="Upcoming project">
+        <div class="proj-head">
+          <span class="proj-icon">06</span>
+          <div class="proj-title">
+            <h3>LOTA Security</h3>
+            <p>LLM &amp; Agent Security</p>
+          </div>
+          <span class="status-pill planned">Planned</span>
+        </div>
+        <p class="desc">Security engineering for LLM-powered workflows and agentic systems, focused on threat modeling, trust boundaries, prompt injection, tool abuse, and security evaluation.</p>
+        <div class="proj-stack"><span>Threat Modeling</span><span>Prompt Injection</span><span>Trust Boundaries</span><span>Security Evaluation</span></div>
+      </article>
+
+      <article class="project soon reveal" aria-label="Upcoming project">
+        <div class="proj-head">
+          <span class="proj-icon">07</span>
+          <div class="proj-title">
+            <h3>LOTA Vision</h3>
+            <p>Computer Vision · Multimodal AI</p>
+          </div>
+          <span class="status-pill planned">Planned</span>
+        </div>
+        <p class="desc">A future computer vision and multimodal AI track exploring image understanding, visual reasoning, vision-language workflows, and multimodal evaluation.</p>
+        <div class="proj-stack"><span>Image Understanding</span><span>Vision-Language</span><span>OCR / Visual Extraction</span><span>Multimodal Evaluation</span></div>
       </article>
     </div>
 
@@ -831,78 +985,93 @@
   <!-- ============ SKILLS ============ -->
   <section class="block wrap" id="skills">
     <div class="sec-head reveal">
-      <span class="kicker">Skills</span>
-      <h2>The toolkit</h2>
+      <span class="kicker">Expertise</span>
+      <h2>Capabilities, grouped by what they do</h2>
     </div>
     <div class="skill-groups">
       <div class="skill-group reveal">
-        <h3>AI &amp; Agentic</h3>
+        <h3>AI Systems</h3>
         <div class="chips">
-          <span class="chip core">AI Engineering</span>
-          <span class="chip core">AI Agents</span>
-          <span class="chip core">LLMs</span>
-          <span class="chip">Artificial Intelligence</span>
-          <span class="chip">Machine Learning</span>
+          <span class="chip core">Agentic Systems</span>
+          <span class="chip core">Planning</span>
+          <span class="chip core">Tool Use</span>
+          <span class="chip">Workflow Orchestration</span>
+          <span class="chip">Execution Runtimes</span>
         </div>
       </div>
       <div class="skill-group reveal">
-        <h3>Languages &amp; Backend</h3>
+        <h3>AI Reliability</h3>
         <div class="chips">
-          <span class="chip">Python</span>
-          <span class="chip">Go</span>
-          <span class="chip">.NET Framework</span>
-          <span class="chip">Node.js</span>
-          <span class="chip">REST APIs</span>
-          <span class="chip">API Development</span>
-          <span class="chip">SQL</span>
-          <span class="chip">Database Optimization</span>
+          <span class="chip core">Evaluation</span>
+          <span class="chip core">Benchmarking</span>
+          <span class="chip">Verification</span>
+          <span class="chip">Grounding</span>
+          <span class="chip">Guardrails</span>
+          <span class="chip">Regression Testing</span>
         </div>
       </div>
       <div class="skill-group reveal">
-        <h3>Platform &amp; Ops</h3>
+        <h3>AI Applications</h3>
         <div class="chips">
-          <span class="chip">Containerization</span>
+          <span class="chip">RAG</span>
+          <span class="chip">OCR</span>
+          <span class="chip">NLP</span>
+          <span class="chip">Generative AI</span>
+          <span class="chip">Multimodal AI</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Systems Engineering</h3>
+        <div class="chips">
+          <span class="chip">Backend Systems</span>
+          <span class="chip">Distributed Systems</span>
+          <span class="chip">APIs</span>
+          <span class="chip">State Management</span>
+          <span class="chip">Messaging</span>
+          <span class="chip">Recovery</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3>Infrastructure</h3>
+        <div class="chips">
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">RabbitMQ</span>
+          <span class="chip">Docker</span>
           <span class="chip">CI/CD</span>
-          <span class="chip">Cloud (AWS)</span>
-          <span class="chip">Linux &amp; Windows</span>
+          <span class="chip">Linux / Windows</span>
           <span class="chip">Observability</span>
-          <span class="chip">Git</span>
-        </div>
-      </div>
-      <div class="skill-group reveal">
-        <h3>Engineering Craft</h3>
-        <div class="chips">
-          <span class="chip">Software Engineering</span>
-          <span class="chip">Code Review</span>
-          <span class="chip">Mentoring</span>
-          <span class="chip">System Design</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ TRAJECTORY ============ -->
+  <!-- ============ PHILOSOPHY ============ -->
   <section class="block wrap" id="trajectory">
     <div class="sec-head reveal">
-      <span class="kicker">Trajectory</span>
-      <h2>A foundation, then a pivot worth making</h2>
+      <span class="kicker">Engineering Philosophy</span>
+      <h2>Generate → Execute → Observe → Evaluate → Verify → Improve</h2>
     </div>
     <div class="panel">
       <div class="timeline">
         <div class="tl-item reveal">
-          <span class="when">8+ years</span>
-          <h3>Systems, DevOps &amp; Backend Engineering</h3>
-          <p>Windows and Linux systems, DevOps, infrastructure, backend engineering and operational automation — the era spent learning how production actually behaves.</p>
+          <span class="when">01</span>
+          <h3>AI output is not automatically correct</h3>
+          <p>Generation is the start of the pipeline, not the end. Every output is something to execute, observe and judge — never something to ship on faith.</p>
         </div>
         <div class="tl-item reveal">
-          <span class="when">Now</span>
-          <h3>AI Engineering &amp; Agentic Systems</h3>
-          <p>Building LLM applications, agentic systems and AI-driven automation on top of that infrastructure foundation — with reliability, evaluation and observability treated as first-class concerns rather than afterthoughts.</p>
+          <span class="when">02</span>
+          <h3>Agent execution needs boundaries</h3>
+          <p>Explicit state, bounded replanning and recovery paths. Autonomy without boundaries is a liability; boundaries are what make autonomy useful.</p>
         </div>
         <div class="tl-item reveal">
-          <span class="when">Next</span>
-          <h3>Reliable agents in production</h3>
-          <p>Systems that reason, plan, use tools and adapt to context — and that can be trusted to run when nobody is watching.</p>
+          <span class="when">03</span>
+          <h3>Evaluation is part of engineering</h3>
+          <p>Benchmarks, deterministic tests and regression detection are not an afterthought — they are how AI systems earn the right to run.</p>
+        </div>
+        <div class="tl-item reveal">
+          <span class="when">04</span>
+          <h3>Production AI needs observability and recovery</h3>
+          <p>Provenance, event tracing and reproducible artifacts — so failures can be traced, explained and corrected instead of rediscovered.</p>
         </div>
       </div>
     </div>
@@ -913,7 +1082,7 @@
     <div class="sec-head reveal">
       <span class="kicker">Credentials</span>
       <h2>Licenses &amp; certifications</h2>
-      <p class="sub">Continuous, deliberate learning across AI, backend, cloud, security and data — filter by track or search below.</p>
+      <p class="sub">Evidence of the data, ML and systems foundation behind the AI work — from data science and deep learning to blockchain, security and cloud. Filter by track or search below.</p>
     </div>
 
     <div class="cert-tools reveal">
@@ -925,12 +1094,35 @@
     </div>
 
     <div class="certs" id="certGrid">
+      <article class="cert reveal" data-cat="foundations" data-text="foundations software engineering hackerrank">
+        <span class="cat">Foundations</span>
+        <h3>Software Engineer</h3>
+        <p class="issuer">HackerRank</p>
+        <p class="meta">Issued Aug 2026 · ID cefe0eafdf02</p>
+        <a class="cert-link" href="https://www.hackerrank.com/certificates/iframe/cefe0eafdf02" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="foundations" data-text="foundations software engineering intern hackerrank">
+        <span class="cat">Foundations</span>
+        <h3>Software Engineer Intern</h3>
+        <p class="issuer">HackerRank</p>
+        <p class="meta">Issued Aug 2026 · ID 9ec6dd53cd0e</p>
+        <a class="cert-link" href="https://www.hackerrank.com/certificates/iframe/9ec6dd53cd0e" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
       <article class="cert reveal" data-cat="ai" data-text="ai machine learning deep neural networks hyperparameter tuning regularization deeplearning">
         <span class="cat">AI &amp; ML</span>
         <h3>Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization</h3>
         <p class="issuer">DeepLearning.AI</p>
         <p class="meta">Issued Jul 2022 · ID BY9M8734XT3A</p>
         <div class="tags"><span>Deep Learning</span></div>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/BY9M8734XT3A" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="blockchain" data-text="blockchain smart contracts solidity buffalo ethereum">
+        <span class="cat">Blockchain</span>
+        <h3>Smart Contracts</h3>
+        <p class="issuer">University at Buffalo</p>
+        <p class="meta">Issued Jun 2022 · ID 3LCH8VNX4H6G</p>
+        <div class="tags"><span>Solidity</span><span>Blockchain</span></div>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/3LCH8VNX4H6G" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
       </article>
       <article class="cert reveal" data-cat="ai" data-text="ai machine learning deep neural networks deeplearning">
         <span class="cat">AI &amp; ML</span>
@@ -938,132 +1130,7 @@
         <p class="issuer">DeepLearning.AI</p>
         <p class="meta">Issued Jun 2022 · ID FD9G3FEYT5YL</p>
         <div class="tags"><span>Deep Learning</span></div>
-      </article>
-      <article class="cert reveal" data-cat="ai" data-text="ai machine learning python scikit-learn michigan">
-        <span class="cat">AI &amp; ML</span>
-        <h3>Applied Machine Learning in Python</h3>
-        <p class="issuer">University of Michigan</p>
-        <p class="meta">Issued Apr 2022 · ID MC3PT9TXV7V2</p>
-        <div class="tags"><span>Machine Learning</span></div>
-      </article>
-
-      <article class="cert reveal" data-cat="backend" data-text="backend node.js express mongodb api development server-side">
-        <span class="cat">Backend &amp; APIs</span>
-        <h3>Server-side Development with NodeJS, Express and MongoDB</h3>
-        <p class="issuer">The Hong Kong University of Science and Technology</p>
-        <p class="meta">Issued Jun 2022 · ID ZWJDL8CMQLUJ</p>
-        <div class="tags"><span>Node.js</span><span>API Development</span></div>
-      </article>
-      <article class="cert reveal" data-cat="backend" data-text="backend go golang programming uc irvine">
-        <span class="cat">Backend &amp; APIs</span>
-        <h3>Programming with Google Go Specialization</h3>
-        <p class="issuer">UC Irvine</p>
-        <p class="meta">Issued May 2022 · ID LF2KSGNXDGNE</p>
-        <div class="tags"><span>Go</span></div>
-      </article>
-      <article class="cert reveal" data-cat="backend" data-text="backend database nosql mongodb">
-        <span class="cat">Backend &amp; APIs</span>
-        <h3>Introduction to MongoDB</h3>
-        <p class="issuer">MongoDB</p>
-        <p class="meta">Issued Jun 2022 · ID H4JB9C64A75C</p>
-        <div class="tags"><span>NoSQL</span></div>
-      </article>
-      <article class="cert reveal" data-cat="backend" data-text="backend api rest restful hackerrank">
-        <span class="cat">Backend &amp; APIs</span>
-        <h3>Rest API (Intermediate) Certificate</h3>
-        <p class="issuer">HackerRank</p>
-        <p class="meta">Issued May 2022 · ID 4044b0bb1efd</p>
-        <div class="tags"><span>API Development</span></div>
-      </article>
-
-      <article class="cert reveal" data-cat="cloud" data-text="cloud devops aws containers docker">
-        <span class="cat">Cloud &amp; DevOps</span>
-        <h3>Building Containerized Applications on AWS</h3>
-        <p class="issuer">Amazon Web Services (AWS)</p>
-        <p class="meta">Issued May 2022 · ID ZN6PCSDLDNS8</p>
-        <div class="tags"><span>AWS</span><span>Containers</span></div>
-      </article>
-      <article class="cert reveal" data-cat="cloud" data-text="cloud devops api design google cloud apigee">
-        <span class="cat">Cloud &amp; DevOps</span>
-        <h3>API Design and Fundamentals of Google Cloud's Apigee API Platform</h3>
-        <p class="issuer">Google Cloud – Minnesota</p>
-        <p class="meta">Issued May 2022 · ID 9H757T9U8JQ5</p>
-        <div class="tags"><span>API Development</span></div>
-      </article>
-
-      <article class="cert reveal" data-cat="security" data-text="security cybersecurity privilege escalation evasion persistence infosec">
-        <span class="cat">Security</span>
-        <h3>Execution, Persistence, Privilege Escalation and Evasion for Cybersecurity</h3>
-        <p class="issuer">Infosec</p>
-        <p class="meta">Issued May 2022 · ID 5WTE3DDHJF5Q</p>
-      </article>
-      <article class="cert reveal" data-cat="security" data-text="security cryptography information theory colorado">
-        <span class="cat">Security</span>
-        <h3>Cryptography and Information Theory</h3>
-        <p class="issuer">University of Colorado</p>
-        <p class="meta">Issued May 2022 · ID MYTSQW8R8CDW</p>
-      </article>
-      <article class="cert reveal" data-cat="security" data-text="security python cybersecurity infosec">
-        <span class="cat">Security</span>
-        <h3>Introduction to Python for Cybersecurity</h3>
-        <p class="issuer">Infosec</p>
-        <p class="meta">Issued Apr 2022 · ID EQU4VVUR6K3G</p>
-      </article>
-      <article class="cert reveal" data-cat="security" data-text="security cybersecurity ibm operating systems">
-        <span class="cat">Security</span>
-        <h3>Cybersecurity Roles, Processes &amp; Operating System Security</h3>
-        <p class="issuer">IBM</p>
-        <p class="meta">Issued Mar 2022</p>
-      </article>
-
-      <article class="cert reveal" data-cat="data" data-text="data science text mining nlp python michigan">
-        <span class="cat">Data Science</span>
-        <h3>Applied Text Mining in Python</h3>
-        <p class="issuer">University of Michigan</p>
-        <p class="meta">Issued Apr 2022 · ID LUK64N45E82H</p>
-        <div class="tags"><span>Data Mining</span><span>Text Mining</span></div>
-      </article>
-      <article class="cert reveal" data-cat="data" data-text="data science visualization plotting charting python michigan">
-        <span class="cat">Data Science</span>
-        <h3>Applied Plotting, Charting &amp; Data Representation in Python</h3>
-        <p class="issuer">University of Michigan</p>
-        <p class="meta">Issued Jan 2022 · ID WYQPPV6SPMWP</p>
-        <div class="tags"><span>Data Visualization</span></div>
-      </article>
-      <article class="cert reveal" data-cat="data" data-text="data science python michigan">
-        <span class="cat">Data Science</span>
-        <h3>Introduction to Data Science in Python</h3>
-        <p class="issuer">University of Michigan</p>
-        <p class="meta">Issued Dec 2021 · ID LMMT65VJ7JSC</p>
-        <div class="tags"><span>Data Science</span></div>
-      </article>
-
-      <article class="cert reveal" data-cat="blockchain" data-text="blockchain smart contracts solidity buffalo ethereum">
-        <span class="cat">Blockchain</span>
-        <h3>Smart Contracts</h3>
-        <p class="issuer">University at Buffalo</p>
-        <p class="meta">Issued Jun 2022 · ID 3LCH8VNX4H6G</p>
-        <div class="tags"><span>Solidity</span><span>Blockchain</span></div>
-      </article>
-      <article class="cert reveal" data-cat="blockchain" data-text="blockchain buffalo">
-        <span class="cat">Blockchain</span>
-        <h3>Blockchain Basics</h3>
-        <p class="issuer">University at Buffalo</p>
-        <p class="meta">Issued Apr 2022 · ID E5F8PANSDXML</p>
-        <div class="tags"><span>Blockchain</span></div>
-      </article>
-
-      <article class="cert reveal" data-cat="foundations" data-text="foundations software engineering hackerrank">
-        <span class="cat">Foundations</span>
-        <h3>Software Engineer</h3>
-        <p class="issuer">HackerRank</p>
-        <p class="meta">Issued Aug 2026 · ID cefe0eafdf02</p>
-      </article>
-      <article class="cert reveal" data-cat="foundations" data-text="foundations software engineering intern hackerrank">
-        <span class="cat">Foundations</span>
-        <h3>Software Engineer Intern</h3>
-        <p class="issuer">HackerRank</p>
-        <p class="meta">Issued Aug 2026 · ID 9ec6dd53cd0e</p>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/FD9G3FEYT5YL" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
       </article>
       <article class="cert reveal" data-cat="foundations" data-text="foundations algorithms data structures uc san diego">
         <span class="cat">Foundations</span>
@@ -1071,6 +1138,54 @@
         <p class="issuer">UC San Diego</p>
         <p class="meta">Issued Jun 2022 · ID SPFNBEQ3VNBR</p>
         <div class="tags"><span>Data Structures</span></div>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/SPFNBEQ3VNBR" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="backend" data-text="backend node.js express mongodb api development server-side">
+        <span class="cat">Backend &amp; APIs</span>
+        <h3>Server-side Development with NodeJS, Express and MongoDB</h3>
+        <p class="issuer">The Hong Kong University of Science and Technology</p>
+        <p class="meta">Issued Jun 2022 · ID ZWJDL8CMQLUJ</p>
+        <div class="tags"><span>Node.js</span><span>API Development</span></div>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/ZWJDL8CMQLUJ" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="backend" data-text="backend go golang programming uc irvine">
+        <span class="cat">Backend &amp; APIs</span>
+        <h3>Programming with Google Go Specialization</h3>
+        <p class="issuer">UC Irvine</p>
+        <p class="meta">Issued May 2022 · ID LF2KSGNXDGNE</p>
+        <div class="tags"><span>Go</span></div>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/LF2KSGNXDGNE" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="backend" data-text="backend database nosql mongodb">
+        <span class="cat">Backend &amp; APIs</span>
+        <h3>Introduction to MongoDB</h3>
+        <p class="issuer">MongoDB</p>
+        <p class="meta">Issued Jun 2022 · ID H4JB9C64A75C</p>
+        <div class="tags"><span>NoSQL</span></div>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/H4JB9C64A75C" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="security" data-text="security cybersecurity privilege escalation persistence evasion infosec">
+        <span class="cat">Security</span>
+        <h3>Execution, persistence, privilege escalation and evasion for Cybersecurity</h3>
+        <p class="issuer">Infosec</p>
+        <p class="meta">Issued May 2022 · ID 5WTE3DDHJF5Q</p>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/5WTE3DDHJF5Q" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="cloud" data-text="cloud devops api design google cloud apigee">
+        <span class="cat">Cloud &amp; DevOps</span>
+        <h3>API Design and Fundamentals of Google Cloud's Apigee API Platform</h3>
+        <p class="issuer">Google Cloud - Minnesota</p>
+        <p class="meta">Issued May 2022 · ID 9H757T9U8JQ5</p>
+        <div class="tags"><span>API Development</span></div>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/9H757T9U8JQ5" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="backend" data-text="backend api rest restful hackerrank">
+        <span class="cat">Backend &amp; APIs</span>
+        <h3>Rest API (Intermediate) Certificate</h3>
+        <p class="issuer">HackerRank</p>
+        <p class="meta">Issued May 2022 · ID 4044b0bb1efd</p>
+        <div class="tags"><span>API Development</span></div>
+        <a class="cert-link" href="https://www.hackerrank.com/certificates/iframe/4044b0bb1efd" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
       </article>
       <article class="cert reveal" data-cat="foundations" data-text="foundations python hackerrank">
         <span class="cat">Foundations</span>
@@ -1078,6 +1193,22 @@
         <p class="issuer">HackerRank</p>
         <p class="meta">Issued May 2022 · ID 95244f80b69f</p>
         <div class="tags"><span>Python</span></div>
+        <a class="cert-link" href="https://www.hackerrank.com/certificates/iframe/95244f80b69f" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="security" data-text="security cryptography information theory colorado">
+        <span class="cat">Security</span>
+        <h3>Cryptography and Information Theory</h3>
+        <p class="issuer">University of Colorado</p>
+        <p class="meta">Issued May 2022 · ID MYTSQW8R8CDW</p>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/MYTSQW8R8CDW" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="cloud" data-text="cloud devops aws containers docker">
+        <span class="cat">Cloud &amp; DevOps</span>
+        <h3>Building Containerized Applications on AWS</h3>
+        <p class="issuer">Amazon Web Services (AWS)</p>
+        <p class="meta">Issued May 2022 · ID ZN6PCSDLDNS8</p>
+        <div class="tags"><span>AWS</span><span>Containers</span></div>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/ZN6PCSDLDNS8" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
       </article>
       <article class="cert reveal" data-cat="foundations" data-text="foundations coding logic algorithm design triplebyte">
         <span class="cat">Foundations</span>
@@ -1085,6 +1216,59 @@
         <p class="issuer">Triplebyte</p>
         <p class="meta">Issued Apr 2022 · ID bd0SjPB</p>
         <div class="tags"><span>Algorithm Design</span></div>
+      </article>
+      <article class="cert reveal" data-cat="data" data-text="data science text mining nlp python michigan">
+        <span class="cat">Data Science</span>
+        <h3>Applied Text Mining in Python</h3>
+        <p class="issuer">University of Michigan</p>
+        <p class="meta">Issued Apr 2022 · ID LUK64N45E82H</p>
+        <div class="tags"><span>Data Mining</span><span>Text Mining</span></div>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/LUK64N45E82H" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="blockchain" data-text="blockchain buffalo">
+        <span class="cat">Blockchain</span>
+        <h3>Blockchain Basics</h3>
+        <p class="issuer">University at Buffalo</p>
+        <p class="meta">Issued Apr 2022 · ID E5F8PANSDXML</p>
+        <div class="tags"><span>Blockchain</span></div>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/E5F8PANSDXML" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="security" data-text="security python cybersecurity infosec">
+        <span class="cat">Security</span>
+        <h3>Introduction to Python for Cybersecurity</h3>
+        <p class="issuer">Infosec</p>
+        <p class="meta">Issued Apr 2022 · ID EQU4VVUR6K3G</p>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/EQU4VVUR6K3G" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="ai" data-text="ai machine learning python scikit-learn michigan">
+        <span class="cat">AI &amp; ML</span>
+        <h3>Applied Machine Learning in Python</h3>
+        <p class="issuer">University of Michigan</p>
+        <p class="meta">Issued Apr 2022 · ID MC3PT9TXV7V2</p>
+        <div class="tags"><span>Machine Learning</span></div>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/MC3PT9TXV7V2" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="security" data-text="security cybersecurity ibm operating systems">
+        <span class="cat">Security</span>
+        <h3>Cybersecurity Roles, Processes &amp; Operating System Security</h3>
+        <p class="issuer">IBM</p>
+        <p class="meta">Issued Mar 2022</p>
+      </article>
+      <article class="cert reveal" data-cat="data" data-text="data science visualization plotting charting python michigan">
+        <span class="cat">Data Science</span>
+        <h3>Applied Plotting, Charting &amp; Data Representation in Python</h3>
+        <p class="issuer">University of Michigan</p>
+        <p class="meta">Issued Jan 2022 · ID WYQPPV6SPMWP</p>
+        <div class="tags"><span>Data Visualization</span></div>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/WYQPPV6SPMWP" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
+      </article>
+      <article class="cert reveal" data-cat="data" data-text="data science python michigan">
+        <span class="cat">Data Science</span>
+        <h3>Introduction to Data Science in Python</h3>
+        <p class="issuer">University of Michigan</p>
+        <p class="meta">Issued Dec 2021 · ID LMMT65VJ7JSC</p>
+        <div class="tags"><span>Data Science</span></div>
+        <a class="cert-link" href="https://www.coursera.org/account/accomplishments/certificate/LMMT65VJ7JSC" target="_blank" rel="noopener noreferrer">View Credential ↗</a>
       </article>
     </div>
   </section>
@@ -1126,7 +1310,7 @@
 
   /* ---------- rotator ---------- */
   var rotator = document.getElementById("rotator");
-  var words = ["AI Engineering", "Agentic Systems", "Evaluation & Benchmarking", "DevOps & Automation", "Backend & Distributed Systems"];
+  var words = ["Agentic Systems", "AI Reliability", "Evaluation & Benchmarking", "Workflow Infrastructure", "AI Automation"];
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (rotator && !reduceMotion) {
     var wi = 0, ci = 0, deleting = false;
@@ -1260,6 +1444,30 @@
   /* ---------- current year ---------- */
   var year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
+
+  /* ---------- profile photo modal ---------- */
+  var avatarBtn = document.getElementById("avatarBtn");
+  var photoModal = document.getElementById("photoModal");
+  var photoClose = photoModal ? photoModal.querySelector(".photo-modal-close") : null;
+  if (avatarBtn && photoModal) {
+    var openPhoto = function () {
+      photoModal.hidden = false;
+      document.body.style.overflow = "hidden";
+      photoClose.focus();
+    };
+    var closePhoto = function () {
+      photoModal.hidden = true;
+      document.body.style.overflow = "";
+      avatarBtn.focus();
+    };
+    avatarBtn.addEventListener("click", openPhoto);
+    photoModal.addEventListener("click", function (e) {
+      if (e.target.closest("[data-close-photo]")) closePhoto();
+    });
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !photoModal.hidden) closePhoto();
+    });
+  }
 })();
 </script>
 </body>
