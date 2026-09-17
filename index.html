@@ -233,6 +233,134 @@
   .card h3{margin:12px 0 8px;font-size:1.02rem;font-weight:600;letter-spacing:-.01em;}
   .card p{margin:0;color:var(--muted);font-size:.9rem;}
 
+  /* ---------- projects ---------- */
+  .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;}
+  .project{
+    position:relative;display:flex;flex-direction:column;
+    padding:26px 24px;border-radius:var(--radius);
+    background:var(--surface);border:1px solid var(--line);
+    transition:transform .25s ease,border-color .25s ease;
+  }
+  .project:hover{transform:translateY(-4px);border-color:rgba(94,234,212,.35);}
+  .project.featured{
+    grid-column:1/-1;
+    background:linear-gradient(135deg,rgba(20,24,33,.95),rgba(13,15,21,.85));
+    border-color:rgba(94,234,212,.22);
+  }
+  .project.featured::before{
+    content:"";position:absolute;top:0;left:24px;right:24px;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--accent),var(--accent-3),transparent);
+  }
+  .proj-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;}
+  .proj-icon{
+    width:42px;height:42px;flex:none;border-radius:12px;display:grid;place-items:center;
+    font-family:var(--mono);font-size:.78rem;font-weight:600;letter-spacing:.06em;color:var(--accent);
+    background:linear-gradient(135deg,rgba(94,234,212,.16),rgba(122,162,255,.12));
+    border:1px solid var(--line-strong);
+  }
+  .proj-title{flex:1;min-width:0;}
+  .proj-title h3{margin:0 0 5px;font-size:1.05rem;font-weight:600;letter-spacing:-.015em;}
+  .proj-title p{margin:0;font-family:var(--mono);font-size:.72rem;color:var(--faint);}
+  .status-pill{
+    flex:none;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;
+    padding:4px 10px;border-radius:999px;white-space:nowrap;
+    border:1px solid var(--line-strong);color:var(--muted);background:rgba(255,255,255,.02);
+  }
+  .status-pill.live{border-color:rgba(94,234,212,.4);background:rgba(94,234,212,.08);color:var(--accent);}
+  .status-pill.wip{border-color:rgba(245,185,66,.35);background:rgba(245,185,66,.07);color:var(--accent-2);}
+  .status-pill.planned{border-color:rgba(122,162,255,.35);background:rgba(122,162,255,.07);color:var(--accent-3);}
+  .project > p.desc{margin:0;color:var(--muted);font-size:.93rem;}
+  .proj-stack{margin:18px 0 0;display:flex;flex-wrap:wrap;gap:8px;}
+  .proj-stack span{
+    font-family:var(--mono);font-size:.72rem;color:var(--muted);
+    padding:5px 11px;border-radius:8px;
+    background:rgba(255,255,255,.03);border:1px solid var(--line);
+  }
+  .proj-links{margin-top:auto;padding-top:20px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;}
+  .proj-link{
+    display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+    font-family:var(--mono);font-size:.74rem;color:var(--muted);
+    padding:7px 13px;border:1px solid var(--line);border-radius:999px;
+    transition:color .2s ease,border-color .2s ease,transform .2s ease;
+  }
+  .proj-link:hover{color:var(--accent);border-color:rgba(94,234,212,.4);transform:translateY(-2px);}
+  .proj-link svg{width:13px;height:13px;flex:none;}
+  .proj-link.pending{color:var(--faint);border-style:dashed;cursor:default;}
+  .proj-link.pending:hover{color:var(--faint);border-color:var(--line);transform:none;}
+
+  .gh-panel{
+    margin-top:16px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between;
+    padding:24px 26px;border-radius:var(--radius);
+    background:linear-gradient(135deg,rgba(122,162,255,.07),rgba(94,234,212,.05));
+    border:1px solid var(--line);
+  }
+  .gh-copy{display:flex;align-items:center;gap:16px;min-width:0;}
+  .gh-copy > svg{width:26px;height:26px;flex:none;color:var(--ink);}
+  .gh-panel h3{margin:0 0 4px;font-size:1rem;font-weight:600;letter-spacing:-.01em;}
+  .gh-panel p{margin:0;color:var(--muted);font-size:.88rem;}
+
+  /* ---------- LOTA featured project ---------- */
+  .project.lota{border-color:rgba(94,234,212,.28);}
+  .project.lota > p.desc{max-width:78ch;}
+  .lota-brand{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:24px;}
+  .lota-logo{
+    display:flex;align-items:center;justify-content:center;flex:none;
+    padding:16px 20px;min-width:130px;border-radius:14px;
+    background:rgba(255,255,255,.03);border:1px solid var(--line-strong);
+  }
+  /* If your exported logo is dark-on-transparent it will be invisible on this
+     dark card. Swap the two declarations below to render it on a light plate:
+       background:#f2f4f7; border-color:transparent;                       */
+  .lota-logo.is-missing{display:none;}
+  .lota-logo img{display:block;height:40px;width:auto;max-width:200px;object-fit:contain;}
+  .lota-id{flex:1;min-width:200px;}
+  .lota-id h3{margin:0 0 8px;font-size:clamp(1.3rem,2.8vw,1.65rem);font-weight:700;letter-spacing:-.025em;}
+  .lota-id > p{margin:0;font-family:var(--mono);font-size:.75rem;color:var(--muted);letter-spacing:.01em;}
+  .lota-id .status-pill{display:inline-block;margin-top:14px;}
+
+  .lota-idea{
+    margin:22px 0 0;padding-left:16px;
+    border-left:2px solid var(--accent);
+    font-size:.96rem;line-height:1.6;
+  }
+  .lota-idea strong{font-weight:600;color:var(--accent);}
+  .lota-idea span{
+    display:block;margin-top:6px;
+    font-family:var(--mono);font-size:.75rem;color:var(--faint);
+  }
+
+  .lota-flow{
+    margin:26px 0 0;padding:16px 18px;
+    border:1px solid var(--line);border-radius:12px;
+    background:rgba(255,255,255,.015);
+  }
+  .lota-flow-label{
+    display:block;margin-bottom:12px;
+    font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--faint);
+  }
+  .lota-flow-list{
+    list-style:none;margin:0;padding:0;
+    display:flex;flex-wrap:wrap;align-items:center;gap:9px 10px;
+  }
+  .lota-flow-list li{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:.73rem;color:var(--ink);
+  }
+  .lota-flow-list li:not(:last-child)::after{content:"→";color:var(--faint);}
+
+  .lota-meta{
+    margin:26px 0 0;display:grid;gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  }
+  .lota-meta-label{
+    display:block;margin-bottom:12px;
+    font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--faint);
+  }
+  .lota-meta .proj-stack{margin:0;}
+  .lota-tech{margin:0;font-family:var(--mono);font-size:.73rem;color:var(--muted);line-height:1.9;}
+
   /* ---------- skills ---------- */
   .skill-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;}
   .skill-group{border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:var(--surface);}
@@ -355,6 +483,10 @@
     .cert-tools{flex-direction:column;align-items:stretch;}
     .search input{width:100%;}
     .btn{flex:1;justify-content:center;}
+    .lota-brand{gap:16px;}
+    .lota-logo{padding:12px 15px;min-width:0;}
+    .lota-logo img{height:32px;max-width:150px;}
+    .lota-flow{padding:14px 15px;}
     .nav .btn.primary{flex:none;}
   }
 
@@ -374,7 +506,9 @@
     .cert{display:block!important;}
     .hero{padding-top:0;}
     .hero-grid{grid-template-columns:1fr 1fr;}
-    .panel,.card,.cert,.skill-group,.stat{background:#fff!important;box-shadow:none!important;}
+    .panel,.card,.cert,.skill-group,.stat,.project,.gh-panel{background:#fff!important;box-shadow:none!important;}
+    .project,.gh-panel{page-break-inside:avoid;}
+    .status-pill{color:#0b0d12!important;background:#fff!important;border-color:#c6cad3!important;}
     .terminal{box-shadow:none;transform:none;page-break-inside:avoid;}
     .term-body{color:#0b0d12;}
     .c-key,.c-fn,.c-str,.c-num{color:#0b0d12;}
@@ -411,6 +545,7 @@
     <nav class="nav-links" id="navLinks" aria-label="Sections">
       <a href="#profile">Profile</a>
       <a href="#focus">Focus</a>
+      <a href="#projects">Projects</a>
       <a href="#skills">Skills</a>
       <a href="#trajectory">Trajectory</a>
       <a href="#certs">Certifications</a>
@@ -508,6 +643,179 @@
       <article class="card reveal"><span class="num">04</span><h3>DevOps &amp; Infrastructure Automation</h3><p>Windows and Linux engineering, provisioning, and repeatable operational tooling.</p></article>
       <article class="card reveal"><span class="num">05</span><h3>Backend &amp; Distributed Systems</h3><p>APIs, databases and scalable services with an eye on performance and clarity.</p></article>
       <article class="card reveal"><span class="num">06</span><h3>CI/CD, Containers &amp; Cloud</h3><p>Delivery pipelines, containerization, and the observability that keeps systems trustworthy.</p></article>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <!--
+    HOW TO ADD A REAL PROJECT
+    -------------------------
+    1. Copy one <article class="project reveal"> block below and paste it into
+       the <div class="projects"> grid.
+    2. Fill in the title, the small mono line under it (domain · year), the
+       description, and one <span> per technology in .proj-stack.
+    3. In .proj-links, replace
+           <span class="proj-link pending">Repo coming soon</span>
+       with a real link:
+           <a class="proj-link" href="https://github.com/siavash-debug/REPO" target="_blank" rel="noopener">GitHub repo</a>
+       Add a second <a class="proj-link"> for a live demo or write-up if you have one.
+    4. Status pill classes:  status-pill live  = Shipped / Active
+                             status-pill wip   = In progress
+                             status-pill planned = Planned / Exploring
+    5. Delete the <div class="proj-links"> pending span once the repo is public.
+
+    THE LOTA LOGO
+    -------------
+    The featured card pulls its identity mark from  assets/lota-logo.svg
+    (see assets/README.md for swap/export steps). Until that file exists the
+    logo plate hides itself and the card falls back to a clean text-only
+    layout — no broken-image placeholder. To use an SVG or a different
+    filename, edit the src on the <img> inside .lota-logo.
+
+    The full-width card uses class="project featured reveal" — keep at most one.
+  -->
+  <section class="block wrap" id="projects">
+    <div class="sec-head reveal">
+      <span class="kicker">Projects</span>
+      <h2>Work in progress</h2>
+      <p class="sub">LOTA.design is the long-term flagship; the rest are the infrastructure and research pieces feeding into it. Repositories and write-ups land here as they ship.</p>
+    </div>
+
+    <div class="projects">
+      <article class="project featured lota reveal">
+        <div class="lota-brand">
+          <span class="lota-logo">
+            <!-- If the export is missing, onerror hides the plate so no broken-image icon shows. -->
+            <img src="assets/lota-logo.svg" alt="LOTA.design logo" decoding="async"
+                 onerror="this.parentNode.classList.add('is-missing')">
+          </span>
+          <div class="lota-id">
+            <h3>LOTA.design</h3>
+            <p>AI Production &amp; Workflow Infrastructure</p>
+            <span class="status-pill wip">In progress</span>
+          </div>
+        </div>
+
+        <p class="desc">LOTA.design is an AI production and workflow platform for turning AI capabilities into structured, traceable, production-ready systems. It is not a generator — it is the infrastructure around one: composable workflows, an execution model, evaluation and benchmarking, and artifact provenance that keeps every output accountable to the inputs, workflow, version and model behind it.</p>
+
+        <p class="lota-idea">
+          <strong>Traceable AI artifacts</strong>
+          <span>Identity · provenance · evaluation — no output is an anonymous file.</span>
+        </p>
+
+        <div class="lota-flow">
+          <span class="lota-flow-label" id="lota-lifecycle">Artifact lifecycle</span>
+          <ol class="lota-flow-list" aria-labelledby="lota-lifecycle">
+            <li>Models + Tools</li>
+            <li>Workflows</li>
+            <li>Executions</li>
+            <li>Artifacts</li>
+            <li>Identity + Provenance</li>
+            <li>Evaluation + Benchmarking</li>
+          </ol>
+        </div>
+
+        <div class="lota-meta">
+          <div>
+            <span class="lota-meta-label">Core areas</span>
+            <div class="proj-stack">
+              <span>Workflow Engineering</span>
+              <span>Evaluation Engineering</span>
+              <span>Benchmarking</span>
+              <span>AI Automation</span>
+              <span>AI Production</span>
+              <span>Artifact Provenance</span>
+              <span>AI Engineering</span>
+            </div>
+          </div>
+          <div>
+            <span class="lota-meta-label">Built with</span>
+            <p class="lota-tech">TypeScript · Workflow Engine · Graph Execution</p>
+          </div>
+        </div>
+
+        <div class="proj-links">
+          <span class="proj-link pending">Repo coming soon</span>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="proj-head">
+          <span class="proj-icon">01</span>
+          <div class="proj-title">
+            <h3>Agent Evaluation Harness</h3>
+            <p>Evaluation &amp; benchmarking · 2026</p>
+          </div>
+          <span class="status-pill wip">In progress</span>
+        </div>
+        <p class="desc">A reproducible way to measure agent behaviour instead of guessing at it: versioned task suites, deterministic scoring, cost and latency capture per run, and regression tracking so a prompt or model change can be accepted or rejected on evidence.</p>
+        <div class="proj-stack"><span>Python</span><span>LLM APIs</span><span>Postgres</span><span>Evaluation</span></div>
+        <div class="proj-links">
+          <span class="proj-link pending">Repo coming soon</span>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="proj-head">
+          <span class="proj-icon">02</span>
+          <div class="proj-title">
+            <h3>Tool-Use Orchestrator</h3>
+            <p>Agent runtime · 2026</p>
+          </div>
+          <span class="status-pill wip">In progress</span>
+        </div>
+        <p class="desc">A runtime for long-running agent workflows — planning, tool execution, retries and guardrails, with tracing on every step so failures can be replayed rather than reproduced by hand.</p>
+        <div class="proj-stack"><span>Python</span><span>Go</span><span>REST APIs</span><span>Observability</span></div>
+        <div class="proj-links">
+          <span class="proj-link pending">Repo coming soon</span>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="proj-head">
+          <span class="proj-icon">03</span>
+          <div class="proj-title">
+            <h3>Workflow Automation Engine</h3>
+            <p>AI automation · 2026</p>
+          </div>
+          <span class="status-pill planned">Planned</span>
+        </div>
+        <p class="desc">Bridging traditional operational automation with LLM-driven decisioning, so messy real-world processes can be orchestrated end to end with humans in the loop where it matters.</p>
+        <div class="proj-stack"><span>Python</span><span>Node.js</span><span>SQL</span><span>CI/CD</span></div>
+        <div class="proj-links">
+          <span class="proj-link pending">Repo coming soon</span>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="proj-head">
+          <span class="proj-icon">04</span>
+          <div class="proj-title">
+            <h3>Infrastructure &amp; Delivery Toolkit</h3>
+            <p>DevOps &amp; platform · 2026</p>
+          </div>
+          <span class="status-pill planned">Planned</span>
+        </div>
+        <p class="desc">Provisioning, containerization and pipeline automation for Windows and Linux fleets — the reusable operational tooling behind the rest of the work.</p>
+        <div class="proj-stack"><span>Docker</span><span>Linux</span><span>Windows</span><span>AWS</span></div>
+        <div class="proj-links">
+          <span class="proj-link pending">Repo coming soon</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="gh-panel reveal">
+      <div class="gh-copy">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.6 9.6 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+        <div>
+          <h3>Everything ships to GitHub first</h3>
+          <p>Repositories, commits and work in progress live on the profile.</p>
+        </div>
+      </div>
+      <a class="btn" href="https://github.com/siavash-debug" target="_blank" rel="noopener">
+        github.com/siavash-debug
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M9 7h8v8"/></svg>
+      </a>
     </div>
   </section>
 
