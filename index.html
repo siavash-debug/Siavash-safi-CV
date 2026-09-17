@@ -234,7 +234,15 @@
   .card p{margin:0;color:var(--muted);font-size:.9rem;}
 
   /* ---------- projects ---------- */
-  .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;}
+  #projects{padding-inline:24px;}
+  .projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+  #projects .project{min-width:0;overflow-wrap:anywhere;}
+  #projects .proj-head{flex-wrap:wrap;}
+  #projects .proj-title{flex-basis:180px;}
+  #projects .proj-title p{color:var(--muted);}
+  #projects .proj-link{min-height:44px;}
+  #projects .proj-link.pending{color:var(--muted);}
+  #projects .proj-link.pending:hover{color:var(--muted);}
   .project{
     position:relative;display:flex;flex-direction:column;
     padding:26px 24px;border-radius:var(--radius);
@@ -244,12 +252,12 @@
   .project:hover{transform:translateY(-4px);border-color:rgba(94,234,212,.35);}
   .project.featured{
     grid-column:1/-1;
-    background:linear-gradient(135deg,rgba(20,24,33,.95),rgba(13,15,21,.85));
-    border-color:rgba(94,234,212,.22);
+    background:var(--surface);
+    border-color:var(--line-strong);
   }
   .project.featured::before{
     content:"";position:absolute;top:0;left:24px;right:24px;height:2px;border-radius:2px;
-    background:linear-gradient(90deg,var(--accent),var(--accent-3),transparent);
+    background:var(--accent);
   }
   .proj-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;}
   .proj-icon{
@@ -300,12 +308,22 @@
   .gh-panel p{margin:0;color:var(--muted);font-size:.88rem;}
 
   /* ---------- LOTA featured project ---------- */
-  .project.lota{border-color:rgba(94,234,212,.28);}
-  .project.lota > p.desc{max-width:78ch;}
-  .lota-brand{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:24px;}
+  .project.lota{padding:30px 32px;}
+  .lota-content .desc{margin:0;max-width:48ch;color:var(--muted);font-size:.93rem;}
+  .lota-heading{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--line);
+  }
+  .lota-feature-label{
+    font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--accent);display:flex;align-items:center;gap:10px;
+  }
+  .lota-feature-label::before{content:"";width:22px;height:1px;background:var(--accent);}
+  .lota-content{display:grid;gap:28px;align-items:start;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);}
+  .lota-brand{display:flex;align-items:center;gap:22px;flex-wrap:wrap;margin-bottom:20px;}
   .lota-logo{
     display:flex;align-items:center;justify-content:center;flex:none;
-    padding:16px 20px;min-width:130px;border-radius:14px;
+    padding:12px 16px;border-radius:10px;
     background:rgba(255,255,255,.03);border:1px solid var(--line-strong);
   }
   /* If your exported logo is dark-on-transparent it will be invisible on this
@@ -313,53 +331,50 @@
        background:#f2f4f7; border-color:transparent;                       */
   .lota-logo.is-missing{display:none;}
   .lota-logo img{display:block;height:40px;width:auto;max-width:200px;object-fit:contain;}
-  .lota-id{flex:1;min-width:200px;}
+  .lota-id{flex:1;min-width:0;}
   .lota-id h3{margin:0 0 8px;font-size:clamp(1.3rem,2.8vw,1.65rem);font-weight:700;letter-spacing:-.025em;}
   .lota-id > p{margin:0;font-family:var(--mono);font-size:.75rem;color:var(--muted);letter-spacing:.01em;}
-  .lota-id .status-pill{display:inline-block;margin-top:14px;}
 
-  .lota-idea{
-    margin:22px 0 0;padding-left:16px;
-    border-left:2px solid var(--accent);
-    font-size:.96rem;line-height:1.6;
+  .lota-statement{
+    margin:0 0 16px;font-size:clamp(1.15rem,2.4vw,1.4rem);
+    font-weight:700;letter-spacing:-.02em;line-height:1.3;
   }
-  .lota-idea strong{font-weight:600;color:var(--accent);}
-  .lota-idea span{
-    display:block;margin-top:6px;
-    font-family:var(--mono);font-size:.75rem;color:var(--faint);
-  }
+  .lota-statement .hl{color:var(--accent);}
 
-  .lota-flow{
-    margin:26px 0 0;padding:16px 18px;
-    border:1px solid var(--line);border-radius:12px;
+  .lota-bottom{margin-top:24px;padding-top:20px;border-top:1px solid var(--line);}
+  .lota-bottom .proj-stack{margin:0;}
+  .lota-bottom .proj-links{padding-top:16px;}
+  .lota-pipeline{
+    padding:18px 20px;border:1px solid var(--line);border-radius:12px;
     background:rgba(255,255,255,.015);
   }
-  .lota-flow-label{
-    display:block;margin-bottom:12px;
+  .lota-pipeline-label{
+    display:block;margin-bottom:14px;
     font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--faint);
+    text-transform:uppercase;color:var(--muted);
   }
-  .lota-flow-list{
-    list-style:none;margin:0;padding:0;
-    display:flex;flex-wrap:wrap;align-items:center;gap:9px 10px;
+  .lota-pipeline-steps{list-style:none;margin:0;padding:0;position:relative;}
+  .lota-pipeline-steps::before{
+    content:"";position:absolute;left:5px;top:12px;bottom:12px;width:1px;background:var(--line-strong);
   }
-  .lota-flow-list li{
-    display:inline-flex;align-items:center;gap:10px;
-    font-family:var(--mono);font-size:.73rem;color:var(--ink);
+  .lota-pipeline-steps li{
+    position:relative;display:flex;align-items:center;gap:13px;
+    padding:6px 0;font-family:var(--mono);font-size:.75rem;color:var(--ink);
   }
-  .lota-flow-list li:not(:last-child)::after{content:"→";color:var(--faint);}
-
-  .lota-meta{
-    margin:26px 0 0;display:grid;gap:20px;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  .lota-pipeline-steps li::before{
+    content:"";flex:none;width:11px;height:11px;border-radius:3px;
+    background:var(--bg);border:2px solid var(--accent);
   }
-  .lota-meta-label{
-    display:block;margin-bottom:12px;
-    font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;
-    text-transform:uppercase;color:var(--faint);
+  .lota-pipeline-steps li.artifact::before{border-color:var(--accent-2);}
+  .lota-pipeline-steps li.verified::before{border-color:var(--accent-3);}
+  .lota-pipeline-note{
+    margin:14px 0 0;padding-top:12px;border-top:1px dashed var(--line);
+    font-family:var(--mono);font-size:.72rem;color:var(--muted);line-height:1.6;
   }
-  .lota-meta .proj-stack{margin:0;}
-  .lota-tech{margin:0;font-family:var(--mono);font-size:.73rem;color:var(--muted);line-height:1.9;}
+  .lota-tech{margin:18px 0 0;font-family:var(--mono);font-size:.73rem;color:var(--muted);line-height:1.9;}
+  @media (max-width:720px){
+    #projects .projects,.lota-content{grid-template-columns:minmax(0,1fr);}
+  }
 
   /* ---------- skills ---------- */
   .skill-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px;}
@@ -483,10 +498,14 @@
     .cert-tools{flex-direction:column;align-items:stretch;}
     .search input{width:100%;}
     .btn{flex:1;justify-content:center;}
+    #projects{padding-inline:18px;}
+    #projects .project{padding:24px 20px;}
+    .lota-heading{flex-wrap:wrap;}
     .lota-brand{gap:16px;}
     .lota-logo{padding:12px 15px;min-width:0;}
     .lota-logo img{height:32px;max-width:150px;}
-    .lota-flow{padding:14px 15px;}
+    .lota-content{gap:20px;}
+    .lota-pipeline{padding:15px 16px;}
     .nav .btn.primary{flex:none;}
   }
 
@@ -677,65 +696,55 @@
   <section class="block wrap" id="projects">
     <div class="sec-head reveal">
       <span class="kicker">Projects</span>
-      <h2>Work in progress</h2>
-      <p class="sub">LOTA.design is the long-term flagship; the rest are the infrastructure and research pieces feeding into it. Repositories and write-ups land here as they ship.</p>
+      <h2>Systems I build, evaluate, and ship.</h2>
     </div>
 
     <div class="projects">
-      <article class="project featured lota reveal">
-        <div class="lota-brand">
-          <span class="lota-logo">
-            <!-- If the export is missing, onerror hides the plate so no broken-image icon shows. -->
-            <img src="assets/lota-logo.svg" alt="LOTA.design logo" decoding="async"
-                 onerror="this.parentNode.classList.add('is-missing')">
-          </span>
-          <div class="lota-id">
-            <h3>LOTA.design</h3>
-            <p>AI Production &amp; Workflow Infrastructure</p>
-            <span class="status-pill wip">In progress</span>
-          </div>
+      <article class="project featured lota reveal" aria-labelledby="lota-title">
+        <div class="lota-heading">
+          <span class="lota-feature-label">Featured Project</span>
+          <span class="status-pill wip">In progress</span>
         </div>
-
-        <p class="desc">LOTA.design is an AI production and workflow platform for turning AI capabilities into structured, traceable, production-ready systems. It is not a generator — it is the infrastructure around one: composable workflows, an execution model, evaluation and benchmarking, and artifact provenance that keeps every output accountable to the inputs, workflow, version and model behind it.</p>
-
-        <p class="lota-idea">
-          <strong>Traceable AI artifacts</strong>
-          <span>Identity · provenance · evaluation — no output is an anonymous file.</span>
-        </p>
-
-        <div class="lota-flow">
-          <span class="lota-flow-label" id="lota-lifecycle">Artifact lifecycle</span>
-          <ol class="lota-flow-list" aria-labelledby="lota-lifecycle">
-            <li>Models + Tools</li>
-            <li>Workflows</li>
-            <li>Executions</li>
-            <li>Artifacts</li>
-            <li>Identity + Provenance</li>
-            <li>Evaluation + Benchmarking</li>
-          </ol>
-        </div>
-
-        <div class="lota-meta">
+        <div class="lota-content">
           <div>
-            <span class="lota-meta-label">Core areas</span>
-            <div class="proj-stack">
-              <span>Workflow Engineering</span>
-              <span>Evaluation Engineering</span>
-              <span>Benchmarking</span>
-              <span>AI Automation</span>
-              <span>AI Production</span>
-              <span>Artifact Provenance</span>
-              <span>AI Engineering</span>
+            <div class="lota-brand">
+              <span class="lota-logo">
+                <img src="assets/lota-logo.svg" alt="LOTA.design™ logo" width="140" height="172" decoding="async"
+                     onerror="this.parentNode.classList.add('is-missing')">
+              </span>
+              <div class="lota-id">
+                <h3 id="lota-title">LOTA.design™</h3>
+                <p>AI Production · Workflow Infrastructure</p>
+              </div>
             </div>
-          </div>
-          <div>
-            <span class="lota-meta-label">Built with</span>
+            <p class="lota-statement">Build AI workflows.<br><span class="hl">Create traceable artifacts.</span></p>
+            <p class="desc">An AI production platform for building workflows that turn models, tools, and executions into traceable, verifiable artifacts.</p>
             <p class="lota-tech">TypeScript · Workflow Engine · Graph Execution</p>
           </div>
+          <div class="lota-pipeline">
+            <span class="lota-pipeline-label" id="lota-lifecycle">Artifact lifecycle</span>
+            <ol class="lota-pipeline-steps" aria-labelledby="lota-lifecycle">
+              <li>AI Models + Tools</li>
+              <li>Workflows</li>
+              <li>Executions</li>
+              <li class="artifact">Artifacts</li>
+              <li class="artifact">Identity + Provenance</li>
+              <li class="verified">Evaluation + Verification</li>
+            </ol>
+            <p class="lota-pipeline-note">Artifact identity ties each output to its origin, workflow, execution, inputs, model/provider, and version.</p>
+          </div>
         </div>
-
-        <div class="proj-links">
-          <span class="proj-link pending">Repo coming soon</span>
+        <div class="lota-bottom">
+          <div class="proj-stack" aria-label="Project domains">
+            <span>Workflow Engineering</span>
+            <span>AI Automation</span>
+            <span>Provenance</span>
+            <span>Evaluation</span>
+            <span>Benchmarking</span>
+          </div>
+          <div class="proj-links">
+            <span class="proj-link pending">Case study coming soon</span>
+          </div>
         </div>
       </article>
 
@@ -1105,7 +1114,8 @@
     </div>
     <div class="colophon">
       <span>Siavash Safi — AI Engineer &amp; Software Engineer</span>
-      <span>Built with a bias toward reliable, production-grade systems · <span id="year">2026</span></span>
+      <span>Built with a bias toward reliable, production-grade systems</span>
+      <span>© <span id="year">2026</span> LOTA.design™ — All rights reserved.</span>
     </div>
   </div>
 </footer>
