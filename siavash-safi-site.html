@@ -142,6 +142,11 @@
     .animate-pulse, .animate-ping, .prov-caret, .digest-scan, .prov-row::after { animation: none !important; }
     .prov-stack::after { display: none !important; }
     .digest-cells rect { animation: none !important; opacity: 1 !important; }
+    .life-glow { animation: none !important; opacity: 0 !important; }
+    .life-step::before { animation: none !important; }
+    .flow-lines path, .flow-dots, .flow-nodes > rect, .doc-stack > rect, .gen-tiles > rect, .gen-marks,
+    .gen-bars > rect, .orbit, .verdict, .orbit-dots > circle, .match-ring { animation: none !important; }
+    .gen-bars > rect, .orbit, .match-ring { transform: none !important; }
   }
   ::-webkit-scrollbar { width: 10px; }
   ::-webkit-scrollbar-track { background: #0b0d10; }
@@ -384,7 +389,7 @@
 <!-- ================= ABOUT ================= -->
 <section id="about" class="relative py-24 sm:py-32">
   <div class="mx-auto max-w-6xl px-5 sm:px-8">
-    <div class="grid gap-14 lg:grid-cols-1 lg:gap-16">
+    <div class="grid gap-12 lg:grid-cols-[1.4fr_0.6fr] lg:items-start lg:gap-14">
       <div>
         <div class="reveal font-mono text-[11px] mono-tag text-emerald-300/80">01 — ABOUT</div>
         <h2 class="reveal mt-4 text-3xl font-bold tracking-tight text-white sm:text-[2.6rem] sm:leading-tight">
@@ -408,6 +413,32 @@
             workflows that can plan, use tools, evaluate their own results, and recover when execution goes wrong.
           </p>
         </div>
+      </div>
+
+      <div class="reveal">
+        <figure class="card overflow-hidden rounded-2xl">
+          <div class="relative">
+            <img src="assets/images/profile.jpg" alt="Portrait of Siavash Safi" loading="lazy" decoding="async"
+                 class="aspect-square w-full object-cover object-center opacity-95" />
+            <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/30 to-transparent"></div>
+            <figcaption class="absolute bottom-4 left-4 right-4">
+              <div class="font-mono text-[10px] mono-tag text-emerald-300/85">SIAVASH SAFI</div>
+              <div class="mt-1 text-sm font-semibold text-white">AI Engineer · Software Engineer</div>
+            </figcaption>
+          </div>
+          <div class="border-t border-white/[0.07] p-4">
+            <div class="font-mono text-[10px] mono-tag text-slate-500">CURRENTLY</div>
+            <p class="mt-2 text-xs leading-relaxed text-slate-400">
+              Building <span class="text-slate-200">LOTA.design</span> — AI production and workflow infrastructure.
+              Open to AI engineering, agentic systems and platform roles.
+            </p>
+            <a href="https://github.com/siavash-debug" target="_blank" rel="noopener"
+               class="mt-3 inline-flex items-center gap-1.5 font-mono text-[11px] text-emerald-300 transition hover:text-emerald-200">
+              github.com/siavash-debug
+              <svg viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+          </div>
+        </figure>
       </div>
     </div>
   </div>
@@ -606,8 +637,8 @@
           </div>
 
           <div class="mt-6 flex items-center gap-4">
-            <span class="grid h-16 w-16 shrink-0 place-items-center rounded-2xl border border-emerald-400/15 bg-emerald-400/[0.05] p-3 shadow-[0_0_40px_-18px_rgba(52,211,153,.55)]">
-              <img src="assets/lota-logo.svg" alt="LOTA.design™ logo" width="140" height="172" class="h-full w-auto object-contain" />
+            <span class="grid h-[70px] w-[70px] shrink-0 place-items-center overflow-hidden rounded-2xl border border-emerald-400/15 bg-emerald-400/[0.05] p-2.5 shadow-[0_0_40px_-18px_rgba(52,211,153,.55)]">
+              <img src="assets/lota-logo.svg" alt="LOTA.design™ logo" width="140" height="172" class="block h-full w-full object-contain object-center" />
             </span>
             <h3 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">LOTA.design<span class="text-emerald-400/70">™</span></h3>
           </div>
@@ -617,35 +648,40 @@
             output carries its origin: the workflow, execution, inputs, models and version behind it, connected to evaluation and verification.
           </p>
 
-          <!-- artifact lifecycle flow (creative visual) -->
+          <!-- artifact lifecycle: animated flow rail -->
           <div class="mt-8">
-            <div class="font-mono text-[10px] mono-tag text-slate-500">ARTIFACT LIFECYCLE</div>
-            <div class="mt-4 space-y-2">
-              <div class="flex items-center gap-3">
-                <span class="font-mono text-[10px] text-emerald-400/70 w-6">01</span>
-                <div class="chain-node flex-1">AI Models + Tools</div>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="font-mono text-[10px] text-emerald-400/70 w-6">02</span>
-                <div class="chain-node flex-1">Workflows</div>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="font-mono text-[10px] text-emerald-400/70 w-6">03</span>
-                <div class="chain-node flex-1">Executions</div>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="font-mono text-[10px] text-emerald-400/70 w-6">04</span>
-                <div class="chain-node flex-1">Artifacts</div>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="font-mono text-[10px] text-emerald-400/70 w-6">05</span>
-                <div class="chain-node flex-1 border-emerald-400/40 text-emerald-200">Identity + Provenance</div>
-              </div>
-              <div class="flex items-center gap-3">
-                <span class="font-mono text-[10px] text-sky-400/70 w-6">06</span>
-                <div class="chain-node flex-1 border-sky-400/40 text-sky-200">Evaluation + Verification</div>
-              </div>
+            <div class="flex items-center justify-between gap-3">
+              <span class="font-mono text-[10px] mono-tag text-slate-500">ARTIFACT LIFECYCLE</span>
+              <span class="font-mono text-[10px] mono-tag text-emerald-300/70">TRACEABLE BY DEFAULT</span>
             </div>
+
+            <ol class="life-steps mt-4">
+              <li class="life-step">
+                <span class="life-glow" aria-hidden="true"></span>
+                <span class="life-num">01</span><span class="life-label">AI Models + Tools</span>
+              </li>
+              <li class="life-step">
+                <span class="life-glow" aria-hidden="true"></span>
+                <span class="life-num">02</span><span class="life-label">Workflows</span>
+              </li>
+              <li class="life-step">
+                <span class="life-glow" aria-hidden="true"></span>
+                <span class="life-num">03</span><span class="life-label">Executions</span>
+              </li>
+              <li class="life-step">
+                <span class="life-glow" aria-hidden="true"></span>
+                <span class="life-num">04</span><span class="life-label">Artifacts</span>
+              </li>
+              <li class="life-step life-step--key">
+                <span class="life-glow" aria-hidden="true"></span>
+                <span class="life-num">05</span><span class="life-label">Identity + Provenance</span>
+              </li>
+              <li class="life-step life-step--key is-sky">
+                <span class="life-glow" aria-hidden="true"></span>
+                <span class="life-num">06</span><span class="life-label">Evaluation + Verification</span>
+              </li>
+            </ol>
+
             <p class="mt-4 text-xs text-slate-500">Artifact identity ties each output to its origin, workflow, execution, inputs, model/provider, and version.</p>
           </div>
 
@@ -827,19 +863,19 @@
             <g stroke="rgba(255,255,255,.05)" stroke-width="1">
               <line x1="0" y1="40" x2="640" y2="40"/><line x1="0" y1="100" x2="640" y2="100"/><line x1="0" y1="160" x2="640" y2="160"/>
             </g>
-            <g fill="none" stroke-width="1.5" stroke-linecap="round">
+            <g class="flow-lines" fill="none" stroke-width="1.5" stroke-linecap="round">
               <path d="M150 92 C 175 92, 180 56, 206 54" stroke="rgba(52,211,153,.50)" marker-end="url(#loop-arrow)"/>
               <path d="M150 108 C 175 108, 180 144, 206 146" stroke="rgba(52,211,153,.40)" marker-end="url(#loop-arrow)"/>
               <path d="M340 146 C 365 146, 372 120, 386 112" stroke="rgba(56,189,248,.40)" marker-end="url(#loop-arrow)"/>
               <path d="M340 54 C 365 54, 372 86, 386 100" stroke="rgba(56,189,248,.38)" marker-end="url(#loop-arrow)"/>
               <path d="M450 131 C 450 186, 96 186, 96 130" stroke="rgba(148,163,184,.40)" stroke-dasharray="5 5" marker-end="url(#loop-arrow)"/>
             </g>
-            <g fill="#6ee7b7" opacity=".6">
+            <g class="flow-dots" fill="#6ee7b7" opacity=".6">
               <circle cx="178" cy="74" r="2.6"/><circle cx="178" cy="126" r="2.6"/>
               <circle cx="364" cy="126" r="2.6"/><circle cx="364" cy="74" r="2.6"/>
               <circle cx="350" cy="186" r="2.6"/>
             </g>
-            <g stroke-width="1.3">
+            <g class="flow-nodes" stroke-width="1.3">
               <rect x="40" y="70" width="110" height="56" rx="11" fill="url(#loop-em)" stroke="rgba(52,211,153,.45)"/>
               <rect x="208" y="28" width="132" height="52" rx="11" fill="url(#loop-sky)" stroke="rgba(56,189,248,.40)"/>
               <rect x="208" y="120" width="132" height="52" rx="11" fill="url(#loop-em)" stroke="rgba(52,211,153,.40)"/>
@@ -905,19 +941,19 @@
             <g stroke="rgba(255,255,255,.06)" stroke-width="1">
               <line x1="0" y1="50" x2="640" y2="50"/><line x1="0" y1="100" x2="640" y2="100"/><line x1="0" y1="150" x2="640" y2="150"/>
             </g>
-            <g>
+            <g class="doc-stack">
               <rect x="70" y="60" width="120" height="150" rx="6" fill="url(#paper)" stroke="rgba(148,163,184,.25)"/>
               <rect x="220" y="40" width="120" height="170" rx="6" fill="url(#paper)" stroke="rgba(148,163,184,.30)"/>
               <rect x="370" y="70" width="120" height="140" rx="6" fill="url(#paper)" stroke="rgba(148,163,184,.22)"/>
               <rect x="500" y="90" width="100" height="120" rx="6" fill="url(#paper)" stroke="rgba(148,163,184,.18)"/>
             </g>
-            <g stroke="#34d399" stroke-width="1.4" stroke-opacity=".55" fill="none">
+            <g class="flow-lines" stroke="#34d399" stroke-width="1.4" stroke-opacity=".55" fill="none">
               <path d="M190 120 C 205 100, 205 90, 220 80"/>
               <path d="M340 100 C 355 105, 355 110, 370 112"/>
               <path d="M490 120 C 495 130, 495 135, 500 140"/>
               <path d="M130 90 C 250 20, 420 30, 560 96" stroke-dasharray="5 5"/>
             </g>
-            <g fill="#6ee7b7">
+            <g class="flow-dots" fill="#6ee7b7">
               <circle cx="220" cy="80" r="4"/><circle cx="370" cy="112" r="4"/><circle cx="500" cy="140" r="4"/><circle cx="130" cy="90" r="4"/>
               <circle cx="560" cy="96" r="4"/>
             </g>
@@ -983,20 +1019,20 @@
             <rect x="24" y="84" width="80" height="30" rx="15" fill="rgba(56,189,248,.10)" stroke="rgba(56,189,248,.35)"/>
             <text x="64" y="103" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#bae6fd" opacity=".9">PROMPT</text>
             <path d="M108 99 L140 99" stroke="rgba(52,211,153,.55)" stroke-width="1.6" marker-end="url(#gen-arrow)"/>
-            <g stroke-width="1.3">
+            <g class="gen-tiles" stroke-width="1.3">
               <rect x="150" y="34" width="66" height="60" rx="9" fill="url(#gen-em)" stroke="rgba(52,211,153,.38)"/>
               <rect x="224" y="34" width="66" height="60" rx="9" fill="url(#gen-sky)" stroke="rgba(56,189,248,.34)"/>
               <rect x="150" y="104" width="66" height="60" rx="9" fill="url(#gen-sky)" stroke="rgba(56,189,248,.30)"/>
               <rect x="224" y="104" width="66" height="60" rx="9" fill="url(#gen-em)" stroke="rgba(52,211,153,.34)"/>
             </g>
-            <g stroke="rgba(255,255,255,.16)" stroke-width="1.2" fill="none">
+            <g class="gen-marks" stroke="rgba(255,255,255,.16)" stroke-width="1.2" fill="none">
               <path d="M162 84 L186 50 M186 84 L162 50"/>
               <path d="M236 84 L260 50 M260 84 L236 50"/>
               <path d="M162 154 L186 120 M186 154 L162 120"/>
               <path d="M236 154 L260 120 M260 154 L236 120"/>
             </g>
             <path d="M296 99 L326 99" stroke="rgba(52,211,153,.55)" stroke-width="1.6" marker-end="url(#gen-arrow)"/>
-            <g fill="url(#gen-bar)">
+            <g class="gen-bars" fill="url(#gen-bar)">
               <rect x="356" y="122" width="24" height="38" rx="4"/>
               <rect x="390" y="108" width="24" height="52" rx="4"/>
               <rect x="424" y="92" width="24" height="68" rx="4"/>
@@ -1047,10 +1083,10 @@
           <!-- SVG art: contract + verification loop -->
           <div class="absolute inset-0 bg-gradient-to-br from-ink-900 via-ink-950 to-ink-900"></div>
           <svg viewBox="0 0 640 200" class="absolute inset-0 h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <circle cx="320" cy="100" r="62" fill="none" stroke="rgba(52,211,153,.28)" stroke-width="1.2" stroke-dasharray="6 6"/>
+            <circle class="orbit" cx="320" cy="100" r="62" fill="none" stroke="rgba(52,211,153,.28)" stroke-width="1.2" stroke-dasharray="6 6"/>
             <circle cx="320" cy="100" r="46" fill="none" stroke="rgba(56,189,248,.20)" stroke-width="1"/>
             <circle cx="320" cy="100" r="30" fill="rgba(52,211,153,.07)" stroke="rgba(52,211,153,.42)" stroke-width="1.4"/>
-            <path d="m309 100 8 8 15-16" fill="none" stroke="#6ee7b7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="verdict" d="m309 100 8 8 15-16" fill="none" stroke="#6ee7b7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
             <g font-family="monospace" font-size="10.5" fill="rgba(148,163,184,.9)">
               <text x="320" y="34" text-anchor="middle">FORMAT</text>
               <text x="484" y="70" text-anchor="middle">LINT</text>
@@ -1059,7 +1095,7 @@
               <text x="150" y="152" text-anchor="middle">BUILD</text>
               <text x="152" y="70" text-anchor="middle">SMOKE</text>
             </g>
-            <g fill="rgba(52,211,153,.75)">
+            <g class="orbit-dots" fill="rgba(52,211,153,.75)">
               <circle cx="320" cy="42" r="3.2"/><circle cx="466" cy="78" r="3.2"/><circle cx="474" cy="142" r="3.2"/>
               <circle cx="320" cy="176" r="3.2"/><circle cx="166" cy="142" r="3.2"/><circle cx="170" cy="78" r="3.2"/>
             </g>
@@ -1108,9 +1144,9 @@
               <path d="M-20 120 C 220 120, 250 100, 660 100" stroke="rgba(52,211,153,.32)"/>
               <path d="M-20 170 C 200 170, 270 100, 660 100" stroke="rgba(56,189,248,.28)"/>
             </g>
-            <circle cx="500" cy="100" r="30" fill="none" stroke="rgba(110,231,183,.5)" stroke-width="1.4"/>
+            <circle class="match-ring" cx="500" cy="100" r="30" fill="none" stroke="rgba(110,231,183,.5)" stroke-width="1.4"/>
             <circle cx="500" cy="100" r="14" fill="rgba(52,211,153,.20)" stroke="rgba(110,231,183,.7)" stroke-width="1.2"/>
-            <g>
+            <g class="flow-dots">
               <circle cx="120" cy="44" r="3" fill="#6ee7b7"/><circle cx="240" cy="78" r="3" fill="#7dd3fc"/>
               <circle cx="320" cy="104" r="3" fill="#6ee7b7"/><circle cx="400" cy="104" r="3" fill="#7dd3fc"/>
             </g>
@@ -1280,7 +1316,10 @@
         <div class="flex items-center gap-3">
           <h3 class="font-mono text-[11px] mono-tag text-slate-400">AI SYSTEMS</h3>
           <div class="h-px flex-1 bg-white/[0.07]"></div>
-          <span class="hidden font-mono text-[10px] text-slate-600 sm:block">5</span>
+          <span class="hidden items-center gap-2.5 sm:flex">
+            <span class="skill-meter" style="--lvl:38%"></span>
+            <span class="font-mono text-[10px] text-slate-500">5</span>
+          </span>
         </div>
         <div class="mt-4 flex flex-wrap gap-2">
           <span class="chip rounded-full px-3.5 py-1.5 font-mono text-[11px] text-slate-400">Agentic Systems</span>
@@ -1295,7 +1334,10 @@
         <div class="flex items-center gap-3">
           <h3 class="font-mono text-[11px] mono-tag text-slate-400">AI RELIABILITY</h3>
           <div class="h-px flex-1 bg-white/[0.07]"></div>
-          <span class="hidden font-mono text-[10px] text-slate-600 sm:block">6</span>
+          <span class="hidden items-center gap-2.5 sm:flex">
+            <span class="skill-meter" style="--lvl:46%"></span>
+            <span class="font-mono text-[10px] text-slate-500">6</span>
+          </span>
         </div>
         <div class="mt-4 flex flex-wrap gap-2">
           <span class="chip rounded-full px-3.5 py-1.5 font-mono text-[11px] text-slate-400">Evaluation</span>
@@ -1311,7 +1353,10 @@
         <div class="flex items-center gap-3">
           <h3 class="font-mono text-[11px] mono-tag text-slate-400">AI APPLICATIONS</h3>
           <div class="h-px flex-1 bg-white/[0.07]"></div>
-          <span class="hidden font-mono text-[10px] text-slate-600 sm:block">5</span>
+          <span class="hidden items-center gap-2.5 sm:flex">
+            <span class="skill-meter" style="--lvl:38%"></span>
+            <span class="font-mono text-[10px] text-slate-500">5</span>
+          </span>
         </div>
         <div class="mt-4 flex flex-wrap gap-2">
           <span class="chip rounded-full px-3.5 py-1.5 font-mono text-[11px] text-slate-400">RAG</span>
@@ -1326,7 +1371,10 @@
         <div class="flex items-center gap-3">
           <h3 class="font-mono text-[11px] mono-tag text-slate-400">SYSTEMS ENGINEERING</h3>
           <div class="h-px flex-1 bg-white/[0.07]"></div>
-          <span class="hidden font-mono text-[10px] text-slate-600 sm:block">6</span>
+          <span class="hidden items-center gap-2.5 sm:flex">
+            <span class="skill-meter" style="--lvl:46%"></span>
+            <span class="font-mono text-[10px] text-slate-500">6</span>
+          </span>
         </div>
         <div class="mt-4 flex flex-wrap gap-2">
           <span class="chip rounded-full px-3.5 py-1.5 font-mono text-[11px] text-slate-400">Backend Systems</span>
@@ -1342,7 +1390,10 @@
         <div class="flex items-center gap-3">
           <h3 class="font-mono text-[11px] mono-tag text-slate-400">INFRASTRUCTURE</h3>
           <div class="h-px flex-1 bg-white/[0.07]"></div>
-          <span class="hidden font-mono text-[10px] text-slate-600 sm:block">6</span>
+          <span class="hidden items-center gap-2.5 sm:flex">
+            <span class="skill-meter" style="--lvl:46%"></span>
+            <span class="font-mono text-[10px] text-slate-500">6</span>
+          </span>
         </div>
         <div class="mt-4 flex flex-wrap gap-2">
           <span class="chip rounded-full px-3.5 py-1.5 font-mono text-[11px] text-slate-400">PostgreSQL</span>
@@ -1358,7 +1409,10 @@
         <div class="flex items-center gap-3">
           <h3 class="font-mono text-[11px] mono-tag text-slate-400">STACK &amp; TOOLING</h3>
           <div class="h-px flex-1 bg-white/[0.07]"></div>
-          <span class="hidden font-mono text-[10px] text-slate-600 sm:block">13</span>
+          <span class="hidden items-center gap-2.5 sm:flex">
+            <span class="skill-meter" style="--lvl:100%"></span>
+            <span class="font-mono text-[10px] text-slate-500">13</span>
+          </span>
         </div>
         <div class="mt-4 flex flex-wrap gap-2">
           <span class="chip rounded-full px-3.5 py-1.5 font-mono text-[11px] text-slate-400">Python</span>
@@ -1558,6 +1612,98 @@
   @media (min-width: 640px) {
     .prov-row { min-height: 54px; }
   }
+  /* ---------- skill group meters ---------- */
+  .skill-meter {
+    position: relative; display: block; width: 56px; height: 3px; border-radius: 99px;
+    background: rgba(255,255,255,.09); overflow: hidden;
+  }
+  .skill-meter::after {
+    content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 0;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #34d399, #38bdf8);
+    transition: width 1.1s cubic-bezier(.16, 1, .3, 1) .15s;
+  }
+  .reveal.in .skill-meter::after { width: var(--lvl, 40%); }
+
+  /* ---------- certification track tones ---------- */
+  .cert-card { position: relative; overflow: hidden; }
+  .cert-card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+    opacity: .5; background: var(--tone, #34d399);
+  }
+  .cert-card--emerald { --tone: #34d399; }
+  .cert-card--teal    { --tone: #2dd4bf; }
+  .cert-card--sky     { --tone: #38bdf8; }
+  .cert-card--cyan    { --tone: #22d3ee; }
+  .cert-card--amber   { --tone: #fbbf24; }
+  .cert-card--slate   { --tone: #94a3b8; }
+  .cert-dot {
+    width: 5px; height: 5px; border-radius: 999px; flex: none;
+    background: var(--tone, #34d399); box-shadow: 0 0 8px 0 var(--tone, #34d399);
+  }
+
+  /* ---------- artifact lifecycle rail ---------- */
+  .life-steps {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .6rem 1.7rem; margin: 0; padding: 0; list-style: none;
+  }
+  @media (min-width: 640px) { .life-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .life-step {
+    position: relative; display: flex; align-items: center; gap: .5rem;
+    padding: .5rem .7rem;
+    border: 1px solid rgba(255,255,255,.09); border-radius: 11px;
+    background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+  }
+  .life-step::before {
+    /* marching conveyor edge: the pipeline is moving, not a static list */
+    content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px; border-radius: 11px 11px 0 0;
+    background-image: linear-gradient(90deg, rgba(52,211,153,.55) 0 5px, transparent 5px 10px);
+    background-size: 10px 1px;
+    animation: lifeMarch 1.1s linear infinite;
+  }
+  .life-step::after {
+    /* arrow into the next step of the same row */
+    content: ''; position: absolute; right: -.98rem; top: 50%; width: .45rem; height: .45rem;
+    border-top: 1.5px solid rgba(52,211,153,.45); border-right: 1.5px solid rgba(52,211,153,.45);
+    transform: translateY(-50%) rotate(45deg);
+  }
+  .life-step:nth-child(2n)::after { display: none; }
+  @media (min-width: 640px) {
+    .life-step:nth-child(2n)::after { display: block; }
+    .life-step:nth-child(3n)::after { display: none; }
+  }
+  .life-glow {
+    position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0;
+    background: linear-gradient(90deg, rgba(52,211,153,.18), rgba(56,189,248,.10) 60%, transparent);
+    box-shadow: inset 0 0 0 1px rgba(52,211,153,.42);
+    animation: lifePulse 5.4s ease-in-out infinite;
+  }
+  .life-num { font-size: 10px; color: #6ee7b7; opacity: .85; }
+  .life-label { font-size: 11px; color: #cbd5e1; }
+  .life-step--key {
+    border-color: rgba(52,211,153,.32);
+    background: linear-gradient(180deg, rgba(52,211,153,.12), rgba(52,211,153,.03));
+  }
+  .life-step--key .life-label { color: #a7f3d0; }
+  .life-step.is-sky {
+    border-color: rgba(56,189,248,.30);
+    background: linear-gradient(180deg, rgba(56,189,248,.12), rgba(56,189,248,.03));
+  }
+  .life-step.is-sky .life-label { color: #bae6fd; }
+  .life-step.is-sky .life-num { color: #7dd3fc; opacity: .9; }
+  @keyframes lifeMarch { to { background-position-x: 10px; } }
+  @keyframes lifePulse {
+    0%, 6%   { opacity: 1; }
+    18%      { opacity: 0; }
+    100%     { opacity: 0; }
+  }
+  .life-steps > .life-step:nth-child(1) .life-glow { animation-delay: 0s; }
+  .life-steps > .life-step:nth-child(2) .life-glow { animation-delay: .32s; }
+  .life-steps > .life-step:nth-child(3) .life-glow { animation-delay: .64s; }
+  .life-steps > .life-step:nth-child(4) .life-glow { animation-delay: .96s; }
+  .life-steps > .life-step:nth-child(5) .life-glow { animation-delay: 1.28s; }
+  .life-steps > .life-step:nth-child(6) .life-glow { animation-delay: 1.6s; }
 
   /* ---------- FIG. 02 motion: a pipeline sweep that walks the layers ---------- */
   .prov-stack::after {
@@ -1614,22 +1760,56 @@
   }
   @keyframes caretBlink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
 
-  .chain-node {
-    position: relative;
-    border: 1px solid rgba(255,255,255,.10);
-    background: rgba(255,255,255,.03);
-    border-radius: 12px;
-    padding: .6rem .9rem;
-    font-size: 13px;
-    color: #cbd5e1;
-    transition: .3s ease;
-    overflow: hidden;
+  /* ---------- project card diagrams: motion ---------- */
+  @keyframes dashFlow { to { stroke-dashoffset: -40; } }
+  @keyframes nodePulse { 0%, 6% { opacity: 1; } 34% { opacity: .35; } 70%, 100% { opacity: 1; } }
+  @keyframes dotsPulse { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
+  @keyframes barGrow { 0%, 8% { transform: scaleY(.22); } 48%, 100% { transform: scaleY(1); } }
+  @keyframes orbitSpin { to { transform: rotate(360deg); } }
+  @keyframes ringPulse { 0%, 100% { opacity: .5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
+  @keyframes verdictPulse { 0%, 100% { stroke-opacity: .5; } 45%, 60% { stroke-opacity: 1; } }
+
+  .flow-lines path[stroke-dasharray] { animation: dashFlow 2.6s linear infinite; }
+  .flow-dots { animation: dotsPulse 3.6s ease-in-out infinite; }
+
+  .flow-nodes > rect { animation: nodePulse 5.4s ease-in-out infinite; }
+  .flow-nodes > rect:nth-child(2) { animation-delay: .18s; }
+  .flow-nodes > rect:nth-child(3) { animation-delay: .36s; }
+  .flow-nodes > rect:nth-child(4) { animation-delay: .54s; }
+
+  .doc-stack > rect { animation: nodePulse 5.4s ease-in-out infinite; }
+  .doc-stack > rect:nth-child(2) { animation-delay: .2s; }
+  .doc-stack > rect:nth-child(3) { animation-delay: .4s; }
+  .doc-stack > rect:nth-child(4) { animation-delay: .6s; }
+
+  .gen-tiles > rect { animation: nodePulse 5.4s ease-in-out infinite; }
+  .gen-tiles > rect:nth-child(2) { animation-delay: .16s; }
+  .gen-tiles > rect:nth-child(3) { animation-delay: .32s; }
+  .gen-tiles > rect:nth-child(4) { animation-delay: .48s; }
+  .gen-marks { animation: dotsPulse 3.6s ease-in-out infinite; }
+
+  .gen-bars > rect {
+    transform-box: fill-box; transform-origin: 50% 100%;
+    animation: barGrow 5.4s cubic-bezier(.16, 1, .3, 1) infinite;
   }
-  .chain-node::before {
-    content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
-    background: linear-gradient(180deg, #34d399, #38bdf8);
-  }
-  .chain-node:hover { border-color: rgba(52,211,153,.45); transform: translateX(4px); }
+  .gen-bars > rect:nth-child(2) { animation-delay: .09s; }
+  .gen-bars > rect:nth-child(3) { animation-delay: .18s; }
+  .gen-bars > rect:nth-child(4) { animation-delay: .27s; }
+  .gen-bars > rect:nth-child(5) { animation-delay: .36s; }
+  .gen-bars > rect:nth-child(6) { animation-delay: .45s; }
+
+  .orbit { transform-box: fill-box; transform-origin: center; animation: orbitSpin 44s linear infinite; }
+  .verdict { animation: verdictPulse 5.4s ease-in-out infinite; }
+
+  .orbit-dots > circle { animation: nodePulse 5.4s ease-in-out infinite; }
+  .orbit-dots > circle:nth-child(2) { animation-delay: .14s; }
+  .orbit-dots > circle:nth-child(3) { animation-delay: .28s; }
+  .orbit-dots > circle:nth-child(4) { animation-delay: .42s; }
+  .orbit-dots > circle:nth-child(5) { animation-delay: .56s; }
+  .orbit-dots > circle:nth-child(6) { animation-delay: .7s; }
+
+  .match-ring { transform-box: fill-box; transform-origin: center; animation: ringPulse 4.2s ease-in-out infinite; }
+
 </style>
 
 <script>
@@ -1673,11 +1853,24 @@
 
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
+  /* per-track accent so the grid reads by discipline at a glance */
+  const TRACK_TONE = {
+    'AI & ML': 'emerald',
+    'Data Science': 'cyan',
+    'Foundations': 'slate',
+    'Blockchain': 'teal',
+    'Security': 'amber',
+    'Cloud & DevOps': 'sky'
+  };
+
   function certCard(c) {
+    const tone = TRACK_TONE[c.track] || 'slate';
     return `
-      <article class="card rounded-2xl p-5 flex flex-col">
+      <article class="card cert-card cert-card--${tone} rounded-2xl p-5 flex flex-col">
         <div class="flex items-start justify-between gap-3">
-          <div class="font-mono text-[10px] mono-tag text-emerald-300/70">${esc(c.track.toUpperCase())}</div>
+          <div class="flex items-center gap-1.5 font-mono text-[10px] mono-tag text-emerald-300/70">
+            <span class="cert-dot" aria-hidden="true"></span>${esc(c.track.toUpperCase())}
+          </div>
           <div class="font-mono text-[10px] text-slate-500">${esc(c.d)}</div>
         </div>
         <h3 class="mt-3 text-[15px] font-semibold leading-snug text-white">${esc(c.t)}</h3>
