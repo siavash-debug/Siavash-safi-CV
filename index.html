@@ -727,6 +727,36 @@
             <span>Benchmarking</span>
           </div>
           <div class="mt-8 border-t border-white/[0.08] pt-5 font-mono text-[11px] leading-relaxed text-slate-500">Architecture direction · Not yet a shipped platform · Case study coming soon</div>
+          <details class="project-detail mt-6" id="lota-detail">
+            <summary class="project-detail-summary">
+              <span>Inspect the architecture</span>
+              <svg class="project-detail-chevron" aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+            </summary>
+            <div class="project-detail-inner">
+              <div class="detail-section">
+                <div class="detail-k">Problem</div>
+                <div class="detail-v">AI can generate an artifact — an image, a document, a piece of code — but a generated artifact by itself carries no information about where it came from. When the same workflow is re-run, or when a model version changes, or when someone asks "was this output reviewed?", there is nothing to point at. LOTA explores what it takes for a generated artifact to be trustworthy: traceable back to the workflow, execution, inputs, models and versions that produced it.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">System</div>
+                <div class="detail-v">A workflow infrastructure concept where workflows run executions, executions produce artifacts, and each artifact carries an identity that supports provenance, evaluation and verification. The lifecycle is: AI Models + Tools → Workflows → Executions → Artifacts → Identity + Provenance → Evaluation + Verification. Each layer is an addressable record, and identity and provenance bind an artifact to the workflow, execution, inputs and model version that produced it.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">Engineering</div>
+                <div class="detail-v">The project is infrastructure around capabilities like image generation and analysis, not a standalone image generator. The concern is what happens after generation: can the output be identified, traced, evaluated and verified? Image generation and analysis are among the capabilities such workflows can use; the project is the provenance layer around them. This is an architecture direction, not a shipped platform.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">Evidence</div>
+                <div class="detail-row">
+                  <span class="detail-v" style="margin:0">LOTA, LOTA.design, the LOTA logo, wordmark and associated visual identity are brand assets associated with Siavash Safi, governed by TRADEMARK.md. The primary project domain is lota.design. Brand usage rights and permitted uses are documented in the repository; the mark is asserted with ™ and does not claim registered trademark status in any jurisdiction.</span>
+                </div>
+                <a class="detail-evidence" href="https://lota.design" target="_blank" rel="noopener">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                  lota.design
+                </a>
+              </div>
+            </div>
+          </details>
         </div>
 
         <!-- near side: FIG. 01 — the conceptual artifact lifecycle -->
@@ -869,15 +899,15 @@
             <span class="border border-amber-400/25 bg-ink-950/85 px-2 py-1 font-mono text-[10px] tracking-[.16em] text-amber-300 backdrop-blur">IN PROGRESS</span>
           </div>
         </div>
-        <div class="project-body mt-6 lg:mt-0">
+<div class="project-body mt-6 lg:mt-0">
           <div class="meta">AGENTS · PLANNING · TOOL USE · ORCHESTRATION</div>
-<h3 class="mt-2.5 text-lg font-semibold text-white">Agentic Workflow Engine</h3>
-<div class="mt-2 flex items-center gap-2 text-xs">
-  <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 text-emerald-300" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l7 17M7 10l5 5 5-5"/><circle cx="12" cy="12" r="3"/></svg>
-  <span class="text-emerald-300">Agentic</span>
-</div>
-<p class="mt-3 text-sm leading-relaxed text-slate-400">
-            An execution runtime for agents that turns plans into observable, recoverable workflows. A Planner Agent and AgentLoop drive
+          <h3 class="mt-2.5 text-lg font-semibold text-white">Agentic Workflow Engine</h3>
+          <div class="mt-2 flex items-center gap-2 text-xs">
+            <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 text-emerald-300" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l7 17M7 10l5 5 5-5"/><circle cx="12" cy="12" r="3"/></svg>
+            <span class="text-emerald-300">Agentic</span>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-slate-400">
+            A backend runtime that turns agent plans into observable, recoverable workflows. A Planner Agent and AgentLoop drive
             plan → execute → evaluate with bounded replanning, while workflow state, execution events and recovery stay explicit:
             Task Execution Service, Tool Registry, provider-agnostic LLM boundary, PostgreSQL persistence, a workflow state machine,
             crash-recovery primitives and EventStore tracing.
@@ -896,6 +926,43 @@
             <span class="font-mono text-[11px] text-slate-500">Repository</span>
             <a href="https://github.com/siavash-debug/agentic-workflow-engine" target="_blank" rel="noopener" class="font-mono text-[11px] text-emerald-300 hover:text-emerald-200">View Repository ↗</a>
           </div>
+          <details class="project-detail" id="awe-detail">
+            <summary class="project-detail-summary">
+              <span>Inspect the system</span>
+              <svg class="project-detail-chevron" aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+            </summary>
+            <div class="project-detail-inner">
+              <div class="detail-section">
+                <div class="detail-k">Problem</div>
+                <div class="detail-v">Most agent demos are a script with a prompt and a for-loop. That works in a notebook but is not testable, has no boundary between "talk to the LLM" and "run business logic," and cannot be extended without touching everything. The engine exists to build the thing such a demo eventually has to become: a backend service that can sit behind a real product and be reviewed like production backend code.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">System</div>
+                <div class="detail-v">A Planner Agent decomposes a goal into a structured Plan; an AgentLoop orchestrates that plan through a bounded plan → execute → evaluate → replan cycle, tracking each attempt as a WorkflowRun. A Task Execution Service runs each step against a Tool Registry exposing a controlled, extensible set of capabilities. The codebase follows Clean Architecture: dependencies point inward, and the core has no idea FastAPI or Anthropic exist.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">Engineering</div>
+                <div class="detail-v">
+                  <strong>Boundaries:</strong> the application layer depends only on <code>domain.interfaces.LLMClient</code>, so the provider, storage backend and transport are all swappable without touching the Planner or AgentLoop.<br>
+                  <strong>Persistence:</strong> in-memory by default; PostgreSQL via SQLAlchemy Core + Alembic is opt-in. WorkflowRun state, every Task (including attempt count and retry classification), and the full AgentEvent trace survive a process restart.<br>
+                  <strong>Recovery:</strong> a stale running workflow can be detected and resumed via <code>find_stale_running_workflow_ids()</code> + <code>RecoveryService.recover_and_resume()</code>, triggered explicitly through <code>scripts/recover.py</code>. Recovery is not automatic inside the running app. Execution semantics are at-least-once, not exactly-once.<br>
+                  <strong>Observability:</strong> plan, task and replan lifecycle transitions are recorded as an AgentEvent trace; structured JSON logging carries bound context per request, workflow and task.<br>
+                  <strong>Testability:</strong> a deterministic local demo mode (<code>FakeLLMClient</code>, no API key, no network) runs the real production path through three scenarios, including one that fails once and recovers after a replan.
+                </div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">Evidence</div>
+                <div class="detail-row">
+                  <span class="detail-v" style="margin:0">62 commits, 210+ automated tests (unit, in-memory integration, and real-PostgreSQL integration via testcontainers). Docker and GitHub Actions CI validated.</span>
+                </div>
+                <a class="detail-evidence" href="https://github.com/siavash-debug/agentic-workflow-engine" target="_blank" rel="noopener">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                  View Repository
+                </a>
+                <span class="detail-v" style="margin-top:1rem">Recovery capability and state machine are documented in the repository README, not asserted here.</span>
+              </div>
+            </div>
+          </details>
         </div>
       </article>
 
@@ -935,14 +1002,14 @@
             <span class="border border-amber-400/25 bg-ink-950/85 px-2 py-1 font-mono text-[10px] tracking-[.16em] text-amber-300 backdrop-blur">IN PROGRESS</span>
           </div>
         </div>
-        <div class="project-body mt-6 lg:mt-0">
+<div class="project-body mt-6 lg:mt-0">
           <div class="meta">RAG · OCR · GROUNDING · EVALUATION</div>
-<h3 class="mt-2.5 text-lg font-semibold text-white">ProofDesk</h3>
-<div class="mt-2 flex items-center gap-2 text-xs">
-  <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 text-sky-300" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-  <span class="text-sky-300">RAG</span>
-</div>
-<p class="mt-3 text-sm leading-relaxed text-slate-400">
+          <h3 class="mt-2.5 text-lg font-semibold text-white">ProofDesk</h3>
+          <div class="mt-2 flex items-center gap-2 text-xs">
+            <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 text-sky-300" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <span class="text-sky-300">RAG</span>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-slate-400">
             A document QA system designed to know when it does not know. PDFs move through extraction, OCR fallback, cleaning, chunking, retrieval and
             grounding before an answer is presented — every answer cited to source documents, and validated by an automated golden evaluation dataset
             (direct, borderline, irrelevant and multi-document cases) scored for correctness, faithfulness and contextual relevancy.
@@ -960,6 +1027,43 @@
             <span class="font-mono text-[11px] text-slate-500">Repository</span>
             <a href="https://github.com/siavash-debug/proofdesk" target="_blank" rel="noopener" class="font-mono text-[11px] text-emerald-300 hover:text-emerald-200">View Repository ↗</a>
           </div>
+          <details class="project-detail" id="proofdesk-detail">
+            <summary class="project-detail-summary">
+              <span>Inspect the system</span>
+              <svg class="project-detail-chevron" aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+            </summary>
+            <div class="project-detail-inner">
+              <div class="detail-section">
+                <div class="detail-k">Problem</div>
+                <div class="detail-v">A retrieval-augmented assistant answering over credential and certificate documents must not guess. Standard RAG pipelines answer confidently from topically-related chunks even when the chunk does not contain the answer, and evaluation is usually manual spot-checking — which is how a system ships that fabricates facts about a person's qualifications.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">System</div>
+                <div class="detail-v">PDFs flow through extraction (pdfplumber) with Tesseract OCR fallback for scanned documents, then cleaning, chunking, embedding and a Chroma vector store. Retrieval uses a deliberately loose relevance threshold tuned for recall. A FastAPI backend exposes <code>POST /chat</code> with grounding verification before any answer is generated; a plain HTML/CSS/JS frontend renders the chat UI with source citations by filename.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">Engineering</div>
+                <div class="detail-v">
+                  <strong>Two-layer hallucination defense:</strong> retrieval favors recall over precision, and the generation prompt is separately instructed to verify the retrieved chunk actually contains the answer and to say "not found" otherwise. Neither layer is trusted alone.<br>
+                  <strong>OCR error correction:</strong> Tesseract output is cleaned by an LLM (Groq's gpt-oss-120b) rather than regex heuristics, because misreads like a Roman numeral "I" rendered as a stray "|" need contextual judgment. The correction prompt was refined against a real recurring failure pattern until it held up reliably.<br>
+                  <strong>Evaluation-driven fix:</strong> a formal golden-dataset eval surfaced real false negatives on terse, list-style content — a bare "Skills" bullet list embeds poorly against a natural-language question. Fixed by embedding a distinct, LLM-friendly description of the section separately from the text shown to the user. Display text is never altered.<br>
+                  <strong>Chunking matched to document shape:</strong> short certificates are kept as one chunk (their facts only make sense together); resumes are split by section, so a "Skills" question does not pull in unrelated work history.<br>
+                  <strong>Privacy by design:</strong> the project uses sample, synthetic documents — a fictional resume and two fictional certificates — never real personal or credential data, so eval logs, embeddings and test fixtures are freely runnable and shareable.
+                </div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">Evidence</div>
+                <div class="detail-row">
+                  <span class="detail-v" style="margin:0">DeepEval golden dataset covering direct-fact questions, borderline "plausible but wrong" queries, fully irrelevant queries, and a multi-document synthesis case. Scored on Correctness, Faithfulness and Contextual Relevancy. Re-run on every meaningful pipeline change so regressions are caught by a rerun instead of a hunch.</span>
+                </div>
+                <a class="detail-evidence" href="https://github.com/siavash-debug/proofdesk" target="_blank" rel="noopener">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                  View Repository
+                </a>
+                <span class="detail-v" style="margin-top:1rem">Architecture decision history is documented in the repository's CLAUDE.md, written as the project was built rather than reconstructed after the fact.</span>
+              </div>
+            </div>
+          </details>
         </div>
       </article>
 
@@ -1012,14 +1116,14 @@
             <span class="border border-amber-400/25 bg-ink-950/85 px-2 py-1 font-mono text-[10px] tracking-[.16em] text-amber-300 backdrop-blur">IN PROGRESS</span>
           </div>
         </div>
-        <div class="project-body mt-6 lg:mt-0">
+<div class="project-body mt-6 lg:mt-0">
           <div class="meta">GENERATIVE AI · IMAGE GENERATION · BENCHMARKING</div>
-<h3 class="mt-2.5 text-lg font-semibold text-white">Text-to-Image Generation &amp; Benchmarking</h3>
-<div class="mt-2 flex items-center gap-2 text-xs">
-  <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 text-emerald-300" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-  <span class="text-emerald-300">Generative AI</span>
-</div>
-<p class="mt-3 text-sm leading-relaxed text-slate-400">
+          <h3 class="mt-2.5 text-lg font-semibold text-white">Text-to-Image Generation &amp; Benchmarking</h3>
+          <div class="mt-2 flex items-center gap-2 text-xs">
+            <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 text-emerald-300" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+            <span class="text-emerald-300">Generative AI</span>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-slate-400">
             Built and evaluated a text-to-image generation system for generative graphics — not just producing images, but measuring them: systematic
             benchmarking of generated output quality, with iterative improvement of the generation workflow driven by benchmark results.
             Generation → benchmark → evaluate → improve.
@@ -1034,6 +1138,36 @@
             <span class="font-mono text-[11px] text-slate-500">Repo in progress</span>
             <a href="https://github.com/siavash-debug" target="_blank" rel="noopener" class="font-mono text-[11px] text-emerald-300 hover:text-emerald-200">GitHub →</a>
           </div>
+          <details class="project-detail" id="t2i-detail">
+            <summary class="project-detail-summary">
+              <span>Methodology (no public artifacts yet)</span>
+              <svg class="project-detail-chevron" aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+            </summary>
+            <div class="project-detail-inner">
+              <div class="detail-section">
+                <div class="detail-k">Problem</div>
+                <div class="detail-v">Generating images is easy; knowing whether the generated images are actually good, consistent and useful for a specific purpose is not. Without a benchmark, improvements to prompts, models or preprocessing are guesses — you cannot tell whether a change helped or whether the last run was unusually good or bad.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">System</div>
+                <div class="detail-v">A text-to-image generation pipeline paired with a systematic benchmarking harness. Output is measured and the measurement feeds back into the generation workflow in an iterative loop.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">Engineering</div>
+                <div class="detail-v">The core discipline here is the evaluation loop itself: generation produces output, benchmarking measures it against criteria, evaluation judges whether the measurement is meaningful, and improvement changes the generation workflow. No measured results, benchmark scores, or model comparisons are published for this project, and none should be inferred.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">Evidence</div>
+                <div class="detail-row">
+                  <span class="detail-v" style="margin:0">No public repository, benchmark dataset, or published results exist for this project yet. The methodology described is the intended approach, not a completed measurement. The GitHub profile is the only verifiable reference point.</span>
+                </div>
+                <a class="detail-evidence" href="https://github.com/siavash-debug" target="_blank" rel="noopener">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                  GitHub profile
+                </a>
+              </div>
+            </div>
+          </details>
         </div>
       </article>
 
@@ -1064,14 +1198,14 @@
             <span class="border border-amber-400/25 bg-ink-950/85 px-2 py-1 font-mono text-[10px] tracking-[.16em] text-amber-300 backdrop-blur">IN PROGRESS</span>
           </div>
         </div>
-        <div class="project-body mt-6 lg:mt-0">
+<div class="project-body mt-6 lg:mt-0">
           <div class="meta">AI ENGINEERING · AGENT CONTRACTS · VERIFICATION</div>
-<h3 class="mt-2.5 text-lg font-semibold text-white">AI Coding Base</h3>
-<div class="mt-2 flex items-center gap-2 text-xs">
-  <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 text-sky-300" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M5 16V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/></svg>
-  <span class="text-sky-300">Agent Contracts</span>
-</div>
-<p class="mt-3 text-sm leading-relaxed text-slate-400">
+          <h3 class="mt-2.5 text-lg font-semibold text-white">AI Coding Base</h3>
+          <div class="mt-2 flex items-center gap-2 text-xs">
+            <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 text-sky-300" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M5 16V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2z"/></svg>
+            <span class="text-sky-300">Agent Contracts</span>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-slate-400">
             An engineering contract for AI-assisted software development. Instead of trusting generated code, the workflow forces every AI-assisted change
             through explicit contracts — AGENTS.md as the engineering source of truth — then a verification loop of formatting, linting, type checking, tests,
             build verification and minimal smoke proofs, with CI keeping the loop reproducible.
@@ -1086,6 +1220,40 @@
             <span class="font-mono text-[11px] text-slate-500">Repository</span>
             <a href="https://github.com/siavash-debug/ai-coding-base" target="_blank" rel="noopener" class="font-mono text-[11px] text-emerald-300 hover:text-emerald-200">View Repository ↗</a>
           </div>
+          <details class="project-detail" id="ai-coding-base-detail">
+            <summary class="project-detail-summary">
+              <span>Inspect the system</span>
+              <svg class="project-detail-chevron" aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+            </summary>
+            <div class="project-detail-inner">
+              <div class="detail-section">
+                <div class="detail-k">Problem</div>
+                <div class="detail-v">AI-assisted development produces code faster, but speed without a contract means generated code that does not compile, fails type checking, or breaks existing tests — and the failure is discovered only after the fact, by a human reviewer.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">System</div>
+                <div class="detail-v">A reusable professional AI Engineering coding workspace baseline. AGENTS.md is the normative engineering contract and source of truth. The repository is explicitly a workspace baseline, not an application or framework — it is designed to be cloned as the starting point for future projects.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">Engineering</div>
+                <div class="detail-v">
+                  <strong>Contract as source of truth:</strong> AGENTS.md defines the engineering rules that AI-assisted work must follow, making the expectations explicit and machine-checkable rather than implicit and reviewer-dependent.<br>
+                  <strong>Verification loop:</strong> formatting, linting, type checking, tests, build verification and minimal smoke proofs form a gate that every change must pass. CI keeps the loop reproducible across runs.<br>
+                  <strong>Explicit scope:</strong> in scope are agent contracts, the verification loop, minimal smoke proofs, scripts, docs and CI. Out of scope are application/business logic, frameworks, Python/uv, Docker, eval infrastructure, databases and APIs — those belong to future projects cloned from this template, so the baseline stays clean.
+                </div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">Evidence</div>
+                <div class="detail-row">
+                  <span class="detail-v" style="margin:0">3 commits. MIT licensed. Verification pipeline: Prettier check → ESLint → TypeScript --noEmit → Vitest → TypeScript emit to dist/, orchestrated by <code>scripts/verify.sh</code>.</span>
+                </div>
+                <a class="detail-evidence" href="https://github.com/siavash-debug/ai-coding-base" target="_blank" rel="noopener">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                  View Repository
+                </a>
+              </div>
+            </div>
+          </details>
         </div>
       </article>
 
@@ -1116,14 +1284,14 @@
             <span class="border border-amber-400/25 bg-ink-950/85 px-2 py-1 font-mono text-[10px] tracking-[.16em] text-amber-300 backdrop-blur">IN PROGRESS</span>
           </div>
         </div>
-        <div class="project-body mt-6 lg:mt-0">
+<div class="project-body mt-6 lg:mt-0">
           <div class="meta">SEARCH · MATCHING · DATA PIPELINES · AUTOMATION</div>
-<h3 class="mt-2.5 text-lg font-semibold text-white">Smart Finder</h3>
-<div class="mt-2 flex items-center gap-2 text-xs">
-  <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 text-emerald-300" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-  <span class="text-emerald-300">Search</span>
-</div>
-<p class="mt-3 text-sm leading-relaxed text-slate-400">
+          <h3 class="mt-2.5 text-lg font-semibold text-white">Smart Finder</h3>
+          <div class="mt-2 flex items-center gap-2 text-xs">
+            <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4 text-emerald-300" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <span class="text-emerald-300">Search</span>
+          </div>
+          <p class="mt-3 text-sm leading-relaxed text-slate-400">
             A property discovery engine that matches human intent against noisy real-world listings: user-described apartment requirements are matched against
             Persian listings, with normalization, duplicate detection for the same physical property, change tracking and alerts — running on data pipelines
             and a worker architecture with structured verification gates and careful handling of untrusted listing text.
@@ -1139,6 +1307,42 @@
             <span class="font-mono text-[11px] text-slate-500">Repository</span>
             <a href="https://github.com/siavash-debug/smart-finder" target="_blank" rel="noopener" class="font-mono text-[11px] text-emerald-300 hover:text-emerald-200">View Repository ↗</a>
           </div>
+          <details class="project-detail" id="smart-finder-detail">
+            <summary class="project-detail-summary">
+              <span>Inspect the system</span>
+              <svg class="project-detail-chevron" aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+            </summary>
+            <div class="project-detail-inner">
+              <div class="detail-section">
+                <div class="detail-k">Problem</div>
+                <div class="detail-v">Real-estate listings are noisy, inconsistently described, and frequently describe the same physical property under different ads. Matching a human's apartment requirements against this data requires normalizing untrusted text, deduplicating across listings, and tracking changes over time — none of which a naive keyword search handles.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">System</div>
+                <div class="detail-v">A two-plane architecture: <code>apps/web</code> (Next.js 16, Persian RTL UI, serve plane) and <code>apps/worker</code> (long-running Node process, ingest plane), connected through workspace packages for shared env validation, structured logging, health shapes and a PostgreSQL/PostGIS database layer. Project memory lives in <code>docs/</code> — MASTER_PROMPT, PROJECT_CONTEXT, ARCHITECTURE, ROADMAP and DECISIONS — read before making changes.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">Engineering</div>
+                <div class="detail-v">
+                  <strong>Untrusted input handling:</strong> listing text is escaped on render, bound as SQL parameters, and never treated as instructions. Unknown attributes render as نامUnknown — never guessed, never coerced to false.<br>
+                  <strong>Money as integer:</strong> prices are BIGINT Toman carried as bigint, never a float (ADR-0005). Timestamps are UTC internally and rendered Jalali only at the UI boundary.<br>
+                  <strong>Verification gate:</strong> <code>npm run verify</code> runs format check → lint → typecheck → tests → build in order. This is the gate a phase must pass before it is considered complete.<br>
+                  <strong>Health contracts:</strong> both planes expose <code>GET /healthz</code> (liveness, no dependencies) and <code>GET /readyz</code> (readiness, probes PostgreSQL), so the ingest and serve planes can each be monitored independently.<br>
+                  <strong>Container-agnostic:</strong> images are plain Node images, not tied to any hosting provider. The worker and database can be deployed anywhere.
+                </div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">Evidence</div>
+                <div class="detail-row">
+                  <span class="detail-v" style="margin:0">8 commits. Phase 0 — foundation only. No listings are collected yet and search is not available. Packages named in ARCHITECTURE.md but absent from the tree (normalizer, matching, telegram, scraper, ai) are created by the phase that first implements them.</span>
+                </div>
+                <a class="detail-evidence" href="https://github.com/siavash-debug/smart-finder" target="_blank" rel="noopener">
+                  <svg aria-hidden="true" viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+                  View Repository
+                </a>
+              </div>
+            </div>
+          </details>
         </div>
       </article>
 
@@ -1187,6 +1391,28 @@
             <span class="tag">Trust Boundaries</span>
           </div>
           <div class="mt-5 font-mono text-[11px] text-slate-500">Track in progress · Coming soon</div>
+          <details class="project-detail mt-5" id="lota-security-detail">
+            <summary class="project-detail-summary">
+              <span>Scope (no artifacts yet)</span>
+              <svg class="project-detail-chevron" aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+            </summary>
+            <div class="project-detail-inner">
+              <div class="detail-section">
+                <div class="detail-k">Problem</div>
+                <div class="detail-v">LLM-powered workflows and agentic systems combine two threat surfaces: the model itself can be steered by prompt injection, and agents with tool access can abuse tools they are authorized to call. Neither threat is visible at the boundary where a workflow is "just calling an API."</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">System</div>
+                <div class="detail-v">A security engineering track for LOTA: threat modeling across the artifact lifecycle, explicit trust boundaries between untrusted inputs and the execution environment, defenses against prompt injection and tool abuse, and a security evaluation procedure for the workflows LOTA produces.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">Evidence</div>
+                <div class="detail-row">
+                  <span class="detail-v" style="margin:0">No repository, evaluation results, or published threat model exist for this track yet. The scope described is the intended direction, not a completed assessment.</span>
+                </div>
+              </div>
+            </div>
+          </details>
         </div>
       </article>
 
@@ -1234,27 +1460,62 @@
             <span class="tag">Multimodal Evaluation</span>
           </div>
           <div class="mt-5 font-mono text-[11px] text-slate-500">Track in progress · Coming soon</div>
+          <details class="project-detail mt-5" id="lota-vision-detail">
+            <summary class="project-detail-summary">
+              <span>Scope (no artifacts yet)</span>
+              <svg class="project-detail-chevron" aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+            </summary>
+            <div class="project-detail-inner">
+              <div class="detail-section">
+                <div class="detail-k">Problem</div>
+                <div class="detail-v">Multimodal systems — models that consume images and text together — are early enough that the evaluation practices are still being worked out. Standard text metrics do not apply to visual output, and a vision-language workflow that produces an answer about an image needs a way to check whether the answer is actually grounded in what the image shows.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">System</div>
+                <div class="detail-v">A future computer vision and multimodal AI track: image understanding, visual reasoning, vision-language workflows, and multimodal evaluation — the same lifecycle discipline as the rest of LOTA (artifact identity, provenance, evaluation, verification) applied to visual and vision-language outputs.</div>
+              </div>
+              <div class="detail-section">
+                <div class="detail-k">Evidence</div>
+                <div class="detail-row">
+                  <span class="detail-v" style="margin:0">No repository, model, dataset, or published evaluation exists for this track yet. The scope described is the intended direction, not a completed implementation.</span>
+                </div>
+              </div>
+            </div>
+          </details>
         </div>
       </article>
       </div>
     </div>
 
-    <!-- open source band -->
-    <div class="reveal mt-16 grid gap-10 border-t border-white/[0.08] pt-10 lg:grid-cols-[1.45fr_0.55fr] lg:gap-16">
-      <div>
-        <h3 class="text-base font-medium text-white">Everything ships to GitHub first</h3>
-        <p class="mt-3 max-w-xl text-sm leading-[1.8] text-slate-400">Repositories, commits and work in progress live on the profile — including <span class="text-slate-300">devtycoon</span>, a technical startup simulator game built with React.</p>
-        <a href="https://github.com/siavash-debug" target="_blank" rel="noopener"
-           class="quiet-link mt-4 inline-flex items-center gap-2 font-mono text-xs">
-          github.com/siavash-debug
-          <svg aria-hidden="true" viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
-        </a>
-      </div>
-      <div class="lg:border-l lg:border-white/[0.08] lg:pl-10">
-        <h3 class="text-base font-medium text-white">Case study coming soon</h3>
-        <p class="mt-3 text-sm leading-[1.8] text-slate-400">LOTA.design is an architecture direction, not yet a shipped platform. The full case study on artifact identity and provenance is in progress.</p>
-      </div>
-    </div>
+<!-- open source band -->
+     <div class="reveal mt-16 grid gap-10 border-t border-white/[0.08] pt-10 lg:grid-cols-[1.45fr_0.55fr] lg:gap-16">
+       <div>
+         <h3 class="text-base font-medium text-white">Everything ships to GitHub first</h3>
+         <p class="mt-3 max-w-xl text-sm leading-[1.8] text-slate-400">Repositories, commits and work in progress live on the profile — including <span class="text-slate-300">devtycoon</span>, a technical startup simulator game built with React, and <span class="text-slate-300">llm-text-intel</span>, a small production-oriented application demonstrating LLM API integration, structured output, bounded retries with an error taxonomy, evaluation, observability and cost/latency awareness.</p>
+         <div class="mt-4 flex flex-wrap gap-x-5 gap-y-2 font-mono text-[11px] text-slate-500">
+           <span>agentic-workflow-engine</span>
+           <span aria-hidden="true" class="text-emerald-400/40">·</span>
+           <span>proofdesk</span>
+           <span aria-hidden="true" class="text-emerald-400/40">·</span>
+           <span>smart-finder</span>
+           <span aria-hidden="true" class="text-emerald-400/40">·</span>
+           <span>ai-coding-base</span>
+           <span aria-hidden="true" class="text-emerald-400/40">·</span>
+           <span>llm-text-intel</span>
+           <span aria-hidden="true" class="text-emerald-400/40">·</span>
+           <span>devtycoon</span>
+         </div>
+         <a href="https://github.com/siavash-debug" target="_blank" rel="noopener"
+            class="quiet-link mt-4 inline-flex items-center gap-2 font-mono text-xs">
+           github.com/siavash-debug
+           <svg aria-hidden="true" viewBox="0 0 24 24" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+         </a>
+       </div>
+       <div class="lg:border-l lg:border-white/[0.08] lg:pl-10">
+         <h3 class="text-base font-medium text-white">Case study coming soon</h3>
+         <p class="mt-3 text-sm leading-[1.8] text-slate-400">LOTA.design is an architecture direction, not yet a shipped platform. The full case study on artifact identity and provenance is in progress.</p>
+       </div>
+     </div>
   </div>
 </section>
 
@@ -1745,6 +2006,96 @@
   /* ---------- project diagrams: static line work, emphasis only on hover ---------- */
   .project-figure svg { opacity: .92; transition: opacity .4s ease; }
   .project:hover .project-figure svg { opacity: 1; }
+
+  /* ---------- project detail: progressive disclosure (native details/summary) ---------- */
+  .project-detail {
+    margin-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,.07);
+  }
+  .project-detail .project-detail-inner {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height .45s ease, opacity .4s ease;
+  }
+  .project-detail[open] .project-detail-inner {
+    max-height: 4000px;
+    opacity: 1;
+  }
+  .project-detail summary {
+    list-style: none;
+    cursor: pointer;
+    font: inherit;
+  }
+  .project-detail summary::-webkit-details-marker { display: none; }
+  .project-detail summary::-moz-details-marker { display: none; }
+  .project-detail-summary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    width: 100%;
+    padding: .7rem .1rem;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: .14em;
+    color: #9aa5ba;
+    text-transform: uppercase;
+    background: transparent;
+    border: 0;
+    transition: color .2s ease;
+  }
+  .project-detail-summary:hover, .project-detail-summary:focus-visible { color: #9cf2e2; }
+  .project-detail-chevron {
+    flex: none;
+    transition: transform .3s ease;
+    color: #5eead4;
+  }
+  .project-detail[open] .project-detail-chevron { transform: rotate(90deg); }
+  .detail-section {
+    padding: 1.15rem 0 0;
+    border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .detail-section:first-of-type { border-top: 0; padding-top: 0; }
+  .detail-k {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #5eead4;
+  }
+  .detail-v {
+    margin-top: .4rem;
+    font-size: .875rem;
+    line-height: 1.75;
+    color: #aab3c5;
+  }
+  .detail-v a { color: #5eead4; text-decoration: underline; text-underline-offset: 3px; }
+  .detail-v a:hover { color: #9cf2e2; }
+  .detail-row {
+    margin-top: 1.1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .detail-evidence {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: #5eead4;
+    text-decoration: none;
+    transition: color .2s ease;
+  }
+  .detail-evidence:hover { color: #9cf2e2; }
+  @media (prefers-reduced-motion: reduce) {
+    .project-detail .project-detail-inner { transition: none; }
+  }
 </style>
 
 <script>
@@ -2074,6 +2425,24 @@ navMap.forEach((_l, el) => navIO.observe(el));
     return data;
   }
   window.evaluateWithJev = evaluateWithJev;
+
+  /* ---------------- Project detail: progressive disclosure ----------------
+     Native <details>/<summary> handles open-close and Escape automatically.
+     This is a small enhancement: keep the summary in sync when the browser
+     toggles the panel (e.g. via the summary button), and trap nothing —
+     the panel is inline, not a modal, so focus returns naturally. */
+  (function () {
+    const details = Array.from(document.querySelectorAll('.project-detail'));
+    if (!details.length) return;
+    details.forEach((d) => {
+      const chevron = d.querySelector('.project-detail-chevron');
+      const sync = () => {
+        if (chevron) chevron.style.transform = d.open ? 'rotate(90deg)' : '';
+      };
+      d.addEventListener('toggle', sync);
+      sync();
+    });
+  })();
   </script>
 </body>
 </html>
