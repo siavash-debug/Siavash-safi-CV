@@ -1957,6 +1957,20 @@
   .path-stage.is-active .path-node-dot { background: #5eead4; opacity: 1; box-shadow: 0 0 10px rgba(94,234,212,.65); transform: scale(1.05); }
   .path-stage.is-active .path-stage-card { border-color: rgba(94,234,212,.22); background: linear-gradient(180deg, rgba(94,234,212,.06), rgba(255,255,255,.014)); box-shadow: 0 10px 36px -20px rgba(0,0,0,.75), 0 0 0 1px rgba(94,234,212,.10); }
   .path-stage.is-active .path-stage-card::before { opacity: 1; }
+  /* progressive structural integrity: isolated → structured → connected → operational → integrated → verified */
+  .path-stage:nth-child(1) .path-node { border-color: rgba(255,255,255,.06); }
+  .path-stage:nth-child(1) .path-node-dot { opacity: .50; }
+  .path-stage:nth-child(2) .path-node { border-color: rgba(255,255,255,.10); }
+  .path-stage:nth-child(2) .path-node-dot { opacity: .60; }
+  .path-stage:nth-child(3) .path-node { border-color: rgba(255,255,255,.14); }
+  .path-stage:nth-child(3) .path-node-dot { opacity: .70; }
+  .path-stage:nth-child(4) .path-node { border-color: rgba(255,255,255,.18); }
+  .path-stage:nth-child(4) .path-node-dot { opacity: .80; }
+  .path-stage:nth-child(5) .path-node { border-color: rgba(255,255,255,.24); }
+  .path-stage:nth-child(5) .path-node-dot { opacity: .90; }
+  .path-stage:nth-child(6) .path-node { border-color: rgba(94,234,212,.55); box-shadow: 0 0 0 4px rgba(7,8,11,1), 0 0 8px rgba(94,234,212,.12); }
+  .path-stage:nth-child(6) .path-node-dot { opacity: 1; background: #5eead4; box-shadow: 0 0 6px rgba(94,234,212,.30); }
+  .path-stage--now .path-stage-card { border-top-color: rgba(94,234,212,.25); }
   @media (max-width: 640px) {
     .path-stages { padding-left: 1.35rem; }
     .path-stages::before { left: -1px; }
@@ -2441,6 +2455,22 @@
     }, { threshold: [0, .25, .5, .75, 1], rootMargin: '-22% 0px -42% 0px' });
     stages.forEach((s) => io.observe(s));
     stages[0].classList.add('is-active');
+    /* robust fast-scroll: update active stage based on closest to viewport center after scroll settles */
+    let scrollTimer = null;
+    window.addEventListener('scroll', () => {
+      if (scrollTimer) clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        const viewportCenter = window.scrollY + window.innerHeight * 0.5;
+        let closest = stages[0]; let closestDist = Infinity;
+        stages.forEach((s) => {
+          const box = s.getBoundingClientRect();
+          const stageCenter = box.top + box.height * 0.5 + window.scrollY;
+          const dist = Math.abs(stageCenter - viewportCenter);
+          if (dist < closestDist) { closestDist = dist; closest = s; }
+        });
+        if (closest) { stages.forEach((s) => s.classList.toggle('is-active', s === closest)); }
+      }, 80);
+    }, { passive: true });
   })();
 
   /* ---------------- Certification track distribution ---------------- */
