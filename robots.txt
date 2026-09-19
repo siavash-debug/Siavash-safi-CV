@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://siavash-debug.github.io/Siavash-safi-CV/sitemap.xml
