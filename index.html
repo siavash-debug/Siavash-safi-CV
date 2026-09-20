@@ -2447,30 +2447,38 @@
   /* ---------------- Path: active stage highlight (premium editorial — not telemetry) ---------------- */
   (function () {
     const stages = Array.from(document.querySelectorAll('#pathStages .path-stage'));
-    if (!stages.length || !('IntersectionObserver' in window)) { if (stages[0]) stages[0].classList.add('is-active'); return; }
-    const io = new IntersectionObserver((entries) => {
-      let best = null; let bestRatio = 0;
-      entries.forEach((e) => { if (e.isIntersecting && e.intersectionRatio > bestRatio) { bestRatio = e.intersectionRatio; best = e.target; } });
-      if (best) { stages.forEach((s) => s.classList.toggle('is-active', s === best)); }
-    }, { threshold: [0, .25, .5, .75, 1], rootMargin: '-22% 0px -42% 0px' });
-    stages.forEach((s) => io.observe(s));
-    stages[0].classList.add('is-active');
-    /* robust fast-scroll: update active stage based on closest to viewport center after scroll settles */
-    let scrollTimer = null;
-    window.addEventListener('scroll', () => {
-      if (scrollTimer) clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(() => {
-        const viewportCenter = window.scrollY + window.innerHeight * 0.5;
-        let closest = stages[0]; let closestDist = Infinity;
-        stages.forEach((s) => {
-          const box = s.getBoundingClientRect();
-          const stageCenter = box.top + box.height * 0.5 + window.scrollY;
-          const dist = Math.abs(stageCenter - viewportCenter);
-          if (dist < closestDist) { closestDist = dist; closest = s; }
-        });
-        if (closest) { stages.forEach((s) => s.classList.toggle('is-active', s === closest)); }
-      }, 80);
-    }, { passive: true });
+    if (!stages.length) { return; }
+    /* Single source of truth: the active stage is the one whose visual center is
+       closest to the viewport center. Measured on scroll via one rAF-scheduled
+       pass; classList is only written when the stage actually changes. If the
+       scroll position moved since the previous pass (coalesced or multi-step
+       scrolling), one more pass is scheduled so a fast scroll can never settle
+       on a stale measurement. */
+    let activeStage = null;
+    let frameQueued = false;
+    let lastScrollY = -1;
+    const updateActiveStage = () => {
+      frameQueued = false;
+      const y = window.scrollY;
+      const viewportCenter = window.innerHeight * 0.5;
+      let closest = stages[0]; let closestDist = Infinity;
+      stages.forEach((s) => {
+        const box = s.getBoundingClientRect();
+        const dist = Math.abs(box.top + box.height * 0.5 - viewportCenter);
+        if (dist < closestDist) { closestDist = dist; closest = s; }
+      });
+      if (closest && closest !== activeStage) {
+        activeStage = closest;
+        stages.forEach((s) => s.classList.toggle('is-active', s === closest));
+      }
+      if (y !== lastScrollY) { lastScrollY = y; queueActiveStage(); }
+    };
+    const queueActiveStage = () => {
+      if (!frameQueued) { frameQueued = true; window.requestAnimationFrame(updateActiveStage); }
+    };
+    window.addEventListener('scroll', queueActiveStage, { passive: true });
+    window.addEventListener('resize', queueActiveStage);
+    updateActiveStage();
   })();
 
   /* ---------------- Certification track distribution ---------------- */
