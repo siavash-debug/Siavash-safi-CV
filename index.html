@@ -2537,24 +2537,6 @@ navMap.forEach((_l, el) => navIO.observe(el));
     });
   }
 
-  /* ---------------- Jev AI Gateway Integration ---------------- */
-  async function evaluateWithJev(message) {
-    if (typeof message !== 'string' || message.trim().length === 0) {
-      throw new Error('Invalid message');
-    }
-    const response = await fetch('/api/jev', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ message: message.trim() })
-    });
-    const data = await response.json();
-    if (!response.ok || data.error) {
-      throw new Error(data.error || 'Evaluation failed');
-    }
-    return data;
-  }
-  window.evaluateWithJev = evaluateWithJev;
-
   /* ---------------- Project detail: progressive disclosure ----------------
      Native <details>/<summary> handles open-close and Escape automatically.
      This is a small enhancement: keep the summary in sync when the browser
