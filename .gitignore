@@ -25,3 +25,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .vercel
+
+# Personal local exports (never publish)
+assets/bpb-normal-xray.json
