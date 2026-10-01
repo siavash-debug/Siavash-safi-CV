@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 172" role="img" aria-label="LOTA.design mark">
+  <!-- green core (base tucks behind the ring) -->
+  <path d="M70 35 L42 80 L98 80 Z" fill="#3f9e50"/>
+  <!-- drop ring -->
+  <circle cx="70" cy="116" r="42" fill="none" stroke="#ffffff" stroke-width="15"/>
+  <!-- drop chevron -->
+  <path d="M70 8 L136 88 L102 71 L70 32 L38 71 L4 88 Z" fill="#ffffff"/>
+</svg>
