@@ -15,6 +15,8 @@ export function Path() {
           </p>
         </div>
 
+
+
         {/* one connected journey: vertical spine, stage numbers, a milestone register per layer */}
         <ol id="pathStages" className="path-stages mt-16 space-y-12 border-l border-white/10 pl-8 sm:pl-12">
           {PATH_STAGES.map((stage) => (

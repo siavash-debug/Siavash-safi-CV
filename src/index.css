@@ -540,3 +540,57 @@ header.is-scrolled .nav-bg {
 ::-webkit-scrollbar-track { background: #0b0d11; }
 ::-webkit-scrollbar-thumb { background: #23282f; border-radius: 99px; }
 ::-webkit-scrollbar-thumb:hover { background: #2f3742; }
+
+/* --- Premium SVG Animations --- */
+@keyframes flow-data {
+  to { stroke-dashoffset: -32; }
+}
+
+@keyframes pulse-node {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px currentColor) brightness(0.9);
+  }
+  50% {
+    filter: drop-shadow(0 0 12px currentColor) brightness(1.4);
+  }
+}
+
+.path-active {
+  stroke-dasharray: 4 12;
+  stroke-linecap: round;
+  animation: flow-data 1.5s linear infinite;
+  opacity: 0.4;
+  transition: opacity 0.5s ease;
+}
+
+.path-stage.is-active .path-active {
+  opacity: 1;
+  animation: flow-data 0.6s linear infinite;
+}
+
+.pulse-glow {
+  animation: pulse-node 4s ease-in-out infinite;
+  opacity: 0.7;
+  transition: opacity 0.5s ease;
+}
+
+.path-stage.is-active .pulse-glow {
+  opacity: 1;
+  animation-duration: 2s;
+}
+
+.glow-emerald {
+  filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.3));
+  transition: filter 0.5s ease;
+}
+.path-stage.is-active .glow-emerald {
+  filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.8));
+}
+
+.glow-cyan {
+  filter: drop-shadow(0 0 4px rgba(6, 182, 212, 0.3));
+  transition: filter 0.5s ease;
+}
+.path-stage.is-active .glow-cyan {
+  filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.8));
+}
