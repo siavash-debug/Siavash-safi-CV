@@ -197,14 +197,8 @@ header.is-scrolled .nav-bg {
 
 @media (min-width: 640px) {
   .path-stages { --rail-w: 10.5rem; }
-  .path-stage-card {
-    display: grid; grid-template-columns: minmax(0, 1fr) var(--rail-w); column-gap: 1.5rem;
-    position: relative;
-  }
-  .path-stage-card::after {
-    content: ''; position: absolute; right: -1.5rem; top: 0; bottom: 0; width: 1px;
-    background: rgba(255, 255, 255, .06);
-  }
+  
+  
   .path-milestone { position: relative; align-items: flex-start; gap: .65rem; padding-left: .45rem; }
   .path-milestone::before {
     content: ''; position: absolute; left: 0; top: -1.5rem; bottom: -4.5rem; width: 1px;
