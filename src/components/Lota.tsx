@@ -22,7 +22,7 @@ export function Lota() {
 
           <div className="mt-7 flex items-center gap-5">
             <span className="grid h-16 w-16 shrink-0 place-items-center overflow-hidden border border-emerald-400/20 bg-emerald-400/[0.05] p-2">
-              <img src="assets/lota-logo.svg" alt="LOTA.design™ logo" width={140} height={172} loading="lazy" decoding="async" className="block h-full w-full object-contain object-center" />
+              <img src="assets/lota-logo.svg" alt="LOTA.design™ logo" width={140} height={172} loading="lazy" decoding="async" className="block h-[85%] w-[85%] object-contain object-center translate-y-[2px]" />
             </span>
             <h3 id="lota-title" className="text-3xl font-semibold tracking-[-0.02em] text-white sm:text-[2.5rem] sm:leading-[1.05]">
               LOTA.design<span className="text-emerald-400/70">™</span>
