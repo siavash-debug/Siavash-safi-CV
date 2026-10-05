@@ -129,16 +129,16 @@ export function StageArtwork({ stageId }: { stageId: string }) {
   if (stageId === '04') {
     return (
       <Canvas>
-        <Flow d="M 80 130 H 120" kind="blue" />
-        <Flow d="M 180 130 H 220" kind="accent" />
-        <Flow d="M 300 130 H 340" kind="accent" />
-        <Box x={20} y={115} width={60} height={30} label="DATA" />
-        <Box x={120} y={115} width={60} height={30} label="TOKENS" kind="blue" />
-        <Box x={220} y={75} width={80} height={110} label="LLM" kind="accent" pulsing />
-        <Box x={340} y={115} width={60} height={30} label="OUTPUT" />
-        <line x1={230} y1={100} x2={290} y2={100} stroke="#10b981" strokeWidth="2" className="path-active glow-emerald" />
-        <line x1={230} y1={130} x2={290} y2={130} stroke="#10b981" strokeWidth="2" className="path-active glow-emerald" />
-        <line x1={230} y1={160} x2={290} y2={160} stroke="#10b981" strokeWidth="2" className="path-active glow-emerald" />
+        <Flow d="M 50 130 H 90" kind="blue" />
+        <Flow d="M 150 130 H 190" kind="accent" />
+        <Flow d="M 270 130 H 300" kind="accent" />
+        <Box x={0} y={115} width={50} height={30} label="DATA" />
+        <Box x={90} y={115} width={60} height={30} label="TOKENS" kind="blue" />
+        <Box x={190} y={75} width={80} height={110} label="LLM" kind="accent" pulsing />
+        <Box x={300} y={115} width={60} height={30} label="OUTPUT" />
+        <line x1={200} y1={100} x2={260} y2={100} stroke="#10b981" strokeWidth="2" className="path-active glow-emerald" />
+        <line x1={200} y1={130} x2={260} y2={130} stroke="#10b981" strokeWidth="2" className="path-active glow-emerald" />
+        <line x1={200} y1={160} x2={260} y2={160} stroke="#10b981" strokeWidth="2" className="path-active glow-emerald" />
       </Canvas>
     )
   }
