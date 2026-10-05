@@ -24,7 +24,7 @@ export function Path() {
   }, [])
 
   return (
-    <section id="path" className="relative overflow-hidden py-24 sm:py-32">
+    <section id="path" className="relative py-24 sm:py-32">
       <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
         <div className="reveal max-w-3xl">
           <div className="meta text-emerald-300/85">03 — PATH</div>
@@ -36,7 +36,7 @@ export function Path() {
           </p>
         </div>
 
-        <div className="mt-16 lg:grid lg:grid-cols-[1fr_1.2fr] lg:gap-16 lg:items-start">
+        <div className="mt-16 lg:grid lg:grid-cols-[1fr_1.2fr] lg:gap-16">
           {/* Left: scrolling list */}
           <ol id="pathStages" className="path-stages space-y-16 lg:space-y-32 border-l border-white/10 pl-8 sm:pl-12">
             {PATH_STAGES.map((stage, i) => (
@@ -63,8 +63,10 @@ export function Path() {
           </ol>
 
           {/* Right: Sticky Visualizer (Desktop only) */}
-          <div className="hidden lg:block sticky top-32 w-full aspect-square rounded-2xl border border-white/10 bg-[#07080b] shadow-2xl overflow-hidden">
-             <PathVisualizer activeStage={activeStage} />
+          <div className="hidden lg:block relative">
+            <div className="sticky top-32 w-full aspect-square rounded-2xl border border-white/10 bg-[#07080b] shadow-2xl overflow-hidden">
+               <PathVisualizer activeStage={activeStage} />
+            </div>
           </div>
         </div>
       </div>

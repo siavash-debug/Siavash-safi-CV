@@ -5,9 +5,9 @@ interface Props {
 const Box = ({ x, y, w, h, label, opacity, kind = 'default' }: any) => {
   const isAccent = kind === 'accent'
   const isBlue = kind === 'blue'
-  const fill = isAccent ? 'rgba(94, 234, 212, 0.05)' : isBlue ? 'rgba(122, 162, 255, 0.04)' : 'rgba(255, 255, 255, 0.02)'
-  const stroke = isAccent ? 'rgba(94, 234, 212, 0.45)' : isBlue ? 'rgba(122, 162, 255, 0.35)' : 'rgba(255, 255, 255, 0.15)'
-  const textColor = isAccent ? 'rgba(94, 234, 212, 0.9)' : isBlue ? 'rgba(122, 162, 255, 0.9)' : 'rgba(255, 255, 255, 0.7)'
+  const fill = isAccent ? 'rgba(94, 234, 212, 0.08)' : isBlue ? 'rgba(122, 162, 255, 0.06)' : 'rgba(255, 255, 255, 0.04)'
+  const stroke = isAccent ? 'rgba(94, 234, 212, 0.6)' : isBlue ? 'rgba(122, 162, 255, 0.5)' : 'rgba(255, 255, 255, 0.3)'
+  const textColor = isAccent ? '#5eead4' : isBlue ? '#7aa2ff' : 'rgba(255, 255, 255, 0.9)'
 
   return (
     <g style={{ opacity, transition: 'opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s ease' }}>
@@ -20,7 +20,7 @@ const Box = ({ x, y, w, h, label, opacity, kind = 'default' }: any) => {
 }
 
 const Flow = ({ d, opacity, kind = 'default', dash = false }: any) => {
-  const stroke = kind === 'blue' ? 'rgba(122, 162, 255, 0.5)' : kind === 'accent' ? 'rgba(94, 234, 212, 0.6)' : 'rgba(255, 255, 255, 0.2)'
+  const stroke = kind === 'blue' ? 'rgba(122, 162, 255, 0.5)' : kind === 'accent' ? 'rgba(94, 234, 212, 0.6)' : 'rgba(255, 255, 255, 0.3)'
   return (
     <path
       d={d}
@@ -40,8 +40,8 @@ export function PathVisualizer({ activeStage }: Props) {
       if (Array.isArray(target) && target.includes(6)) return 1;
       return 0.4;
     }
-    if (Array.isArray(target)) return target.includes(activeStage) ? 1 : 0.05;
-    return activeStage === target ? 1 : 0.05;
+    if (Array.isArray(target)) return target.includes(activeStage) ? 1 : 0.1;
+    return activeStage === target ? 1 : 0.1;
   }
 
   return (
