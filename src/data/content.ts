@@ -63,12 +63,12 @@ export interface SkillGroup {
 }
 
 export const SKILLS: SkillGroup[] = [
-  { name: 'AI SYSTEMS', terms: ['Agentic Systems', 'Planning', 'Tool Use', 'Workflow Orchestration', 'Execution Runtimes'] },
-  { name: 'AI RELIABILITY', terms: ['Evaluation', 'Benchmarking', 'Verification', 'Grounding', 'Guardrails', 'Regression Testing'] },
-  { name: 'AI APPLICATIONS', terms: ['RAG', 'OCR', 'NLP', 'Generative AI', 'Multimodal AI'] },
+  { name: 'LLM ENGINEERING & RAG', terms: ['Large Language Models', 'Embeddings', 'Semantic Similarity', 'Vector Search', 'Context Retrieval', 'RAG'] },
+  { name: 'ADAPTATION & SECURITY', terms: ['LoRA', 'PEFT', 'Foundation Model Security', 'Model Auditing'] },
+  { name: 'AI RELIABILITY & EVAL', terms: ['LLM Evaluation', 'Faithfulness', 'Recall@K', 'Precision@K', 'MRR', 'Golden Evaluation Datasets', 'Regression Testing'] },
+  { name: 'AGENTIC SYSTEMS', terms: ['Planning', 'Tool Use', 'Workflow Orchestration', 'Execution Runtimes'] },
   { name: 'SYSTEMS ENGINEERING', terms: ['Backend Systems', 'Distributed Systems', 'APIs', 'State Management', 'Messaging', 'Recovery'] },
-  { name: 'INFRASTRUCTURE', terms: ['PostgreSQL', 'RabbitMQ', 'Docker', 'CI/CD', 'Linux / Windows', 'Observability'] },
-  { name: 'STACK & TOOLING', terms: ['Python', 'FastAPI', 'SQLAlchemy', 'Pydantic', 'Pytest', 'Chroma', 'Embeddings', 'DeepEval', 'Next.js', 'Node.js', 'Go', 'MongoDB', 'RabbitMQ'] },
+  { name: 'STACK & TOOLING', terms: ['Python', 'FastAPI', 'Pytest', 'DeepEval', 'Chroma', 'Vector Databases', 'Next.js', 'Node.js', 'PostgreSQL', 'Docker'] },
 ]
 
 export interface FocusArea {
@@ -101,14 +101,14 @@ export const PATH_STAGES: PathStage[] = [
     num: 'Stage 01',
     label: 'Software Systems',
     title: 'Software Systems',
-    blurb: 'Real-world applications and backend systems — including hotel and flight reservation-style work with transactional workflows, integrations and business logic that had to hold up in production.',
+    blurb: 'Real-world applications and backend systems — including transactional workflows, integrations and business logic that had to hold up in production.',
     milestone: { index: '01', label: ['Modules', 'Services'], glyph: 'modules' },
   },
   {
     num: 'Stage 02',
     label: 'Data & Statistical Systems',
     title: 'Data & Statistical Systems',
-    blurb: 'Python for numerical data, visualization and statistical logic — building trading systems where quantitative rules became executable strategies with backtesting, automated position execution and analysis of system behavior.',
+    blurb: 'Python for numerical data, visualization and statistical logic — building trading systems where quantitative rules became executable strategies with backtesting and analysis of system behavior.',
     milestone: { index: '02', label: ['Values', 'Rules'], glyph: 'values' },
   },
   {
@@ -120,24 +120,31 @@ export const PATH_STAGES: PathStage[] = [
   },
   {
     num: 'Stage 04',
-    label: 'Machine Learning & Generative AI',
-    title: 'Machine Learning & Generative AI',
-    blurb: 'Data science, deep learning, NLP, RAG and OCR — the model layer, built on the same foundation of correctness and evaluation.',
+    label: 'ML, GenAI & LLM Engineering',
+    title: 'ML, GenAI & LLM Engineering',
+    blurb: 'Deep learning, Generative AI and LLM Engineering — moving from statistical modeling to working with large language models, tokenization, and prompt engineering.',
     milestone: { index: '04', label: ['Model', 'Output'], glyph: 'model' },
   },
   {
     num: 'Stage 05',
-    label: 'Agentic Systems',
-    title: 'Agentic Systems',
-    blurb: 'Planning, tool use, orchestration and workflow execution — models moved from answers into executable systems.',
-    milestone: { index: '05', label: ['Plan', 'Execute'], glyph: 'plan' },
+    label: 'Retrieval, RAG & Evaluation',
+    title: 'Retrieval, RAG & Evaluation',
+    blurb: 'Building semantic retrieval systems (RAG) and establishing rigorous LLM evaluation pipelines using Recall@K, Precision@K, MRR, Faithfulness, and golden evaluation datasets.',
+    milestone: { index: '05', label: ['Embed', 'Retrieve'], glyph: 'linked' },
   },
   {
-    num: 'Stage 06 · Now',
+    num: 'Stage 06',
+    label: 'Adaptation, Security & Agents',
+    title: 'Adaptation, Security & Agents',
+    blurb: 'Efficient foundation model adaptation using LoRA/PEFT, conducting security audits, and engineering agentic systems with explicit planning, state, and tool use boundaries.',
+    milestone: { index: '06', label: ['Plan', 'Execute'], glyph: 'plan' },
+  },
+  {
+    num: 'Stage 07 — Now',
     label: 'AI Reliability & Infrastructure',
     title: 'AI Reliability & Infrastructure',
-    blurb: 'Evaluation, benchmarking, verification, observability and provenance — the current direction, expressed in LOTA.design.',
-    milestone: { index: '06', label: ['Evaluate', 'Verify'], glyph: 'evaluate' },
+    blurb: 'Evaluation, benchmarking, verification, observability and provenance — treating AI as an engineering discipline where correctness is verified, expressed in LOTA.design.',
+    milestone: { index: '07', label: ['Evaluate', 'Verify'], glyph: 'evaluate' },
     now: true,
   },
 ]

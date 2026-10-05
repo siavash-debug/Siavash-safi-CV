@@ -173,3 +173,26 @@ export function LotaVisionSchematic() {
     </Schematic>
   )
 }
+
+export function FoundationSecSchematic() {
+  const id = 'fmsec'
+  return (
+    <Schematic id={id}>
+      <Grid />
+      <Box x={28} y={70} w={140} h={60} />
+      <Label x={98} y={96} anchor="middle">BASE MODEL</Label>
+      <Layer x={98} y={114} anchor="middle">FOUNDATION-SEC-8B</Layer>
+      <Box x={220} y={70} w={160} h={60} kind="blue" />
+      <Label x={300} y={96} kind="blue" anchor="middle">LoRA ADAPTER</Label>
+      <Layer x={300} y={114} anchor="middle">PEFT / QLoRA 4-BIT</Layer>
+      <Box x={432} y={70} w={150} h={60} kind="accent" />
+      <Label x={507} y={96} kind="accent" anchor="middle">SECURITY AUDIT</Label>
+      <Layer x={507} y={114} anchor="middle">VULNERABILITY EVAL</Layer>
+      <Flow d="M168 100 H216" marker={id} />
+      <Flow d="M380 100 H428" marker={id} />
+      <Cap x={300} y={160} anchor="middle">EFFICIENT ADAPTATION & EVALUATION</Cap>
+      <Layer x={612} y={22} anchor="end">LLM SECURITY A PEFT</Layer>
+    </Schematic>
+  )
+}
+

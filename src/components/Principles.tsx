@@ -5,7 +5,7 @@ export function Principles() {
     {
       num: '01',
       title: 'AI output is not automatically correct',
-      blurb: 'Generation is the start of the pipeline, not the end. Every output is something to execute, observe and judge — never something to ship on faith.',
+      blurb: 'Generation is the start of the pipeline, not the end. Every output is something to execute, observe, evaluate and verify — never something to ship on faith.',
     },
     {
       num: '02',
@@ -15,12 +15,12 @@ export function Principles() {
     {
       num: '03',
       title: 'Evaluation is part of engineering',
-      blurb: 'Benchmarks, deterministic tests and regression detection are not an afterthought — they are how AI systems earn the right to run.',
+      blurb: 'Benchmarks, deterministic tests, golden datasets, and regression detection are not an afterthought — they are how LLM, RAG, and agentic systems earn the right to run.',
     },
     {
       num: '04',
-      title: 'Production AI needs observability and recovery',
-      blurb: 'Provenance, event tracing and reproducible artifacts — so failures can be traced, explained and corrected instead of rediscovered.',
+      title: 'Production AI needs observability and security',
+      blurb: 'Provenance, tracing, security auditing, and reproducible artifacts — so failures and vulnerabilities can be found and corrected instead of rediscovered.',
     },
   ]
 

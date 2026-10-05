@@ -6,6 +6,7 @@ import {
   AiCodingBaseSchematic,
   LotaSecuritySchematic,
   LotaVisionSchematic,
+  FoundationSecSchematic,
   ProofDeskSchematic,
   SmartFinderSchematic,
   TextToImageSchematic,
@@ -207,6 +208,60 @@ export function Work() {
             ]}
             figure={<ProofDeskSchematic />}
           />
+
+          <Project
+            meta="ADAPTATION — SECURITY — EVALUATION"
+            title="Foundation Model Security Audit — LoRA"
+            tagKind="sky"
+            tag="Security & LoRA"
+            blurb={
+              <>
+                Exploration of foundation model security auditing, focusing on LoRA-based adaptation. The project takes the <code>Foundation-Sec-8B</code> base model and applies Parameter-Efficient Fine-Tuning (PEFT) using 4-bit QLoRA to train a specialized security-audit adapter on an NVIDIA T4. Focus is on evaluating vulnerability detection accuracy, few-shot prompting, and reliable AI engineering.
+              </>
+            }
+            tags={['LoRA', 'PEFT', 'Foundation Model Security', 'Model Auditing', 'QLoRA', 'AI Reliability']}
+            repoLabel="Repository"
+            repoUrl="https://github.com/siavash-debug/foundation-sec-audit-lora"
+            repoCta="View Repository"
+            detailSummary="Inspect the system"
+            detail={[
+              {
+                k: 'Problem',
+                v: 'Auditing foundation models for security vulnerabilities requires efficient adaptation. Full fine-tuning is computationally prohibitive and risks catastrophic forgetting. The system must adapt the base model efficiently while rigorously evaluating its accuracy on security classification tasks.',
+              },
+              {
+                k: 'System',
+                v: (
+                  <>
+                    The pipeline uses <strong>QLoRA (4-bit NF4 quantization)</strong> with a LoRA adapter (Rank 16, Alpha 32) to efficiently fine-tune the <code>Foundation-Sec-8B</code> base model. The process involves a custom security dataset, few-shot prompting during inference, and a structured evaluation phase to measure the adapter\'s effectiveness.
+                  </>
+                ),
+              },
+              {
+                k: 'Engineering',
+                v: (
+                  <>
+                    <strong>Parameter-Efficient Fine-Tuning:</strong> Utilizes LoRA adapters to train only a fraction of the parameters, enabling efficient execution on consumer GPUs (NVIDIA T4 via Colab).<br />
+                    <strong>Security Auditing:</strong> The model is fine-tuned and evaluated against specific vulnerability detection scenarios to measure Mean Token Accuracy and validation loss.<br />
+                    <strong>Reproducibility:</strong> The pipeline is structured for reproducible training, evaluation, and inference, concluding with pushing the adapter to the Hugging Face Hub.
+                  </>
+                ),
+              },
+              {
+                k: 'Evidence',
+                v: (
+                  <>
+                    <div className="detail-row">
+                      <span className="detail-v" style={{ margin: 0 }}>The repository contains the complete PyTorch/Hugging Face pipeline, demonstrating QLoRA training, inference scripts, and benchmark results achieving 96.0% Mean Token Accuracy during training. The adapter is published to the Hugging Face Hub.</span>
+                    </div>
+                    <EV href="https://github.com/siavash-debug/foundation-sec-audit-lora" label="View Repository" />
+                  </>
+                ),
+              },
+            ]}
+            figure={<FoundationSecSchematic />}
+          />
+
 
           <Project
             meta="GENERATIVE AI · IMAGE GENERATION · BENCHMARKING"

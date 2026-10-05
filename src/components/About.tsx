@@ -21,14 +21,11 @@ export function About() {
                 that turned quantitative rules into executable strategies with backtesting and automated execution, and into blockchain and financial infrastructure,
                 where state, transactions and numerical correctness carry real consequences.
               </p>
-              <p>
-                That progression shaped how I approach AI today: <span className="text-slate-200">not as a prompt layer around a model</span>, but as an engineering
-                system that needs execution, state, evaluation, observability, verification and recovery. Machine learning, deep learning, NLP, RAG and generative AI
-                added the model layer; the systems background underneath it is what makes the difference.
+                            <p>
+                That progression shaped how I approach AI today: <span className="text-slate-200">not as a prompt layer around a model</span>, but as a rigorous engineering discipline. Machine learning and generative AI introduced the model layer, but my work extends deeply into <strong>LLM Engineering</strong>, <strong>semantic retrieval (RAG)</strong>, and <strong>efficient foundation model adaptation (LoRA / PEFT)</strong>. I treat <strong>evaluation</strong>—measuring faithfulness, precision, and recall—as a core part of the engineering cycle, ensuring systems are grounded and verifiable.
               </p>
               <p>
-                My current focus is <span className="text-slate-200">agentic systems and AI infrastructure</span> — models as components inside larger, testable
-                workflows that can plan, use tools, evaluate their own results, and recover when execution goes wrong.
+                My current focus is on <strong>agentic systems</strong>, <strong>foundation model security</strong>, and <strong>AI infrastructure</strong> — building workflows where models act as components that can plan, use tools, undergo security auditing, and recover when execution fails. The goal is moving from experimental generation to <strong>reliable AI</strong>.
               </p>
             </div>
           </div>
