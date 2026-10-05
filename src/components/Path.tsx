@@ -18,7 +18,7 @@ export function Path() {
       { rootMargin: '-30% 0px -50% 0px' }
     )
 
-    const els = document.querySelectorAll('.path-stage-item')
+    const els = document.querySelectorAll('.path-stage')
     els.forEach((el) => observer.observe(el))
     return () => observer.disconnect()
   }, [])
@@ -40,7 +40,7 @@ export function Path() {
           {/* Left: scrolling list */}
           <ol id="pathStages" className="path-stages space-y-16 lg:space-y-32 border-l border-white/10 pl-8 sm:pl-12">
             {PATH_STAGES.map((stage, i) => (
-              <li key={stage.num} data-index={i} className={`path-stage-item reveal relative ${stage.now ? 'path-stage--now' : ''} ${i === activeStage ? 'opacity-100' : 'opacity-30'} transition-opacity duration-700`}>
+              <li key={stage.num} data-index={i} className={`path-stage reveal relative ${stage.now ? 'path-stage--now' : ''} ${i === activeStage ? 'is-active opacity-100' : 'opacity-30'} transition-opacity duration-700`}>
                 <span className="path-node absolute -left-[41px] top-[-9px] sm:-left-[55px]" aria-hidden="true">
                   <span className="path-node-dot" />
                 </span>

@@ -165,8 +165,8 @@ header.is-scrolled .nav-bg {
 .path-stage:nth-child(4) .path-node-dot { opacity: .80; }
 .path-stage:nth-child(5) .path-node { border-color: rgba(255, 255, 255, .24); }
 .path-stage:nth-child(5) .path-node-dot { opacity: .90; }
-.path-stage:nth-child(6) .path-node { border-color: rgba(94, 234, 212, .55); box-shadow: 0 0 0 4px rgba(7, 8, 11, 1), 0 0 8px rgba(94, 234, 212, .12); }
-.path-stage:nth-child(6) .path-node-dot { opacity: 1; background: #5eead4; box-shadow: 0 0 6px rgba(94, 234, 212, .30); }
+.path-stage:nth-child(7) .path-node { border-color: rgba(94, 234, 212, .55); box-shadow: 0 0 0 4px rgba(7, 8, 11, 1), 0 0 8px rgba(94, 234, 212, .12); }
+.path-stage:nth-child(7) .path-node-dot { opacity: 1; background: #5eead4; box-shadow: 0 0 6px rgba(94, 234, 212, .30); }
 .path-stage--now .path-stage-card { border-top-color: rgba(94, 234, 212, .25); }
 @media (max-width: 640px) {
   .path-stages { padding-left: 1.35rem; }
