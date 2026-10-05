@@ -14,9 +14,9 @@ import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 import { useReveal } from './hooks/useReveal'
 import { useScrollChrome } from './hooks/useScrollChrome'
-
+import { useActiveStage } from './hooks/useActiveStage'
 import { useNavSpy } from './hooks/useNavSpy'
-
+import { PATH_STAGES } from './data/content'
 
 export default function App() {
   const [photoOpen, setPhotoOpen] = useState(false)
@@ -24,7 +24,7 @@ export default function App() {
 
   useReveal([])
   useScrollChrome()
-  
+  useActiveStage(PATH_STAGES.length)
   useNavSpy()
 
   const openPhoto = (e?: ReactMouseEvent<HTMLElement>) => {
