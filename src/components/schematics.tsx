@@ -85,20 +85,24 @@ export function AiCodingBaseSchematic() {
   return (
     <Schematic id={id}>
       <Grid />
-      <Box x={28} y={70} w={130} h={48} kind="accent" />
-      <Label x={93} y={92} kind="accent" anchor="middle">AGENTS.MD</Label>
-      <Layer x={93} y={108} anchor="middle">CONTRACT</Layer>
-      <Box x={220} y={70} w={176} h={48} />
-      <Label x={308} y={92} anchor="middle">VERIFICATION GATE</Label>
-      <Layer x={308} y={108} anchor="middle">LINT · TYPES · TESTS · BUILD · SMOKE</Layer>
-      <Box x={458} y={70} w={120} h={48} kind="blue" />
-      <Label x={518} y={92} kind="blue" anchor="middle">CI</Label>
-      <Layer x={518} y={108} anchor="middle">REPRODUCIBLE</Layer>
-      <Flow d="M158 94 H216" marker={id} />
-      <Flow kind="blue" d="M396 94 H454" marker={id} />
-      <Flow kind="dim" d="M518 118 V160 H93 V122" marker={id} />
-      <Cap x={308} y={178} anchor="middle">EVERY AI-ASSISTED CHANGE PASSES THE GATE</Cap>
-      <Layer x={612} y={22} anchor="end">ENGINEERING CONTRACT · SOURCE OF TRUTH</Layer>
+      <Box x={20} y={68} w={110} h={52} kind="accent" />
+      <Label x={75} y={90} kind="accent" anchor="middle">ai CLI</Label>
+      <Layer x={75} y={108} anchor="middle">CONTRACT · TASK</Layer>
+      <Box x={160} y={68} w={130} h={52} />
+      <Label x={225} y={90} anchor="middle">POLICY GATE</Label>
+      <Layer x={225} y={108} anchor="middle">CAPABILITY · RISKS</Layer>
+      <Box x={320} y={68} w={140} h={52} kind="blue" />
+      <Label x={390} y={90} kind="blue" anchor="middle">DECISION / ROUTE</Label>
+      <Layer x={390} y={108} anchor="middle">JEV · MULTI-MODEL</Layer>
+      <Box x={490} y={68} w={130} h={52} kind="accent" />
+      <Label x={555} y={90} kind="accent" anchor="middle">VERIFICATION</Label>
+      <Layer x={555} y={108} anchor="middle">VITEST · HUMAN GATE</Layer>
+      <Flow d="M130 94 H156" marker={id} />
+      <Flow d="M290 94 H316" marker={id} />
+      <Flow kind="blue" d="M460 94 H486" marker={id} />
+      <Flow kind="dim" d="M555 120 V156 H75 V120" marker={id} />
+      <Cap x={320} y={178} anchor="middle">HEXAGONAL ARCHITECTURE · BOUNDED DECISION & MULTI-MODEL FRONTIER</Cap>
+      <Layer x={612} y={22} anchor="end">V2 PLATFORM · ADR-001 TO ADR-062</Layer>
     </Schematic>
   )
 }

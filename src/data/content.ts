@@ -64,9 +64,10 @@ export interface SkillGroup {
 
 export const SKILLS: SkillGroup[] = [
   { name: 'LLM ENGINEERING & RAG', terms: ['Large Language Models', 'Embeddings', 'Semantic Similarity', 'Vector Search', 'Context Retrieval', 'RAG'] },
-  { name: 'ADAPTATION & SECURITY', terms: ['LoRA', 'PEFT', 'Foundation Model Security', 'Model Auditing'] },
+  { name: 'MODEL ADAPTATION & PEFT', terms: ['LoRA', 'QLoRA', 'PEFT', 'Fine-Tuning', 'Quantization', 'Model Auditing'] },
   { name: 'AI RELIABILITY & EVAL', terms: ['LLM Evaluation', 'Faithfulness', 'Recall@K', 'Precision@K', 'MRR', 'Golden Evaluation Datasets', 'Regression Testing'] },
   { name: 'AGENTIC SYSTEMS', terms: ['Planning', 'Tool Use', 'Workflow Orchestration', 'Execution Runtimes'] },
+  { name: 'CYBERSECURITY', terms: ['Threat Modeling', 'Supply Chain Security', 'Policy-as-Code (OPA)', 'Vulnerability Assessment', 'Prompt Injection Defense', 'Cryptography', 'Security Posture & Auditing'] },
   { name: 'SYSTEMS ENGINEERING', terms: ['Backend Systems', 'Distributed Systems', 'APIs', 'State Management', 'Messaging', 'Recovery'] },
   { name: 'STACK & TOOLING', terms: ['Python', 'FastAPI', 'Pytest', 'DeepEval', 'Chroma', 'Vector Databases', 'Next.js', 'Node.js', 'PostgreSQL', 'Docker'] },
 ]

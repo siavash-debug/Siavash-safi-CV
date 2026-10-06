@@ -8,7 +8,7 @@ export function Skills() {
           <div className="meta text-emerald-300/85">06 — SKILLS</div>
           <h2 className="mt-4 text-[2rem] font-semibold leading-[1.08] tracking-[-0.025em] text-white sm:text-[2.75rem] sm:leading-[1.08]">Core skills</h2>
           <p className="mt-4 text-[15px] leading-relaxed text-slate-400">
-            Six disciplines, treated as one system — from the model layer down to the runtime it executes on.
+            Disciplines treated as one integrated system — from foundation models and cybersecurity down to runtime infrastructure.
           </p>
         </div>
 

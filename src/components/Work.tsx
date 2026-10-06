@@ -303,32 +303,40 @@ export function Work() {
           />
 
           <Project
-            meta="AI ENGINEERING · AGENT CONTRACTS · VERIFICATION"
-            title="AI Coding Base"
+            meta="HEXAGONAL ARCHITECTURE · MULTI-MODEL FRONTIER · BOUNDED RUNTIMES"
+            title="AI Coding Base (V2 Platform)"
             tagKind="sky"
-            tag="Agent Contracts"
+            tag="AI Platform"
             blurb={
               <>
-                An engineering contract for AI-assisted software development. Instead of trusting generated code, the workflow forces every AI-assisted change
-                through explicit contracts — AGENTS.md as the engineering source of truth — then a verification loop of formatting, linting, type checking, tests,
-                build verification and minimal smoke proofs, with CI keeping the loop reproducible.
+                A professional AI Engineering platform built with Hexagonal Architecture (Ports & Adapters) and a unified <code>ai</code> CLI.
+                Establishes deterministic verification gates, capability and policy envelopes, a bounded decision layer with JEV integration,
+                and a multi-model frontier with deterministic requirements extraction, eligibility filtering, and availability windows.
               </>
             }
-            tags={['Agent Contracts', 'Verification Loop', 'CI', 'Quality Gates']}
-            repoLabel="Repository"
-            repoUrl="https://github.com/siavash-debug/ai-coding-base"
+            tags={['AI Platform', 'Hexagonal Architecture', 'Multi-Model Routing', 'Policy Envelopes', 'Bounded Decisions (JEV)', 'Verification Gates']}
+            repoLabel="Repository (v2 branch)"
+            repoUrl="https://github.com/siavash-debug/ai-coding-base/tree/v2-ai-engineering-platform"
             repoCta="View Repository ↗"
             detailSummary="Inspect the system"
             detail={[
-              { k: 'Problem', v: 'AI-assisted development produces code faster, but speed without a contract means generated code that does not compile, fails type checking, or breaks existing tests — and the failure is discovered only after the fact, by a human reviewer.' },
-              { k: 'System', v: 'A reusable professional AI Engineering coding workspace baseline. AGENTS.md is the normative engineering contract and source of truth. The repository is explicitly a workspace baseline, not an application or framework — it is designed to be cloned as the starting point for future projects.' },
+              {
+                k: 'Problem',
+                v: 'AI-assisted development and agent execution require strict architectural separation: without deterministic boundaries, models make unauthorized API calls, fail types and tests silently, hallucinate tool choices, and lack reproducible verification or human oversight.',
+              },
+              {
+                k: 'System',
+                v: 'An extensible AI Engineering Platform architecture built on Hexagonal Architecture (Ports & Adapters) and an authoritative CLI. Responsibilities are cleanly partitioned: deterministic code owns certainty, policy enforcement, and budgets; the bounded decision layer (JEV) handles routing, tool selection, and risk; frontier LLMs provide reasoning; and humans retain authority over consequences and acceptance verdicts.',
+              },
               {
                 k: 'Engineering',
                 v: (
                   <>
-                    <strong>Contract as source of truth:</strong> AGENTS.md defines the engineering rules that AI-assisted work must follow, making the expectations explicit and machine-checkable rather than implicit and reviewer-dependent.<br />
-                    <strong>Verification loop:</strong> formatting, linting, type checking, tests, build verification and minimal smoke proofs form a gate that every change must pass. CI keeps the loop reproducible across runs.<br />
-                    <strong>Explicit scope:</strong> in scope are agent contracts, the verification loop, minimal smoke proofs, scripts, docs and CI. Out of scope are application/business logic, frameworks, Python/uv, Docker, eval infrastructure, databases and APIs — those belong to future projects cloned from this template, so the baseline stays clean.
+                    <strong>Multi-Model Frontier (Phase H):</strong> Model registry declaring capabilities, modalities, latency classes, and availability windows. Deterministic requirements extraction filters candidates before orchestration (<code>ai task orchestrate</code>).<br />
+                    <strong>Bounded Decision Layer (Phase G):</strong> JEV JSON contract (<code>DecisionProvider</code> port) for tool ranking and contextual questions, strictly governed by deterministic budgets and conservative fallbacks. A decision recommends; it never authorizes.<br />
+                    <strong>Policy & Capability Envelopes (Phase F):</strong> Host allowlisting, operation gateways, dry-run simulation across all state-mutating commands (<code>--dry-run</code>), and approval gates (<code>task approve --resume</code>) where policy denials cannot be overridden.<br />
+                    <strong>Agent Execution & Human Verdicts:</strong> Change-set agent execution bound to verification suites, with explicit recorded human verdicts (<code>ai task verdict</code>) for criteria machines cannot decide.<br />
+                    <strong>Verification Loop:</strong> Strict <code>pnpm verify</code> gate: Prettier check → ESLint → TypeScript --noEmit → Vitest → TypeScript build emit.
                   </>
                 ),
               },
@@ -337,9 +345,11 @@ export function Work() {
                 v: (
                   <>
                     <div className="detail-row">
-                      <span className="detail-v" style={{ margin: 0 }}>3 commits. MIT licensed. Verification pipeline: Prettier check → ESLint → TypeScript --noEmit → Vitest → TypeScript emit to dist/, orchestrated by <code>scripts/verify.sh</code>.</span>
+                      <span className="detail-v" style={{ margin: 0 }}>
+                        41 commits on branch <code>v2-ai-engineering-platform</code>. Comprehensive Architecture Decision Records (ADR-001 through ADR-062). Full verification pipeline green locally.
+                      </span>
                     </div>
-                    <EV href="https://github.com/siavash-debug/ai-coding-base" label="View Repository" />
+                    <EV href="https://github.com/siavash-debug/ai-coding-base/tree/v2-ai-engineering-platform" label="View Repository (v2-ai-engineering-platform)" />
                   </>
                 ),
               },
@@ -407,15 +417,48 @@ export function Work() {
           {/* LOTA research tracks: intentionally quieter than the engineering projects */}
           <div className="quiet-band mt-16 grid gap-12 border-t border-white/[0.08] pt-10 lg:grid-cols-2">
             <QuietTrack
-              meta="LLM & AGENT SECURITY"
-              title="LOTA Security"
-              blurb="Security engineering for LLM-powered workflows and agentic systems, focused on threat modeling, trust boundaries, prompt injection, tool abuse, and security evaluation."
-              tags={['Threat Modeling', 'Prompt Injection', 'Trust Boundaries']}
+              meta="CYBERSECURITY · SUPPLY CHAIN & POSTURE"
+              title="LOTA Security Platform"
+              blurb="Enterprise security posture assessment and defensive runtime platform for software supply chains, cloud environments, and verifiable execution — establishing architectural guardrails, OPA policy bundles, and isolated scanner scaffolding."
+              tags={['Security Posture', 'Policy-as-Code (OPA)', 'Supply Chain Security', 'Threat Modeling', 'Isolated Runtimes']}
               figure={<LotaSecuritySchematic />}
+              statusLabel="Architectural Scaffold · Goals Defined"
+              repoUrl="https://github.com/siavash-debug/lota-security-platform"
+              repoCta="View Repository →"
+              detailSummary="Architecture & Initial Scaffolding"
               detail={[
-                { k: 'Problem', v: 'LLM-powered workflows and agentic systems combine two threat surfaces: the model itself can be steered by prompt injection, and agents with tool access can abuse tools they are authorized to call. Neither threat is visible at the boundary where a workflow is "just calling an API."' },
-                { k: 'System', v: 'A security engineering track for LOTA: threat modeling across the artifact lifecycle, explicit trust boundaries between untrusted inputs and the execution environment, defenses against prompt injection and tool abuse, and a security evaluation procedure for the workflows LOTA produces.' },
-                { k: 'Evidence', v: <div className="detail-row"><span className="detail-v" style={{ margin: 0 }}>No repository, evaluation results, or published threat model exist for this track yet. The scope described is the intended direction, not a completed assessment.</span></div> },
+                {
+                  k: 'Problem',
+                  v: 'Modern software supply chains and automated AI workflows combine expansive attack surfaces: vulnerable dependencies, configuration drift, untrusted external inputs, and unauthorized execution. Without tamper-evident boundaries and evidence-backed verification, vulnerabilities remain invisible at API boundaries.',
+                },
+                {
+                  k: 'System',
+                  v: 'A production-oriented monorepo foundation hosting the LOTA Security suite (flagship product: Verity). Enforces core security invariants: read-only analysis by default, immutable asset identity (Git SHAs / container digests), isolated unprivileged workers with egress deny by default, declarative Open Policy Agent (OPA) Rego bundles, and approval-gated remediation.',
+                },
+                {
+                  k: 'Engineering',
+                  v: (
+                    <>
+                      <strong>Control Plane:</strong> FastAPI API Gateway, PostgreSQL audit ledger, Redis orchestrator queue, and encrypted MinIO/S3 evidence storage.<br />
+                      <strong>Worker Isolation:</strong> Disposable, unprivileged scanner containers (Trivy, Semgrep, Gitleaks, Syft) with dropped privileges and no host mounts.<br />
+                      <strong>Policy Governance:</strong> Declarative OPA Rego policy bundles for automated evidence evaluation and compliance gates.<br />
+                      <strong>Safe Operational Defaults:</strong> Zero secrets in logs, read-only external tool connectors, and human-in-the-loop remediation gates.
+                    </>
+                  ),
+                },
+                {
+                  k: 'Evidence',
+                  v: (
+                    <>
+                      <div className="detail-row">
+                        <span className="detail-v" style={{ margin: 0 }}>
+                          Initial monorepo scaffolding establishing architectural guidelines, domain models, policy bundles, and local Docker Compose developer environments. This repository defines the project's architectural foundation and explicit objectives — live production scanning and automated remediation are planned for subsequent development phases.
+                        </span>
+                      </div>
+                      <EV href="https://github.com/siavash-debug/lota-security-platform" label="View Repository" />
+                    </>
+                  ),
+                },
               ]}
             />
             <QuietTrack
@@ -445,6 +488,10 @@ function QuietTrack(p: {
   tags: string[]
   figure: ReactNode
   detail: DetailSectionData[]
+  statusLabel?: string
+  repoUrl?: string
+  repoCta?: string
+  detailSummary?: string
 }) {
   return (
     <article className="project quiet-track reveal border-t border-white/[0.08] pt-8">
@@ -458,8 +505,15 @@ function QuietTrack(p: {
             <span key={t} className="tag">{t}</span>
           ))}
         </div>
-        <div className="mt-5 font-mono text-[11px] text-slate-500">Track in progress · Coming soon</div>
-        <ProjectDetail summary="Scope (no artifacts yet)" sections={p.detail} />
+        <div className="mt-5 flex items-center justify-between">
+          <span className="font-mono text-[11px] text-slate-500">{p.statusLabel ?? 'Track in progress · Coming soon'}</span>
+          {p.repoUrl && (
+            <a href={p.repoUrl} target="_blank" rel="noopener" className="font-mono text-[11px] text-emerald-300 hover:text-emerald-200">
+              {p.repoCta ?? 'View Repository →'}
+            </a>
+          )}
+        </div>
+        <ProjectDetail summary={p.detailSummary ?? 'Scope (no artifacts yet)'} sections={p.detail} />
       </div>
     </article>
   )
@@ -478,6 +532,8 @@ function OpenSourceBand() {
           <span>agentic-workflow-engine</span>
           <span aria-hidden="true" className="text-emerald-400/40">·</span>
           <span>proofdesk</span>
+          <span aria-hidden="true" className="text-emerald-400/40">·</span>
+          <span>lota-security-platform</span>
           <span aria-hidden="true" className="text-emerald-400/40">·</span>
           <span>smart-finder</span>
           <span aria-hidden="true" className="text-emerald-400/40">·</span>

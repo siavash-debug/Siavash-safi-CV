@@ -125,21 +125,7 @@ header.is-scrolled .nav-bg {
   pointer-events: none;
   transition: height .12s linear;
 }
-.path-stage-card {
-  position: relative;
-  background: linear-gradient(180deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .012));
-  border: 1px solid rgba(255, 255, 255, .07);
-  transition: border-color .35s ease, background .35s ease, box-shadow .35s ease, transform .35s ease;
-}
-.path-stage-card::before {
-  content: ''; position: absolute; left: 0; right: 0; top: 0; height: 1px;
-  background: linear-gradient(90deg, rgba(94, 234, 212, .0), rgba(94, 234, 212, .35) 18%, rgba(122, 162, 255, .18) 68%, rgba(94, 234, 212, .0));
-  opacity: .0; transition: opacity .35s ease;
-}
-.path-stage-card:hover { border-color: rgba(94, 234, 212, .18); background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .016)); box-shadow: 0 8px 32px -18px rgba(0, 0, 0, .7), 0 0 0 1px rgba(94, 234, 212, .08); }
-.path-stage-card:hover::before { opacity: 1; }
-
-/* the stage node */
+/* the stage circuit node on the vertical rail */
 .path-node {
   display: grid; place-items: center;
   width: 20px; height: 20px; border-radius: 999px;
@@ -151,113 +137,41 @@ header.is-scrolled .nav-bg {
   width: 7px; height: 7px; border-radius: 999px; background: #9aa5ba;
   opacity: .85; transition: background .3s ease, opacity .3s ease, box-shadow .3s ease, transform .3s ease;
 }
-.path-stage.is-active .path-node { border-color: rgba(94, 234, 212, .85); box-shadow: 0 0 0 4px rgba(7, 8, 11, 1), 0 0 12px rgba(94, 234, 212, .28); }
-.path-stage.is-active .path-node-dot { background: #5eead4; opacity: 1; box-shadow: 0 0 10px rgba(94, 234, 212, .65); transform: scale(1.05); }
-.path-stage.is-active .path-stage-card { border-color: rgba(94, 234, 212, .22); background: linear-gradient(180deg, rgba(94, 234, 212, .06), rgba(255, 255, 255, .014)); box-shadow: 0 10px 36px -20px rgba(0, 0, 0, .75), 0 0 0 1px rgba(94, 234, 212, .10); }
-.path-stage.is-active .path-stage-card::before { opacity: 1; }
-.path-stage:nth-child(1) .path-node { border-color: rgba(255, 255, 255, .06); }
-.path-stage:nth-child(1) .path-node-dot { opacity: .50; }
-.path-stage:nth-child(2) .path-node { border-color: rgba(255, 255, 255, .10); }
-.path-stage:nth-child(2) .path-node-dot { opacity: .60; }
-.path-stage:nth-child(3) .path-node { border-color: rgba(255, 255, 255, .14); }
-.path-stage:nth-child(3) .path-node-dot { opacity: .70; }
-.path-stage:nth-child(4) .path-node { border-color: rgba(255, 255, 255, .18); }
-.path-stage:nth-child(4) .path-node-dot { opacity: .80; }
-.path-stage:nth-child(5) .path-node { border-color: rgba(255, 255, 255, .24); }
-.path-stage:nth-child(5) .path-node-dot { opacity: .90; }
-.path-stage:nth-child(6) .path-node { border-color: rgba(94, 234, 212, .55); box-shadow: 0 0 0 4px rgba(7, 8, 11, 1), 0 0 8px rgba(94, 234, 212, .12); }
-.path-stage:nth-child(6) .path-node-dot { opacity: 1; background: #5eead4; box-shadow: 0 0 6px rgba(94, 234, 212, .30); }
-.path-stage--now .path-stage-card { border-top-color: rgba(94, 234, 212, .25); }
-@media (max-width: 640px) {
-  .path-stages { padding-left: 1.35rem; }
-  .path-stages::before { left: -1px; }
-  .path-stages::after { left: -2px; }
+.path-stage.is-active .path-node {
+  border-color: rgba(94, 234, 212, .9);
+  box-shadow: 0 0 0 4px rgba(7, 8, 11, 1), 0 0 16px rgba(94, 234, 212, .4);
+}
+.path-stage.is-active .path-node-dot {
+  background: #5eead4;
+  opacity: 1;
+  box-shadow: 0 0 10px rgba(94, 234, 212, .8);
+  transform: scale(1.15);
 }
 
-/* ---------- path: milestone register ---------- */
-.path-milestone { display: flex; flex-direction: column; align-items: flex-start; gap: 1rem; margin-top: 1.5rem; width: 100%; }
-.path-milestone-node { display: none; }
-.path-milestone-tick { display: none; }
-.path-milestone-index {
-  flex: none; font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em;
-  color: #6e7889; transition: color .3s ease;
-}
-.path-milestone-glyph {
-  display: grid; place-items: center; width: 26px; height: 26px; flex: none;
-  border: 1px solid rgba(255, 255, 255, .10); background: rgba(255, 255, 255, .02);
-  transition: border-color .3s ease, background .3s ease;
-}
-.path-milestone-glyph svg { display: block; width: 100%; height: 100%; }
-.path-milestone-label {
-  font-family: var(--mono); font-size: 9px; line-height: 1.5; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--text-3); transition: color .3s ease;
-}
-.path-stage--now .path-milestone-index { color: #9cf2e2; }
-.path-stage--now .path-milestone-glyph { border-color: rgba(94, 234, 212, .24); background: rgba(94, 234, 212, .04); }
+.path-stage:nth-child(1) .path-node { border-color: rgba(255, 255, 255, .10); }
+.path-stage:nth-child(2) .path-node { border-color: rgba(255, 255, 255, .14); }
+.path-stage:nth-child(3) .path-node { border-color: rgba(255, 255, 255, .18); }
+.path-stage:nth-child(4) .path-node { border-color: rgba(255, 255, 255, .22); }
+.path-stage:nth-child(5) .path-node { border-color: rgba(255, 255, 255, .26); }
+.path-stage:nth-child(6) .path-node { border-color: rgba(94, 234, 212, .45); }
+.path-stage:nth-child(7) .path-node { border-color: rgba(94, 234, 212, .85); box-shadow: 0 0 0 4px rgba(7, 8, 11, 1), 0 0 12px rgba(94, 234, 212, .3); }
 
-@media (min-width: 640px) {
-  .path-stages { --rail-w: 24rem; }
-  .path-stage-card {
-    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, var(--rail-w)); column-gap: 1.5rem;
-    position: relative;
-  }
-  .path-stage-card::after {
-    content: ''; position: absolute; right: -1.5rem; top: 0; bottom: 0; width: 1px;
-    background: rgba(255, 255, 255, .06);
-  }
-  .path-milestone { position: relative; align-items: flex-start; gap: .65rem; padding-left: .45rem; flex-direction: row; }
-  .path-milestone::before {
-    content: ''; position: absolute; left: 0; top: -1.5rem; bottom: -4.5rem; width: 1px;
-    background: rgba(255, 255, 255, .13);
-  }
-  .path-stage--now .path-milestone::before {
-    background: linear-gradient(180deg, rgba(255, 255, 255, .13) 14%, rgba(94, 234, 212, .42));
-  }
-  .path-stages > li:last-child .path-milestone::before { bottom: -1.5rem; }
-  .path-milestone-node {
-    display: block; position: absolute; left: -1.5px; top: 11.5px; width: 4px; height: 4px;
-    border-radius: 999px; background: rgba(255, 255, 255, .30);
-    transition: background .3s ease, transform .3s ease;
-  }
-  .path-milestone-index { width: 1.15rem; margin-top: .28rem; }
-  .path-milestone-tick {
-    display: block; flex: none; width: .7rem; height: 1px; margin-top: .81rem;
-    background: rgba(255, 255, 255, .16); opacity: .7;
-    transform: scaleX(.55); transform-origin: left center;
-    transition: transform .45s cubic-bezier(.16, 1, .3, 1), background .3s ease, opacity .3s ease;
-  }
-  .path-milestone-glyph { width: 30px; height: 30px; }
-
-  .path-milestone-artwork {
-    flex: 1; min-width: 0;
-    aspect-ratio: 4/3;
-    border: 1px solid rgba(255, 255, 255, .08);
-    background: rgba(0, 0, 0, .2);
-    border-radius: 0.5rem;
-    overflow: hidden;
-    transition: border-color .3s ease, box-shadow .3s ease;
-  }
-  .path-stage:hover .path-milestone-artwork,
-  .path-stage.is-active .path-milestone-artwork {
-    border-color: rgba(94, 234, 212, .25);
-    box-shadow: 0 0 20px rgba(94, 234, 212, .05);
-  }
-
-  .path-milestone-label { margin-top: .42rem; }
-  .path-stage:hover .path-milestone-glyph,
-  .path-stage:focus-within .path-milestone-glyph { border-color: rgba(94, 234, 212, .30); }
-  .path-stage.is-active .path-milestone-node { background: #5eead4; transform: scale(1.35); }
-  .path-stage.is-active .path-milestone-tick {
-    transform: scaleX(1); opacity: 1; background: rgba(94, 234, 212, .55);
-  }
-  .path-stage.is-active .path-milestone-index { color: #9cf2e2; }
-  .path-stage.is-active .path-milestone-glyph { border-color: rgba(94, 234, 212, .30); background: rgba(94, 234, 212, .05); }
-  .path-stage.is-active .path-milestone-label { color: #cbd3e0; }
+/* open architectural blueprint viewport for schematics */
+.path-blueprint-frame {
+  position: relative;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .025), rgba(255, 255, 255, .008));
+  border: 1px solid rgba(255, 255, 255, .08);
+  transition: border-color .35s ease, background .35s ease, box-shadow .35s ease;
+}
+.path-stage:hover .path-blueprint-frame,
+.path-stage.is-active .path-blueprint-frame {
+  border-color: rgba(94, 234, 212, .30);
+  background: linear-gradient(180deg, rgba(94, 234, 212, .03), rgba(255, 255, 255, .01));
+  box-shadow: 0 12px 40px -20px rgba(0, 0, 0, .8), 0 0 25px rgba(94, 234, 212, .08);
 }
 
-@media (min-width: 1024px) {
-  .path-stage-card { column-gap: 2.25rem; }
-}
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
 /* ---------- engineering projects ---------- */
 .project { position: relative; }
